@@ -8,5 +8,7 @@ public class Appcontroller {
         System.out.println("a1sad");
         System.out.println("as1ad");
         System.out.println("asdasad");
+        System.out.println("asdasad");
+        System.out.println("asdasad");
     }
 }
