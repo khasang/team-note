@@ -10,5 +10,9 @@ public class Appcontroller {
         System.out.println("asdasad");
         System.out.println("asdasad");
         System.out.println("asdasad");
+
+        System.out.println("vfrolova_diff");
+        System.out.println("vfrolova_diff");
+        System.out.println("vfrolova_diff");
     }
 }
