@@ -11,8 +11,8 @@ public class Appcontroller {
         System.out.println("asdasad");
         System.out.println("asdasad");
 
-        System.out.println("vfrolova_diff_1");
-        System.out.println("vfrolova_diff_2");
-        System.out.println("vfrolova_diff_3");
+        System.out.println("vfrolova_diff_11");
+        System.out.println("vfrolova_diff_22");
+        System.out.println("vfrolova_diff_33");
     }
 }
