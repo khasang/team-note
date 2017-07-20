@@ -11,8 +11,8 @@ public class Appcontroller {
         System.out.println("asdasad");
         System.out.println("asdasad");
 
-        System.out.println("vfalin22_diff_111");
-        System.out.println("vfalin22_diff_2222");
-        System.out.println("vfalin22_diff_33333");
+        System.out.println("vfalin22_diff_11");
+        System.out.println("vfalin22_diff_222");
+        System.out.println("vfalin22_diff_3333");
     }
 }
