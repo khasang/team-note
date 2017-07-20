@@ -51,7 +51,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <warSourceDirectory>${basedir}/web/</warSourceDirectory>
+                    <warSourceDirectory>${basedir}/web</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
