@@ -31,6 +31,9 @@ public class Appcontroller {
         System.out.println("aalexeen, push it");
 
 
+        //second attempt (third attempt) make the edit
+        System.out.println("aalexeen make the just edit (simulate the another developer's code");
+
         //second attempt (edit)
         System.out.println("aalexeen make the  1 ( the another developer's code");
         System.out.println("aalexeen, commit and push it");
