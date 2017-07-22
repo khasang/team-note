@@ -24,5 +24,6 @@ public class Appcontroller {
         System.out.println("aalexeen_diff_my_branch");
 
         System.out.println("aalexeen in my branch");
+        System.out.println("aalexeen test the right way");
     }
 }
