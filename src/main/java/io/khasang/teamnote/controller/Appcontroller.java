@@ -20,6 +20,8 @@ public class Appcontroller {
         System.out.println("vfrolova_diff_33");
         System.out.println("vfrolova_diff_33");
 
+        System.out.println("aalexeen_diff_33");
+        System.out.println("aalexeen_diff_my_branch");
 
         System.out.println("aalexeen in my branch");
     }
