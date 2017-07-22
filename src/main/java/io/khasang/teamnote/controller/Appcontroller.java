@@ -28,7 +28,9 @@ public class Appcontroller {
 
         System.out.println("aalexeen do some changes it main repo and don't pull it");
 
-        System.out.println("aalexeen my own changes without the pull proccess of the test repo");
+        System.out.println("aalexeen my own changes without the pull process of the test repo");
+
+        System.out.println("aalexeen make the conflict again and pull it");
 
     }
 }
