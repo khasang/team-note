@@ -30,5 +30,7 @@ public class Appcontroller {
 
         System.out.println("aalexeen my own changes without the pull proccess of the test repo");
 
+        System.out.println("aalexeen try to make the conflict again");
+
     }
 }
