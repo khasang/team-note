@@ -32,5 +32,7 @@ public class Appcontroller {
 
         System.out.println("aalexeen make the conflict again and pull it");
 
+        System.out.println("aalexeen try to make the conflict again");
+
     }
 }
