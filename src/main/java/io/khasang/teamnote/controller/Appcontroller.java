@@ -26,9 +26,15 @@ public class Appcontroller {
         System.out.println("aalexeen do my code without the pull test repo");
         System.out.println("aalexeen, commit and push it");
 
+        //second attempt my repo
+        System.out.println("aalexeen do my code without the pull test repo");
+        System.out.println("aalexeen, commit and push it");
+
+
         //second attempt
         System.out.println("aalexeen make the diff 1 (simulate the another developer's code");
         System.out.println("aalexeen, commit and push it");
+
 
     }
 }
