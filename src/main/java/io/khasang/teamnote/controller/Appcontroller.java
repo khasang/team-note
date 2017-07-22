@@ -25,5 +25,10 @@ public class Appcontroller {
 
         System.out.println("aalexeen in my branch");
         System.out.println("aalexeen test the right way");
+
+        System.out.println("aalexeen do some changes it main repo and don't pull it");
+
+        System.out.println("aalexeen my own changes without the pull proccess of the test repo");
+
     }
 }
