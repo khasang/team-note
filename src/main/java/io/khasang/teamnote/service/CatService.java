@@ -1,16 +1,13 @@
 package io.khasang.teamnote.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
 
 /**
  * @author gothmog on 25.07.2017.
  */
-@Service
+
 public class CatService {
-    private static final Logger logger = LoggerFactory.getLogger(CatService.class);
+    //private static final Logger logger = LoggerFactory.getLogger(CatService.class);
     private JdbcTemplate jdbcTemplate;
 
     public CatService() {
@@ -22,6 +19,7 @@ public class CatService {
 
     /**
      * create table
+     *
      * @return string table created successful
      */
     public String createCatTableStatus() {
@@ -31,7 +29,7 @@ public class CatService {
                     "id INTEGER CONSTRAINT cat_pk PRIMARY KEY ,\n" +
                     "name VARCHAR (255) NOT NULL );");
             return "table created successful";
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return "Error:" + ex;
         }
 
@@ -39,9 +37,10 @@ public class CatService {
 
     /**
      * insert table
+     *
      * @return data insert successful
      */
-    public String insertCatTableStatus(){
+    public String insertCatTableStatus() {
         jdbcTemplate.update("");
         jdbcTemplate.update("");
         return "data insert successful";

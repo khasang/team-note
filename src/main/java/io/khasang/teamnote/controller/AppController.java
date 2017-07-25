@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppController {
     @Value("Гектор Барбосса")
     private final Message message;
+
     @Autowired
     CatService catService;
 

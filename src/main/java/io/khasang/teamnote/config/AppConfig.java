@@ -34,6 +34,7 @@ public class AppConfig {
         return jdbcTemplate;
     }
 
+    @Bean
     public CatService catService() {
         return new CatService(jdbcTemplate());
     }
