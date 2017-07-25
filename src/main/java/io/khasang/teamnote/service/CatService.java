@@ -17,11 +17,11 @@ public class CatService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public String createCatTableStatus(){
+    public String createCatTableStatus() {
         jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
         jdbcTemplate.execute("CREATE TABLE cats(\n" +
-        "id INTEGER CONSTRAINT cat_key PRIMARY KEY ,\n" +
-        "name VARCHAR (255) NOT NULL );");
+                "id INTEGER CONSTRAINT cat_key PRIMARY KEY ,\n" +
+                "name VARCHAR (255) NOT NULL );");
         return "table created";
     }
 
