@@ -14,8 +14,12 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.teamnote.*","io.khasang.teamnote.config", "io.khasang.teamnote.controller", "io.khasang.teamnote.model"})
-public class WebConfig extends WebMvcConfigurerAdapter{
+@ComponentScan({"io.khasang.teamnote.*",
+                "io.khasang.teamnote.config",
+                "io.khasang.teamnote.controller",
+                "io.khasang.teamnote.model",
+                "io.khasang.teamnote.service"})
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
