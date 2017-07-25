@@ -18,7 +18,7 @@ public class AppConfig {
     @Autowired
     private Environment environment;
 
-    DriverManagerDataSource dataSource(){
+    public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driverClass"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
@@ -34,7 +34,7 @@ public class AppConfig {
         return jdbcTemplate;
     }
 
-    public CatService catService(){
+    public CatService catService() {
         return new CatService(jdbcTemplate());
     }
 
