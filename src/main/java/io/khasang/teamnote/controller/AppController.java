@@ -22,12 +22,13 @@ public class AppController {
 
     // http://localhost:8080/
     @RequestMapping("/")
-    public String helloPage(Model model){
+    public String helloPage(Model model) {
         model.addAttribute("name", message.getName());
         return "hello";
     }
+
     @RequestMapping("/create")
-    public String statusCatTableCreation(Model model){
+    public String statusCatTableCreation(Model model) {
         model.addAttribute("create", catService.createCatTableStatus());
         return "create";
     }
