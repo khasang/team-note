@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * @author gothmog on 25.07.2017.
  */
-
 public class CatService {
     //private static final Logger logger = LoggerFactory.getLogger(CatService.class);
     private JdbcTemplate jdbcTemplate;
