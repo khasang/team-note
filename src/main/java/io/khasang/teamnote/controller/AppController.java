@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AppController {
-    @Value("Гектор Барбосса")
+    @Value("Кошкин дом")
     private final Message message;
-
-    @Autowired
-    CatService catService;
 
     @Autowired
     public AppController(Message message) {
@@ -28,9 +25,5 @@ public class AppController {
         return "hello";
     }
 
-    @RequestMapping("/create")
-    public String statusCatTableCreation(Model model) {
-        model.addAttribute("create", catService.createCatTableStatus());
-        return "create";
-    }
+
 }
