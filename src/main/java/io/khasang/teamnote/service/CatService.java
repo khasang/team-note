@@ -53,7 +53,6 @@ public class CatService {
     }
 
 
-
     public String updateCatTableStatus() {
         String sql = "UPDATE cats SET name = ? WHERE id = ?";
         int id = 1;
