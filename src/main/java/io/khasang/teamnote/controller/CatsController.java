@@ -17,30 +17,30 @@ public class CatsController {
     @RequestMapping("/create")
     public String statusCatTableCreation(Model model) {
         model.addAttribute("create", catService.createCatTableStatus());
-        return "create";
+        return "cats/create";
     }
 
     @RequestMapping("/insert")
     public String statusCatTableInsert(Model model){
         model.addAttribute("insert", catService.insertCatTableStatus());
-        return "insert";
+        return "cats/insert";
     }
 
     @RequestMapping("/update")
     public String statusCatTableUpdate(Model model){
         model.addAttribute("update", catService.updateCatTableStatus());
-        return "update";
+        return "cats/update";
     }
 
     @RequestMapping("/delete")
     public String statusCatTableDelete(Model model){
         model.addAttribute("delete", catService.deleteCatTableStatus());
-        return "delete";
+        return "cats/delete";
     }
 
     @RequestMapping("/deleteCat")
     public String statusCatNameDelete(Model model){
         model.addAttribute("deleteCat", catService.deleteCatsName());
-        return "deleteCat";
+        return "cats/deleteCat";
     }
 }
