@@ -9,8 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * implementation DaoFactory
- *
+ * implementation DaoFactory *
  * @author gothmog on 28.07.2017.
  */
 public class ImplDaoFactory implements DaoFactory {
