@@ -21,25 +21,25 @@ public class CatsController {
     }
 
     @RequestMapping("/insert")
-    public String statusCatTableInsert(Model model){
+    public String statusCatTableInsert(Model model) {
         model.addAttribute("insert", catService.insertCatTableStatus());
         return "cats/insert";
     }
 
     @RequestMapping("/update")
-    public String statusCatTableUpdate(Model model){
+    public String statusCatTableUpdate(Model model) {
         model.addAttribute("update", catService.updateCatTableStatus());
         return "cats/update";
     }
 
     @RequestMapping("/delete")
-    public String statusCatTableDelete(Model model){
+    public String statusCatTableDelete(Model model) {
         model.addAttribute("delete", catService.deleteCatTableStatus());
         return "cats/delete";
     }
 
     @RequestMapping("/deleteCat")
-    public String statusCatNameDelete(Model model){
+    public String statusCatNameDelete(Model model) {
         model.addAttribute("deleteCat", catService.deleteCatsName());
         return "cats/deleteCat";
     }

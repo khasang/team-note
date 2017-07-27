@@ -1,7 +1,6 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.model.Message;
-import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
