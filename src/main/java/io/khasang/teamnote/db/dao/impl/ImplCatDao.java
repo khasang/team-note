@@ -43,25 +43,31 @@ public class ImplCatDao implements CatDao {
     }
 
     @Override
-    public boolean updateCat(int id, String name) {
+    public void updateCat(Cat cat) {
         log.info("Update cat");
-        boolean result = false;
         String sql = "UPDATE cats SET name = ? WHERE id = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
-        try (Connection connection = daoFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, name);
-
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, cat.getName());
+            preparedStatement.setInt(2,cat.getId());
             int rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated > 0) {
+            if (rowsUpdated != 0) {
                 log.info("An existing cat was updated successfully!");
-                result = true;
             }
         } catch (SQLException | IOException ex){
             log.error("Error when update cat", ex);
+        }finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException ex){
+                log.error("Error close", ex);
+            }
         }
-        return result;
     }
 
     @Override
