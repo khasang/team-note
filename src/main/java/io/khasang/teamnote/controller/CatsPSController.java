@@ -29,13 +29,6 @@ public class CatsPSController {
         return new ModelAndView("catsps/cat", "command", new Cat());
     }
 
-//    @RequestMapping(value = "/addCat", method = RequestMethod.POST)
-//    public String createCatPreparedStatementMethod(@ModelAttribute("cat") Cat cat, Model model){
-//        model.addAttribute("id", cat.getId());
-//        model.addAttribute("name", cat.getName());
-//        model.addAttribute("createCatPS", implCatDao.createCat(cat));
-//        return "success";
-//    }
 
     @RequestMapping(value="/save",method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("cat") Cat cat){
@@ -52,8 +45,10 @@ public class CatsPSController {
         return new ModelAndView("catsps/viewcat", "list", list);
     }
 
-    /* It displays object data into form for the given id.
-    * The @PathVariable puts URL data into variable.*/
+    /**
+    * It displays object data into form for the given id.
+    * The @PathVariable puts URL data into variable.
+     */
     @RequestMapping(value="/editcat/{id}")
     public ModelAndView edit(@PathVariable int id){
         Cat cat= implCatDao.getCatById(id);
