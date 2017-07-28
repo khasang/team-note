@@ -10,7 +10,7 @@ import java.util.List;
 public interface CatDao {
     boolean createCat(Cat cat);
 
-    boolean updateCat(int id, String name);
+    void updateCat(Cat cat);
 
     void deleteCat(int id);
 
