@@ -8,7 +8,7 @@ import java.util.List;
  * @author gothmog on 28.07.2017.
  */
 public interface CatDao {
-    boolean createCat(Cat cat);
+    void createCat(Cat cat);
 
     void updateCat(Cat cat);
 
@@ -16,5 +16,5 @@ public interface CatDao {
 
     List<Cat> getAllCats();
 
-    Cat  getCatById(int id);
+    Cat getCatById(int id);
 }
