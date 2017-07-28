@@ -1,6 +1,7 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.model.Message;
+import io.khasang.teamnote.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,18 @@ public class AppController {
         this.message = message;
     }
 
+    @Autowired
+    private BookService bookService;
+
     @RequestMapping("/")
     public String helloPage(Model model) {
         model.addAttribute("name", message.getMessage());
         return "hello";
+    }
+
+    @RequestMapping("/addchar")
+    public String statusAddCharacter(Model model) {
+        model.addAttribute("add", bookService.createNewBookCharacter());
+        return "addCharacter";
     }
 }
