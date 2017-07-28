@@ -66,9 +66,7 @@ public class CatsPSController {
      */
     @RequestMapping(value = "/editsave", method = RequestMethod.POST)
     public ModelAndView editsave(@ModelAttribute("cat") Cat cat){
-        cat.getId();
-        cat.getName();
-        implCatDao.updateCat(cat.getId(),cat.getName());
+        implCatDao.updateCat(cat);
         return new ModelAndView("redirect:/viewcat");
     }
 
