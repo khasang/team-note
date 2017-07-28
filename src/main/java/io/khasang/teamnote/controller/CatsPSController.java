@@ -26,7 +26,7 @@ public class CatsPSController {
      */
     @RequestMapping(value = "cat", method = RequestMethod.GET)
     public ModelAndView cat(){
-        return new ModelAndView("cat", "command", new Cat());
+        return new ModelAndView("catsps/cat", "command", new Cat());
     }
 
 //    @RequestMapping(value = "/addCat", method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class CatsPSController {
     @RequestMapping(value="/save",method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("cat") Cat cat){
         implCatDao.createCat(cat);
-        return new ModelAndView("redirect:/viewcat");
+        return new ModelAndView("redirect:viewcat");
     }
     /**
      *  It provides list of cat in model object
@@ -66,8 +66,10 @@ public class CatsPSController {
      */
     @RequestMapping(value = "/editsave", method = RequestMethod.POST)
     public ModelAndView editsave(@ModelAttribute("cat") Cat cat){
+        cat.getId();
+        cat.getName();
         implCatDao.updateCat(cat.getId(),cat.getName());
-        return new ModelAndView("redirect:catsps/viewcat");
+        return new ModelAndView("redirect:/viewcat");
     }
 
     /**
@@ -78,6 +80,6 @@ public class CatsPSController {
     @RequestMapping(value="/deletecat/{id}",method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable int id){
         implCatDao.deleteCat(id);
-        return new ModelAndView("redirect:catsps/viewcat");
+        return new ModelAndView("redirect:/viewcat");
     }
 }

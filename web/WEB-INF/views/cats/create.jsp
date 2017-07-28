@@ -10,7 +10,7 @@
     <a href="insert">Добавить 4-х котов</a>
 
     <h1>Реализация через PreparedStatement</h1>
-    <a href="catsps/cat">Добавить Кота</a>
-    <a href="catsps/viewcat">Посмотреть всех котов</a>
+    <a href="cat">Добавить Кота</a>
+    <a href="viewcat">Посмотреть всех котов</a>
 </body>
 </html>

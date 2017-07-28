@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -7,7 +8,7 @@
 <body>
 <h1>Реализация через PreparedStatement</h1>
 <h1>Edit Cat</h1>
-<form:form method="POST" action="editsave">
+<form:form method="POST" action="/teamnote/editsave">
     <table >
         <tr>
             <td></td>
