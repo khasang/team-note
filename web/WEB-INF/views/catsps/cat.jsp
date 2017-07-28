@@ -5,6 +5,7 @@
     <title>Create Cat</title>
 </head>
 <body>
+<h1>Реализация через PreparedStatement</h1>
 <h1>Add New Cat</h1>
 <form:form method="post" action="save">
     <table >

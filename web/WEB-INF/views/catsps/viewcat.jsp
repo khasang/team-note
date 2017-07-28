@@ -5,6 +5,7 @@
     <title>ViewCat</title>
 </head>
 <body>
+<h1>Реализация через PreparedStatement</h1>
 <h1>Cats List</h1>
 <table border="2" width="70%" cellpadding="2">
     <tr><th>Id</th><th>Name</th><th>Edit</th><th>Delete</th></tr>

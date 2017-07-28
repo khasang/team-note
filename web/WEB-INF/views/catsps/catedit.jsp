@@ -5,6 +5,7 @@
     <title>Cat Edit</title>
 </head>
 <body>
+<h1>Реализация через PreparedStatement</h1>
 <h1>Edit Cat</h1>
 <form:form method="POST" action="editsave">
     <table >
