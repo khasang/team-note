@@ -16,9 +16,15 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  */
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
+@PropertySource(value = {"classpath:backup.properties"})
 public class AppConfig {
-    @Autowired
+
     private Environment environment;
+
+    @Autowired
+    public AppConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
