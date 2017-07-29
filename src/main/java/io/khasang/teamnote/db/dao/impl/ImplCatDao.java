@@ -22,24 +22,32 @@ public class ImplCatDao implements CatDao {
     private ImplDaoFactory daoFactory = new ImplDaoFactory();
 
     @Override
-    public boolean createCat(Cat cat) {
+    public void createCat(Cat cat) {
         log.info("Create new cat");
-        boolean result = false;
+
         String sql = "INSERT INTO public.cats(id, name) VALUES (?, ?)";
-        try (Connection connection = daoFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try  {
+            connection = daoFactory.getConnection();
+            preparedStatement =  connection.prepareStatement(sql);
             preparedStatement.setInt(1, cat.getId());
             preparedStatement.setString(2, cat.getName());
 
             int rowsInsert = preparedStatement.executeUpdate();
-            if (rowsInsert > 0) {
+            if (rowsInsert != 0) {
                 log.info("A new cat was created successfully!");
-                result = true;
             }
         } catch (SQLException | IOException ex){
             log.error("Error when creating new cat", ex);
+        } finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException ex){
+                log.error("Error close ps connect", ex);
+            }
         }
-        return result;
     }
 
     @Override
@@ -74,17 +82,26 @@ public class ImplCatDao implements CatDao {
     public void deleteCat(int id) {
         log.info("Delete user");
         String sql = "DELETE FROM cats WHERE id = ?";
-
-        try (Connection connection = daoFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+             connection = daoFactory.getConnection();
+             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             int rowsDeleted = preparedStatement.executeUpdate();
-            if (rowsDeleted > 0) {
+            if (rowsDeleted != 0) {
                 log.info("A cat was deleted successfully!");
             }
         } catch (SQLException | IOException ex){
             log.error("Error when delete cat", ex);
+        } finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException ex){
+                log.error("Error close ps connect", ex);
+            }
         }
     }
 
@@ -93,10 +110,13 @@ public class ImplCatDao implements CatDao {
         log.info("Get all cats");
         List<Cat> catList = new ArrayList<>();
         String sql = "SELECT * FROM cats ORDER BY name";
-
-        try (Connection connection = daoFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Cat cat = new Cat();
                 cat.setId(resultSet.getInt("id"));
@@ -105,6 +125,14 @@ public class ImplCatDao implements CatDao {
             }
         } catch (SQLException | IOException ex){
             log.error("Error when getting all cats", ex);
+        }finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException ex){
+                log.error("Error close rs, ps, connect", ex);
+            }
         }
         return catList;
     }
@@ -112,18 +140,35 @@ public class ImplCatDao implements CatDao {
     @Override
     public Cat getCatById(int id) {
         log.info("Read cat");
-        Cat cat = new Cat();
         String sql = "SELECT * FROM cats WHERE id= ?";
+        Cat cat = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        try (Connection connection = daoFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            cat.setId(resultSet.getInt("id"));
-            cat.setName(resultSet.getString("name"));
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                cat = new Cat();
+                cat.setId(id);
+                cat.setName(resultSet.getString("name"));
+                log.info("Cat Found: " + cat);
+            } else {
+                log.info("No Cat found with id = " + id);
+            }
         } catch (SQLException | IOException ex){
             log.error("Error when reading cat's data", ex);
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException ex){
+                log.error("Error close resultset, preparestatement, connect", ex);
+            }
         }
         return cat;
     }
