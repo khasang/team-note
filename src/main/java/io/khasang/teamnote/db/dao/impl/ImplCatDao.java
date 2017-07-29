@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * class implementation CRUD
  * @author gothmog on 28.07.2017.
  */
 public class ImplCatDao implements CatDao {
