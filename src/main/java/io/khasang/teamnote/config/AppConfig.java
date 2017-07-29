@@ -1,6 +1,7 @@
 package io.khasang.teamnote.config;
 
 import io.khasang.teamnote.db.dao.impl.ImplCatDao;
+import io.khasang.teamnote.model.BackupTable;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,8 +42,15 @@ public class AppConfig {
     }
 
     @Bean
-    ImplCatDao implCatDao(){
+    public ImplCatDao implCatDao(){
         return new ImplCatDao();
     }
+
+    @Bean
+    public BackupTable backupTable(){
+        return new BackupTable();
+    }
+
+
 
 }
