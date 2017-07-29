@@ -18,12 +18,10 @@ public class BackupTable {
 
     @Autowired
     Environment environment;
-    private String dumpAppPath = "C:\\Program Files\\PostgreSQL\\9.6\\bin\\pg_dump";
-    private String dumpFolder = "C:\\Backup\\";
 
     public String runBackupTable() {
-        String pgDump = environment.getProperty(dumpAppPath);
-        String dumpFile = environment.getProperty(dumpFolder) + getDumpFileName();
+        String pgDump = environment.getProperty("postgresql.dumpAppPath");
+        String dumpFile = environment.getProperty("postgresql.dumpFolder") + getDumpFileName();
         //Add commands to start pg_dump
         List<String> baseCommand = new ArrayList<>();
         //Path to pg_dump
