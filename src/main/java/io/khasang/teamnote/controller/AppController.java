@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AppController {
@@ -28,8 +29,26 @@ public class AppController {
     }
 
     @RequestMapping("/addchar")
-    public String statusAddCharacter(Model model) {
-        model.addAttribute("add", bookService.createNewBookCharacter());
+    public String statusAddCharacter(Model model,
+                                     @RequestParam(value = "name") String name,
+                                     @RequestParam(value = "order") String order) {
+        model.addAttribute("add", bookService.createNewBookCharacter(name, order));
         return "addCharacter";
+    }
+
+    @RequestMapping("/updatechar")
+    public String statusUpdateCharacter(Model model,
+                                        @RequestParam(value = "id") int id,
+                                        @RequestParam(value = "name") String name,
+                                        @RequestParam(value = "order") String order) {
+        model.addAttribute("update", bookService.updateBookCharacter(id, name, order));
+        return "updateCharacter";
+    }
+
+    @RequestMapping("/deletechar")
+    public String statusDeleteCharacter(Model model,
+                                        @RequestParam(value = "id") int id) {
+        model.addAttribute("delete", bookService.deleteBookCharacter(id));
+        return "deleteCharacter";
     }
 }
