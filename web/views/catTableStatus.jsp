@@ -4,9 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    <div>
-        <p>${firstName}</p>
-        <p>${lastName}</p>
-    </div>
+    <p>${catTableStatus}</p>
 </body>
 </html>
