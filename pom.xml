@@ -14,6 +14,7 @@
         <spring.version>4.3.7.RELEASE</spring.version>
         <jstl.version>1.2</jstl.version>
         <javax.servlet.version>3.0.1</javax.servlet.version>
+        <postgresql.version>9.4.1212.jre7</postgresql.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,11 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
@@ -41,6 +47,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
     </dependencies>
 

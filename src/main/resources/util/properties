@@ -1,0 +1,4 @@
+jdbc.postgresql.driver=org.postgresql.Driver
+jdbc.postgresql.url=jdbc:postgresql://localhost:5432/postgres
+jdbc.postgresql.username=root
+jdbc.postgresql.password=root
