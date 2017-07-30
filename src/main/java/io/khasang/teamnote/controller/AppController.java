@@ -57,6 +57,12 @@ public class AppController {
         return "catTableStatus";
     }
 
+    @RequestMapping("/im")
+    public String getImPage(Model model){
+        model.addAttribute("im","THIS IS MY PAGE");
+        return "im";
+    }
+
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
         model.addAttribute("admin", "Very Secure Page for admins!");
