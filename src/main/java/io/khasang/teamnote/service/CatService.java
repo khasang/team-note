@@ -25,7 +25,7 @@ public class CatService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public String createTable(){
+    public String createTable() {
         jdbcTemplate.execute(environment.getProperty("query.dropTable"));
         jdbcTemplate.execute(environment.getProperty("query.createTable"));
         return "Table has created";
@@ -36,12 +36,12 @@ public class CatService {
         return "Barsik has added";
     }
 
-    public String updateValue(){
+    public String updateValue() {
         jdbcTemplate.execute(environment.getProperty("query.updateTable"));
         return "Muska has changed Barsik";
     }
 
-    public String deleteValue(){
+    public String deleteValue() {
         jdbcTemplate.execute(environment.getProperty("query.deleteFromTable"));
         return "value deleted";
     }
