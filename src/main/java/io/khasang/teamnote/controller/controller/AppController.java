@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller.controller;
+package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.model.Message;
 import io.khasang.teamnote.service.CatService;

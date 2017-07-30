@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller.config;
+package io.khasang.teamnote.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

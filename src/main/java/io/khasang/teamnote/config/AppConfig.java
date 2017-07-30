@@ -1,6 +1,5 @@
-package io.khasang.teamnote.controller.config;
+package io.khasang.teamnote.config;
 
-import io.khasang.teamnote.model.Message;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

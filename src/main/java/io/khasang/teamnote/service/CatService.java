@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller.service;
+package io.khasang.teamnote.service;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 

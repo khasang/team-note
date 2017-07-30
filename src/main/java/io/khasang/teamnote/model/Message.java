@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller.model;
+package io.khasang.teamnote.model;
 
 import org.springframework.stereotype.Component;
 

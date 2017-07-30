@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller.config;
+package io.khasang.teamnote.config;
 
 import io.khasang.teamnote.config.application.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
