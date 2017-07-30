@@ -45,4 +45,6 @@ public class CatService {
         jdbcTemplate.execute(environment.getProperty("query.deleteFromTable"));
         return "value deleted";
     }
+
+
 }
