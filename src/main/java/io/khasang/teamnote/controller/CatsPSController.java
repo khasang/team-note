@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 /**
+ * for implementation PreparedStatement
  * @author gothmog on 28.07.2017.
  */
 @Controller
