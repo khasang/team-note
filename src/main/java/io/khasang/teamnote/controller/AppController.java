@@ -34,5 +34,23 @@ public class AppController {
         return "backUp";
     }
 
+    @RequestMapping("/admin")
+    public String getAdminPage(Model model){
+        model.addAttribute("admin", "Very Secure Page for admins!!!");
+        return "admin";
+    }
+
+    @RequestMapping("/superadmin")
+    public String getSuperAdminPage(Model model){
+        model.addAttribute("superadmin", "Very Secure Page for superadmins!!!");
+        return "superadmin";
+    }
+
+    @RequestMapping("/user")
+    public String getUserPage(Model model){
+        model.addAttribute("user", "Very Secure Page for user!!!");
+        return "user";
+    }
+
 
 }
