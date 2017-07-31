@@ -28,6 +28,18 @@ public class AppController {
         return "hello";
     }
 
+    @RequestMapping("/admin")
+    public String getAdminPage(Model model) {
+        model.addAttribute("admin", "Page for admin");
+        return "admin";
+    }
+
+    @RequestMapping("/superadmin")
+    public String getSuperAdminPage(Model model) {
+        model.addAttribute("superadmin", "Page for superadmin");
+        return "superadmin";
+    }
+
     @RequestMapping("/addchar")
     public String statusAddCharacter(Model model,
                                      @RequestParam(value = "name") String name,
