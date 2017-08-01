@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 @Configuration
 @PropertySource(value = ("classpath:util/properties"))
-//@PropertySource(value = ("classpath:auth.properties"))
+@PropertySource(value = ("classpath:auth.properties"))
 public class AppConfig {
     @Autowired
     private Environment environment;
