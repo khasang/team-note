@@ -1,5 +1,6 @@
 package io.khasang.teamnote.config;
 
+import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,12 +9,24 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
+@PropertySource(value = {"classpath:auth.properties"})
 public class AppConfig {
     @Autowired
     private Environment environment;
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
+        jdbcDao.setDataSource(dataSource());
+        jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
+        jdbcDao.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
+        return jdbcDao;
+    }
 
     @Bean
     DriverManagerDataSource dataSource(){
