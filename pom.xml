@@ -17,6 +17,7 @@
         <spring.data>1.11.4.RELEASE</spring.data>
         <postgres.driver.version>9.4.1212</postgres.driver.version>
         <hibernate-version>5.2.10.Final</hibernate-version>
+          <jackson.version>2.7.8</jackson.version>
             <log4j.version>1.2.17</log4j.version>
             <junit.version>4.12</junit.version>
             <sl4j-version>1.7.22</sl4j-version>
@@ -90,6 +91,17 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate-version}</version>
+            </dependency>
+            <!-- JSON Parser-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         <!--JSP-->
         <dependency>
