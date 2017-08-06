@@ -23,9 +23,6 @@ import java.util.Properties;
 public class HibernateConfig {
     private final Environment environment;
 
-//    @Autowired
-//    private DataSource dataSource;
-
     @Autowired
     public HibernateConfig(Environment environment) {
         this.environment = environment;
