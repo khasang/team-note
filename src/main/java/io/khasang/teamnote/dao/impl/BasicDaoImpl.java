@@ -5,9 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
+
 /**
  * @author gothmog on 06.08.2017.
  */
+@Transactional
 public class BasicDaoImpl<T> implements BasicDao<T>{
     private final Class<T> entityClass;
     @Autowired
