@@ -19,13 +19,14 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @PropertySource(value = {"classpath:backup.properties"})
 public class AppConfig {
 
-    private Environment environment;
+    private final Environment environment;
 
     @Autowired
     public AppConfig(Environment environment) {
         this.environment = environment;
     }
 
+    @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driverClass"));
