@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
         "io.khasang.teamnote.config.*",
         "io.khasang.teamnote.controller",
         "io.khasang.teamnote.model",
+        "io.khasang.teamnote.dao.*",
         "io.khasang.teamnote.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
