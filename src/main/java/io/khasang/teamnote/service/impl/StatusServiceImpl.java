@@ -16,6 +16,6 @@ public class StatusServiceImpl implements StatusService{
 
     @Override
     public Status addStatus(Status status) {
-        return null;
+        return statusDao.create(status);
     }
 }
