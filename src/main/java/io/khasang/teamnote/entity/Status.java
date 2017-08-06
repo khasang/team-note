@@ -17,7 +17,6 @@ public class Status {
     @Column(name = "status_name")
     private String name;
 
-    @Column(name = "description")
     private String description;
 
     public Status() {
