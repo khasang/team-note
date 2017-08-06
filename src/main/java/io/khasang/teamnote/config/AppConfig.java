@@ -1,6 +1,8 @@
 package io.khasang.teamnote.config;
 
-import io.khasang.teamnote.service.CatService;
+import io.khasang.teamnote.dao.DocumentDao;
+import io.khasang.teamnote.dao.impi.DocumentDaoImpl;
+import io.khasang.teamnote.entity.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +16,13 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
+@PropertySource(value = {"classpath:hibernate.properties"})
 public class AppConfig {
     @Autowired
     private Environment environment;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -43,8 +46,9 @@ public class AppConfig {
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
+
     @Bean
-    public CatService catService(){
-        return new CatService(jdbcTemplate());
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
     }
 }
