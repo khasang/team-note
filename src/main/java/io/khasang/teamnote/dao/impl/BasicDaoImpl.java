@@ -9,16 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author gothmog on 06.08.2017.
  */
 public class BasicDaoImpl<T> implements BasicDao<T>{
+    private final Class<T> entityClass;
     @Autowired
-    SessionFactory sessionFactory;
-    
+    protected SessionFactory sessionFactory;
+
+    public BasicDaoImpl(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
+
     @Override
     public Session getCurrentSession() {
-        return null;
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
     public T create(T entity) {
-        return null;
+        getCurrentSession().save(entity);
+        return entity;
     }
 }
