@@ -1,6 +1,9 @@
 package io.khasang.teamnote.config;
 
+import io.khasang.teamnote.dao.StatusDao;
+import io.khasang.teamnote.dao.impl.StatusDaoImpl;
 import io.khasang.teamnote.db.dao.impl.ImplCatDao;
+import io.khasang.teamnote.entity.Status;
 import io.khasang.teamnote.model.BackupTable;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,11 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
+    }
+
+    @Bean
+    public StatusDao statusDao(){
+        return new StatusDaoImpl(Status.class);
     }
 
     @Bean
