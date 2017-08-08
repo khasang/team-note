@@ -22,10 +22,10 @@ public interface DocumentService {
     Document getById(long id);
 
     /**
-     * Delete document from DB
+     * Delete role from DB
      *
-     * @param id = uniq id document from DB
-     * @return deleted document
+     * @param id = uniq id role from DB
+     * @return deleted role
      */
     Document delete(long id);
 
