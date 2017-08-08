@@ -1,6 +1,6 @@
 package io.khasang.teamnote.service;
 
-import io.khasang.teamnote.model.Cat;
+import io.khasang.teamnote.model.CatHw;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +15,8 @@ public class CatService {
 
     private static final String insertSql =
         "INSERT INTO cats (" +
-                " id, " +
-                " name) " +
+                "id, " +
+                "name) " +
                 "VALUES (?, ?)";
 
     private static final String updateSql =
@@ -45,7 +45,7 @@ public class CatService {
         return  "table Created";
     }
 
-    public String incertLine(Cat cat) {
+    public String incertLine(CatHw cat) {
         jdbcTemplate.update(insertSql, cat.getId(), cat.getName());
         return  "id: " + cat.getId() + ", name: " + cat.getName();
     }
@@ -55,7 +55,7 @@ public class CatService {
         return  "id: " + id + ", name: " + name;
     }
 
-    public String updateById(Cat cat){
+    public String updateById(CatHw cat){
         jdbcTemplate.update(updateSql, cat.getName(), cat.getId());
         return  "where id: " + cat.getId();
     }

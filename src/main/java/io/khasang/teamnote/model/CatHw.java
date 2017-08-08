@@ -3,16 +3,16 @@ package io.khasang.teamnote.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Cat {
+public class CatHw {
     private int id;
     private String name;
 
-    public Cat(int id, String name) {
+    public CatHw(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Cat() {
+    public CatHw() {
     }
 
     public int getId() {
