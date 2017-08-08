@@ -1,5 +1,8 @@
 package io.khasang.teamnote.config;
 
+import io.khasang.teamnote.dao.DocumentDao;
+import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
+import io.khasang.teamnote.entity.Document;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -54,6 +57,11 @@ public class AppConfig {
     @Bean
     public CatService catService(){
         return new CatService(jdbcTemplate());
+    }
+
+    @Bean
+    public DocumentDao documentDao(){
+        return new DocumentDaoImpl(Document.class);
     }
 
 
