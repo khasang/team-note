@@ -1,10 +1,8 @@
 package io.khasang.teamnote.service;
 
-import io.khasang.teamnote.model.CatHw;
+import io.khasang.teamnote.model.Cat;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -45,7 +43,7 @@ public class CatService {
         return  "table Created";
     }
 
-    public String incertLine(CatHw cat) {
+    public String incertLine(Cat cat) {
         jdbcTemplate.update(insertSql, cat.getId(), cat.getName());
         return  "id: " + cat.getId() + ", name: " + cat.getName();
     }
@@ -55,7 +53,7 @@ public class CatService {
         return  "id: " + id + ", name: " + name;
     }
 
-    public String updateById(CatHw cat){
+    public String updateById(Cat cat){
         jdbcTemplate.update(updateSql, cat.getName(), cat.getId());
         return  "where id: " + cat.getId();
     }

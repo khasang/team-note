@@ -1,6 +1,6 @@
 package io.khasang.teamnote.controller;
 
-import io.khasang.teamnote.model.CatHw;
+import io.khasang.teamnote.model.Cat;
 import io.khasang.teamnote.model.Message;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,12 +81,12 @@ public class AppController {
         model.addAttribute("create", catService.createCatTableStatus());
 
         Map<String, String> mapCatsAttributes = new HashMap();
-        mapCatsAttributes.put("insert1", catService.incertLine(new CatHw(1, "Barsik")));
-        mapCatsAttributes.put("insert2", catService.incertLine(new CatHw(2, "Vasya")));
-        mapCatsAttributes.put("insert3", catService.incertLine(new CatHw(3, "Vova")));
+        mapCatsAttributes.put("insert1", catService.incertLine(new Cat(1, "Barsik")));
+        mapCatsAttributes.put("insert2", catService.incertLine(new Cat(2, "Vasya")));
+        mapCatsAttributes.put("insert3", catService.incertLine(new Cat(3, "Vova")));
         model.addAllAttributes(mapCatsAttributes);
 
-        model.addAttribute("update", catService.updateById(new CatHw(1, "Old Barsik")));
+        model.addAttribute("update", catService.updateById(new Cat(1, "Old Barsik")));
         model.addAttribute("delete", catService.deleteById(3));
         model.addAttribute("join",   catService.joinCatCompanies());
 
