@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @PropertySource(value= {"classpath:util.properties"}) //анотация, которая помогает работать с properties файлами в рамках Spring
 @PropertySource(value= {"classpath:auth.properties"})
 public class AppConfig {
-
     @Autowired
     private Environment environment;
 
@@ -27,11 +26,12 @@ public class AppConfig {
         appConfig.environment.getRequiredProperty("jdbc.postgresql.driver");
 
     }*/
+
     @Bean
     public UserDetailsService userDetailsService(){
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
-        jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
+        jdbcDao.setUsersByUsernameQuery(      environment.getRequiredProperty("usersByQuery"));
         jdbcDao.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
         return jdbcDao;
     }
@@ -41,9 +41,9 @@ public class AppConfig {
     DriverManagerDataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.postgresql.name"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.postgresql.password"));
+        dataSource.setUrl(            environment.getRequiredProperty("jdbc.postgresql.url"));
+        dataSource.setUsername(       environment.getRequiredProperty("jdbc.postgresql.name"));
+        dataSource.setPassword(       environment.getRequiredProperty("jdbc.postgresql.password"));
         return dataSource;
     }
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("documentService")
 public class DocumentServiceImpl implements DocumentService{
     @Autowired
@@ -17,4 +19,24 @@ public class DocumentServiceImpl implements DocumentService{
         return documentDao.create(document);
     }
 
+    @Override
+    public Document getById(long id) {
+        return documentDao.getById(id);
+    }
+
+    @Override
+    public Document delete(long id) {
+        Document documentFordelete = documentDao.getById(id);
+        return documentDao.delete(documentFordelete);
+    }
+
+    @Override
+    public List<Document> getList() {
+        return documentDao.getList();
+    }
+
+    @Override
+    public Document update(Document document) {
+        return documentDao.update(document);
+    }
 }
