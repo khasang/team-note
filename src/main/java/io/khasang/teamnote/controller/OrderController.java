@@ -20,13 +20,13 @@ public class OrderController {
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Order addDocument(@RequestBody Order order) {
+    public Order addOrder(@RequestBody Order order) {
         return orderService.addOrder(order);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Order> getDocuments(){
+    public List<Order> getOrders(){
         return orderService.getList();
     }
 

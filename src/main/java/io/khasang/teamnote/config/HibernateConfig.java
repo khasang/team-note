@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
@@ -27,20 +28,20 @@ public class HibernateConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driver"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driverClass"));
         dataSource.setUrl(environment.getRequiredProperty("hibernate.url"));
-        dataSource.setUsername(environment.getRequiredProperty("hibernate.name"));
+        dataSource.setUsername(environment.getRequiredProperty("hibernate.username"));
         dataSource.setPassword(environment.getRequiredProperty("hibernate.password"));
         return dataSource;
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("io.khasang.teamnote.entity");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
+    public LocalSessionFactoryBean sessionFactoryBean(){
+        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource());
+        sessionFactoryBean.setPackagesToScan("io.khasang.teamnote.entity");
+        sessionFactoryBean.setHibernateProperties(hibernateProperties());
+        return sessionFactoryBean;
     }
 
     private Properties hibernateProperties() {
@@ -55,9 +56,9 @@ public class HibernateConfig {
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory s) {
-        HibernateTransactionManager tsManager = new HibernateTransactionManager();
-        tsManager.setSessionFactory(s);
-        return tsManager;
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory);
+        return transactionManager;
     }
 }

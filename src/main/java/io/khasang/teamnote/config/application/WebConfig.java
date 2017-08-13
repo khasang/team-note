@@ -11,23 +11,27 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.teamnote.config", "io.khasang.teamnote.controller", "io.khasang.teamnote.model",
-        "io.khasang.teamnote.service", "io.khasang.teamnote.dao"})
+@ComponentScan({"io.khasang.teamnote.config",
+        "io.khasang.teamnote.controller",
+        "io.khasang.teamnote.model",
+        "io.khasang.teamnote.dao",
+        "io.khasang.teamnote.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/");      //  РАБОЧИЙ
+        viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setContentType("text/html; charset=UTF-8");
         return viewResolver;
     }
 
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/css");
-        registry.addResourceHandler("/img/**").addResourceLocations("/img");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js");
+        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
     }
 }
