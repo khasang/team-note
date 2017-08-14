@@ -1,3 +1,4 @@
+/**
 package io.khasang.teamnote.entity;
 
 public enum Priority {
@@ -15,4 +16,4 @@ public enum Priority {
     public String toString() {
         return  name;
     }
-}
+}*/
