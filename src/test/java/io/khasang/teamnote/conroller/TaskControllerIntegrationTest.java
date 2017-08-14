@@ -66,7 +66,6 @@ public class TaskControllerIntegrationTest {
         assertEquals("taskName", result.getName());
         assertNotNull(result.getId());
 
-
         return result;
     }
 

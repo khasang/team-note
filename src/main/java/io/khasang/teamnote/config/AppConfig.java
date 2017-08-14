@@ -1,8 +1,11 @@
 package io.khasang.teamnote.config;
 
 import io.khasang.teamnote.dao.DocumentDao;
+import io.khasang.teamnote.dao.TaskDao;
 import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
+import io.khasang.teamnote.dao.impl.TaskDaoImpl;
 import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.entity.Task;
 import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +67,8 @@ public class AppConfig {
         return new DocumentDaoImpl(Document.class);
     }
 
-
-
+    @Bean
+    public TaskDao taskDao(){
+        return new TaskDaoImpl(Task.class);
+    }
 }
