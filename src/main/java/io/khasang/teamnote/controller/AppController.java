@@ -20,8 +20,8 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage(Model model) {
-        model.addAttribute("name", message.getName());
-        return "hello";
+//        model.addAttribute("name", message.getName());
+        return "order";
     }
 
     @RequestMapping("/admin")
