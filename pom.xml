@@ -87,7 +87,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <!-- JSON Parser-->
+        <!--Jackson for rest-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -111,12 +111,18 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <!--test-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${basedir}/src/</testSourceDirectory>
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
