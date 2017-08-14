@@ -3,6 +3,9 @@ package io.khasang.teamnote.config;
 import io.khasang.teamnote.dao.DocumentDao;
 import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
 import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.dao.StatusDao;
+import io.khasang.teamnote.dao.impl.StatusDaoImpl;
+import io.khasang.teamnote.entity.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +52,11 @@ public class AppConfig {
     @Bean
     public DocumentDao documentDao(){
         return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public StatusDao statusDao(){
+        return new StatusDaoImpl(Status.class);
     }
 
 }
