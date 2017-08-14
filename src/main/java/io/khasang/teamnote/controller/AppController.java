@@ -23,6 +23,11 @@ public class AppController {
         return "document";
     }
 
+    @RequestMapping("/status")
+    public String statusPage() {
+        return "status";
+    }
+
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
         model.addAttribute("admin", "Very Secure Page for admins!");
