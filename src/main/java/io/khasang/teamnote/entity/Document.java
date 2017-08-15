@@ -3,21 +3,15 @@ package io.khasang.teamnote.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cats")
-public class Cat {
+@Table(name = "Documents")
+public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cat_id")
     private long id;
 
-    @Column(name = "cat_name")
     private String name;
 
-    @Transient
     private String description;
-
-    @Column(name="cats_count")
-    private int count;
 
     public long getId() {
         return id;
@@ -26,7 +20,6 @@ public class Cat {
     public void setId(long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
@@ -43,11 +36,4 @@ public class Cat {
         this.description = description;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 }

@@ -1,7 +1,6 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.model.Message;
-import io.khasang.teamnote.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,8 +17,6 @@ public class AppController {
     private final Message message;
 
     @Autowired
-    CatService catService;
-    @Autowired
     public AppController(Message message) {
         this.message = message;
     }
@@ -28,12 +25,6 @@ public class AppController {
     public String helloPage(Model model){
         model.addAttribute("name", message.getName());
         return "hello";
-    }
-
-    @RequestMapping("/create")
-    public String statusCatTableCreation(Model model){
-        model.addAttribute("create",catService.createCatTableStatus());
-        return "create";
     }
 
     @RequestMapping("/admin")

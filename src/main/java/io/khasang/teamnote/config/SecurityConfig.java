@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/admin/**").access("hasRole('ADMIN')")
                .antMatchers("/user/**").access("hasRole('USER')")
                .antMatchers("/superadmin/**").access("hasRole('SUPERADMIN')")
-               .and().csrf().disable().formLogin().defaultSuccessUrl("/",false);
+               //.and().csrf().disable().formLogin().defaultSuccessUrl("/",false);
+               .and().formLogin().defaultSuccessUrl("/",false);
     }
 }
