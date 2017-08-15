@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service(value = "statusService")
-public class StatusServiceImpl {
+public class StatusServiceImpl implements StatusService{
     @Autowired
     private StatusDao statusDao;
 
