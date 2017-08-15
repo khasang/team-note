@@ -33,7 +33,8 @@ public class OrderControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Order resultOrder = responseEntity.getBody();
-        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
+//        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
+        assertEquals(order.getPerson(), resultOrder.getPerson());
         deleteOrder(resultOrder.getId());
     }
 
@@ -75,16 +76,21 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-        assertEquals("Valeri", result.getC02_order_person());
+//        assertEquals("Valeri", result.getC02_order_person());
+        assertEquals("Valeri", result.getPerson());
         assertNotNull(result.getId());
         return result;
     }
 
     private Order prefillOrder() {
         Order order = new Order();
-//        order.setC01_order_date(2017-8-13);   //  Formats a date in the date escape format yyyy-mm-dd ???
-        order.setC02_order_person("Valeri");
-        order.setC03_product("glass of water");
+//        order.setC01_order_date(2017-8-13);   //  Formats a date in the date escape format yyyy-mm-dd
+//        order.setC02_order_person("Valeri");
+//        order.setC03_product("glass of water");
+        order.setPerson("Valeri");
+        order.setProduct("glass of water");
+        order.setOrderNumber(2);
+        order.setPrice(22.22);
         return order;
     }
 
@@ -114,7 +120,8 @@ public class OrderControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Order resultOrder = responseEntity.getBody();
-        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
+//        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
+        assertEquals(order.getPerson(), resultOrder.getPerson());
     }
 
     private Order updateOrder() {
@@ -133,8 +140,12 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-        assertEquals("Valeri", result.getC02_order_person());
-        assertEquals("glass of water", result.getC03_product());
+//        assertEquals("Valeri", result.getC02_order_person());
+//        assertEquals("glass of water", result.getC03_product());
+        assertEquals("Valeri", result.getPerson());
+        assertEquals("glass of water", result.getProduct());
+        assertEquals(2, result.getOrderNumber());
+        assertEquals(77.77, 77.77, 0.00);
         assertNotNull(result.getId());
         return result;
     }
@@ -142,9 +153,13 @@ public class OrderControllerIntegrationTest {
     private Order updatePrefillOrder() {
         Order order = new Order();
         order.setId(1);          // что значит: убедиться, что не NULL ???
-//        order.setC01_order_date(2017-1-1);  //  Formats a date in the date escape format yyyy-mm-dd ???
-        order.setC02_order_person("Valeri");
-        order.setC03_product("glass of water");
+//        order.setC01_order_date(2017-1-1);  //  Formats a date in the date escape format yyyy-mm-dd
+//        order.setC02_order_person("Valeri");
+//        order.setC03_product("glass of water");
+        order.setPerson("Valeri");
+        order.setProduct("glass of water");
+        order.setOrderNumber(2);
+        order.setPrice(77.77);
         return order;
     }
 }

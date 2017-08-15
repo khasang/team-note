@@ -38,10 +38,19 @@
         });
     };
 
-    var RestPut = function (c01_order_date, c02_order_person) {
+    //    var RestPut = function (c01_order_date, c02_order_person) {
+    //        var JSONObject = {
+    //            'Order_date': c01_order_date,
+    //            'Order_person': c02_order_person
+    //        };
+
+    var RestPut = function (person, product, orderNumber, price, orderDate) {
         var JSONObject = {
-            'Order_date': c01_order_date,
-            'Order_person': c02_order_person
+            'person': person,
+            'product': product,
+            'orderNumber': orderNumber,
+            'price': price,
+            'orderDate': orderDate
         };
 
         $.ajax({
@@ -60,11 +69,21 @@
         });
     };
 
-    var RestPost = function (id, c01_order_date, c02_order_person) {
+    //    var RestPost = function (id, c01_order_date, c02_order_person) {
+    //        var JSONObject = {
+    //            'id': id,
+    //            'Order_date': c01_order_date,
+    //            'Order_person': c02_order_person
+    //        };
+
+    var RestPost = function (id, person, product, orderNumber, price, orderDate) {
         var JSONObject = {
             'id': id,
-            'Order_date': c01_order_date,
-            'Order_person': c02_order_person
+            'person': person,
+            'product': product,
+            'orderNumber': orderNumber,
+            'price': price,
+            'orderDate': orderDate
         };
 
         $.ajax({
@@ -127,9 +146,18 @@
         <td><code><strong>PUT</strong>/order/add</code></td>
         <td>
             <form class="form-inline">
-                Order_date: <input type="text" id="putC01_order_date" value=2017-01-01>
-                Order_person: <input type="text" id="putC02_order_person" value="Valeri Mikhailov">
-                <button type="button" onclick="RestPut($('#putC01_order_date').val(), $('#putC02_order_person').val())">Try</button>
+                <%--Order_date: <input type="text" id="putC01_order_date" value=2017-01-01>--%>
+                <%--Order_person: <input type="text" id="putC02_order_person" value="Valeri Mikhailov">--%>
+                <%--<button type="button" onclick="RestPut($('#putC01_order_date').val(), $('#putC02_order_person').val())">Try</button>--%>
+                Person: <input type="text" id="putPerson" value="Student">
+                Product: <input type="text" id="putProduct" value="glass of water">
+                Order Number: <input type="text" id="putOrderNumber" value="">
+                Price: <input type="text" id="putPrice" value="">
+                Order Date: <input type="text" id="putOrderDate" value="">
+                <button type="button"
+                        onclick="RestPut($('#putPerson').val(), $('#putProduct').val(), $('#putOrderNumber').val(), $('#putPrice').val(), $('#putOrderDate').val())">
+                    Try
+                </button>
             </form>
         </td>
     </tr>
@@ -138,11 +166,18 @@
         <td><code><strong>POST</strong>/order/update</code></td>
         <td>
             <form class="form-inline">
-                id: <input type="number" id="postId" value=2>
-                Order_date: <input type="text" id="postC01_order_date" value=2017-02-02>
-                Order_person: <input type="text" id="postC02_order_person" value="Valeri Mikhailov">
+                Id: <input type="number" id="postId" value="">
+                <%--Order_date: <input type="text" id="postC01_order_date" value=2017-02-02>--%>
+                <%--Order_person: <input type="text" id="postC02_order_person" value="Valeri Mikhailov">--%>
+                <%--<button type="button" onclick="RestPost($('#postId').val(),$('#postC01_order_date').val(), $('#postC02_order_person').val())">Try--%>
+                Person: <input type="text" id="postPerson" value="Student">
+                Product: <input type="text" id="postProduct" value="glass of water">
+                Order Number: <input type="text" id="postOrderNumber" value="">
+                Price: <input type="text" id="postPrice" value="">
+                Order Date: <input type="text" id="postOrderDate" value="">
                 <button type="button"
-                        onclick="RestPost($('#postId').val(),$('#postC01_order_date').val(), $('#postC02_order_person').val())">Try
+                        onclick="RestPost($('#postId').val(),$('#postPerson').val(), $('#postProduct').val(), $('#postOrderNumber').val(), $('#postPrice').val(), $('#postOrderDate').val())">
+                    Try
                 </button>
             </form>
         </td>
