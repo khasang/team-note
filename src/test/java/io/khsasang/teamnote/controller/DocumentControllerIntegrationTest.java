@@ -103,5 +103,4 @@ public class DocumentControllerIntegrationTest {
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
-
 }
