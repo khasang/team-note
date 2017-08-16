@@ -6,6 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -19,55 +20,6 @@ public class TaskControllerIntegrationTest {
     private final String DELETE = "/delete";
     private final String UPDATE = "/update";
 
-    private Task prefillTask(){
-        Task task = new Task();
-        task.setName("taskName");
-        task.setDescription("someting");
-        return task;
-    }
-
-    private Task prefillUpdateTask(){
-        Task task = new Task();
-        task.setName("taskName");
-        task.setDescription("someting");
-        return task;
-    }
-
-    private void deleteTask(long id) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.exchange(
-                ROOT + DELETE +"/{id}",
-                HttpMethod.DELETE,
-                null,
-                String.class,
-                id
-        );
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        //return responseEntity.getBody();
-    }
-
-    private Task createTask(){
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
-        Task task = prefillTask();
-
-
-        HttpEntity<Task> httpEntity = new HttpEntity<>(task, headers);
-        RestTemplate template = new RestTemplate();
-
-        Task result = template.exchange(
-                ROOT + ADD,
-                HttpMethod.PUT,
-                httpEntity,
-                Task.class).getBody();
-
-        assertNotNull(result);
-        assertEquals("taskName", result.getName());
-        assertNotNull(result.getId());
-
-        return result;
-    }
 
     @Test
     public void addTaskAndGet(){
@@ -81,6 +33,7 @@ public class TaskControllerIntegrationTest {
                 Task.class,
                 task.getId()
         );
+
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Task result = responseEntity.getBody();
         assertEquals(task.getName(), result.getName());
@@ -134,6 +87,57 @@ public class TaskControllerIntegrationTest {
         assertNotNull(result.getId());
 
         deleteTask(firstTask.getId());
-
     }
+
+    private Task prefillTask(){
+        Task task = new Task();
+        task.setUserIdCreator(1);
+        task.setUserIdExecutor(2);
+        task.setStatusId(1);
+        task.setPriorityId(1);
+        task.setLableId(1);
+        task.setName("taskName");
+        task.setDescription("someting");
+        task.setCreationDate(LocalDateTime.now());
+        task.setIssueDate(LocalDateTime.now().plusDays(7));
+        task.setEstimatedDate(LocalDateTime.now().plusDays(14));
+        task.setUpdatedDate(LocalDateTime.MIN);
+        task.setColor("red");
+        return task;
+    }
+
+    private void deleteTask(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                ROOT + DELETE +"/{id}",
+                HttpMethod.DELETE,
+                null,
+                String.class,
+                id
+        );
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
+
+    private Task createTask(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        Task task = prefillTask();
+
+        HttpEntity<Task> httpEntity = new HttpEntity<>(task, headers);
+        RestTemplate template = new RestTemplate();
+
+        Task result = template.exchange(
+                ROOT + ADD,
+                HttpMethod.PUT,
+                httpEntity,
+                Task.class).getBody();
+
+        assertNotNull(result);
+        assertEquals("taskName", result.getName());
+        assertNotNull(result.getId());
+
+        return result;
+    }
+
 }
