@@ -17,10 +17,8 @@ public class AppController {
         this.message = message;
     }
 
-    // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage(Model model) {
-//        model.addAttribute("name", message.getName());
         return "order";
     }
 

@@ -9,7 +9,6 @@
     <packaging>war</packaging>
     <name>${project.artifactId}</name>
 
-    <!--Versions of libraries-->
     <properties>
         <spring.version>4.3.8.RELEASE</spring.version>
         <spring.security.version>4.2.2.RELEASE</spring.security.version>

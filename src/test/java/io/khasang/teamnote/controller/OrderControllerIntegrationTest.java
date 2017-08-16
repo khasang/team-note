@@ -6,6 +6,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -33,7 +35,6 @@ public class OrderControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Order resultOrder = responseEntity.getBody();
-//        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
         assertEquals(order.getPerson(), resultOrder.getPerson());
         deleteOrder(resultOrder.getId());
     }
@@ -76,21 +77,18 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-//        assertEquals("Valeri", result.getC02_order_person());
-        assertEquals("Valeri", result.getPerson());
+        assertEquals("Student", result.getPerson());
         assertNotNull(result.getId());
         return result;
     }
 
     private Order prefillOrder() {
         Order order = new Order();
-//        order.setC01_order_date(2017-8-13);   //  Formats a date in the date escape format yyyy-mm-dd
-//        order.setC02_order_person("Valeri");
-//        order.setC03_product("glass of water");
-        order.setPerson("Valeri");
+        order.setPerson("Student");
         order.setProduct("glass of water");
         order.setOrderNumber(2);
         order.setPrice(22.22);
+        order.setOrderDate(new Date(Calendar.getInstance().getTimeInMillis()));
         return order;
     }
 
@@ -120,7 +118,6 @@ public class OrderControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Order resultOrder = responseEntity.getBody();
-//        assertEquals(order.getC02_order_person(), resultOrder.getC02_order_person());
         assertEquals(order.getPerson(), resultOrder.getPerson());
     }
 
@@ -140,9 +137,7 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-//        assertEquals("Valeri", result.getC02_order_person());
-//        assertEquals("glass of water", result.getC03_product());
-        assertEquals("Valeri", result.getPerson());
+        assertEquals("Student", result.getPerson());
         assertEquals("glass of water", result.getProduct());
         assertEquals(2, result.getOrderNumber());
         assertEquals(77.77, 77.77, 0.00);
@@ -152,14 +147,12 @@ public class OrderControllerIntegrationTest {
 
     private Order updatePrefillOrder() {
         Order order = new Order();
-        order.setId(1);          // что значит: убедиться, что не NULL ???
-//        order.setC01_order_date(2017-1-1);  //  Formats a date in the date escape format yyyy-mm-dd
-//        order.setC02_order_person("Valeri");
-//        order.setC03_product("glass of water");
-        order.setPerson("Valeri");
+        order.setId(5);
+        order.setPerson("Student");
         order.setProduct("glass of water");
         order.setOrderNumber(2);
         order.setPrice(77.77);
+        order.setOrderDate(new Date(Calendar.getInstance().getTimeInMillis()));
         return order;
     }
 }
