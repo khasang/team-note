@@ -1,11 +1,15 @@
 package io.khsasang.teamnote.controller;
 
+import io.khasang.teamnote.controller.DocumentController;
 import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.service.DocumentService;
+import io.khasang.teamnote.service.impl.DocumentServiceImpl;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
