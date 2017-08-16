@@ -1,8 +1,7 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SuperAdmin Page</title>
+    <title>Title</title>
 </head>
 <body>
 ${superadmin}
