@@ -11,9 +11,13 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.teamnote.config", "io.khasang.teamnote.controller", "io.khasang.teamnote.model",
-        "io.khasang.teamnote.service", "io.khasang.teamnote.dao"})
+@ComponentScan({"io.khasang.teamnote.config",
+        "io.khasang.teamnote.controller",
+        "io.khasang.teamnote.model",
+        "io.khasang.teamnote.dao",
+        "io.khasang.teamnote.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
+
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -26,8 +30,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
     }
 }

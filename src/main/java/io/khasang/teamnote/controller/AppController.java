@@ -3,49 +3,41 @@ package io.khasang.teamnote.controller;
 import io.khasang.teamnote.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AppController {
-    @Value("Jack")
+    @Value("Jack Jack Jack")
+    private final Message message;
+
     @Autowired
-    private Message message;
+    public AppController(Message message) {
+        this.message = message;
+    }
 
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
-        return "document";
+        return "order";
     }
 
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
-        model.addAttribute("admin", "Very Secure Page for admins!");
+        model.addAttribute("admin", "Very Secure Page for admins!!!");
         return "admin";
-    }
-
-    @RequestMapping("/user")
-    public String getUserPage(Model model) {
-        model.addAttribute("user", "You are welcome!");
-        return "user";
     }
 
     @RequestMapping("/superadmin")
     public String getSuperAdminPage(Model model) {
-        model.addAttribute("superadmin", "Very Secure Page for super admins!");
+        model.addAttribute("superadmin", "Very Secure Page for superadmins!!!");
         return "superadmin";
     }
 
-    @RequestMapping(value = {"/password/{password}"}, method = RequestMethod.GET)
-    public ModelAndView passwordEncode(@PathVariable("password") String password) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("password");
-        modelAndView.addObject("crypt", new BCryptPasswordEncoder().encode(password));
-        return modelAndView;
+    @RequestMapping("/user")
+    public String getUserPage(Model model) {
+        model.addAttribute("user", "Very Secure Page for user!!!");
+        return "user";
     }
 }
