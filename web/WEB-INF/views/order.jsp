@@ -38,12 +38,6 @@
         });
     };
 
-    //    var RestPut = function (c01_order_date, c02_order_person) {
-    //        var JSONObject = {
-    //            'Order_date': c01_order_date,
-    //            'Order_person': c02_order_person
-    //        };
-
     var RestPut = function (person, product, orderNumber, price, orderDate) {
         var JSONObject = {
             'person': person,
@@ -68,13 +62,6 @@
             }
         });
     };
-
-    //    var RestPost = function (id, c01_order_date, c02_order_person) {
-    //        var JSONObject = {
-    //            'id': id,
-    //            'Order_date': c01_order_date,
-    //            'Order_person': c02_order_person
-    //        };
 
     var RestPost = function (id, person, product, orderNumber, price, orderDate) {
         var JSONObject = {
@@ -146,9 +133,6 @@
         <td><code><strong>PUT</strong>/order/add</code></td>
         <td>
             <form class="form-inline">
-                <%--Order_date: <input type="text" id="putC01_order_date" value=2017-01-01>--%>
-                <%--Order_person: <input type="text" id="putC02_order_person" value="Valeri Mikhailov">--%>
-                <%--<button type="button" onclick="RestPut($('#putC01_order_date').val(), $('#putC02_order_person').val())">Try</button>--%>
                 Person: <input type="text" id="putPerson" value="Student">
                 Product: <input type="text" id="putProduct" value="glass of water">
                 Order Number: <input type="text" id="putOrderNumber" value="">
@@ -167,9 +151,6 @@
         <td>
             <form class="form-inline">
                 Id: <input type="number" id="postId" value="">
-                <%--Order_date: <input type="text" id="postC01_order_date" value=2017-02-02>--%>
-                <%--Order_person: <input type="text" id="postC02_order_person" value="Valeri Mikhailov">--%>
-                <%--<button type="button" onclick="RestPost($('#postId').val(),$('#postC01_order_date').val(), $('#postC02_order_person').val())">Try--%>
                 Person: <input type="text" id="postPerson" value="Student">
                 Product: <input type="text" id="postProduct" value="glass of water">
                 Order Number: <input type="text" id="postOrderNumber" value="">
