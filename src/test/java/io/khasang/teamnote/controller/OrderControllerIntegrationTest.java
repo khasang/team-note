@@ -6,6 +6,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -75,15 +77,15 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-        assertEquals("Valeri", result.getC02_order_person());
+        assertEquals("Student", result.getC02_order_person());
         assertNotNull(result.getId());
         return result;
     }
 
     private Order prefillOrder() {
         Order order = new Order();
-//        order.setC01_order_date(2017-8-13);   //  Formats a date in the date escape format yyyy-mm-dd ???
-        order.setC02_order_person("Valeri");
+        order.setC01_order_date(new Date(Calendar.DAY_OF_YEAR));   //  Formats a date in the date escape format yyyy-mm-dd ???
+        order.setC02_order_person("Student");
         order.setC03_product("glass of water");
         return order;
     }
@@ -133,7 +135,7 @@ public class OrderControllerIntegrationTest {
                 Order.class).getBody();
 
         assertNotNull(result);
-        assertEquals("Valeri", result.getC02_order_person());
+        assertEquals("Student Student", result.getC02_order_person());
         assertEquals("glass of water", result.getC03_product());
         assertNotNull(result.getId());
         return result;
@@ -141,9 +143,9 @@ public class OrderControllerIntegrationTest {
 
     private Order updatePrefillOrder() {
         Order order = new Order();
-        order.setId(1);          // что значит: убедиться, что не NULL ???
-//        order.setC01_order_date(2017-1-1);  //  Formats a date in the date escape format yyyy-mm-dd ???
-        order.setC02_order_person("Valeri");
+        order.setId(6);          // что значит: убедиться, что не NULL ???
+        order.setC01_order_date(new Date(Calendar.DAY_OF_YEAR + 990000000));  //  Formats a date in the date escape format yyyy-mm-dd ???
+        order.setC02_order_person("Student Student");
         order.setC03_product("glass of water");
         return order;
     }
