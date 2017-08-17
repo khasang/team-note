@@ -39,7 +39,7 @@ public interface DocumentService {
     /**
      * Update specify document
      *
-     * @param document = document for update
+     * @param document = document for updateOrder
      * @return updated document
      */
     Document update(Document document);

@@ -11,6 +11,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/document")
 public class DocumentController {
+
     private final DocumentService documentService;
 
     @Autowired
@@ -48,4 +49,3 @@ public class DocumentController {
         return documentService.delete(Long.parseLong(inputId));
     }
 }
-
