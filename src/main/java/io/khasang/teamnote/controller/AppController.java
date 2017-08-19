@@ -20,12 +20,12 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
-        return "status";
+        return "document";
     }
 
-    @RequestMapping("/document")
+    @RequestMapping("/status")
     public String statusPage() {
-        return "document";
+        return "status";
     }
 
     @RequestMapping("/admin")
