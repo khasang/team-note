@@ -22,6 +22,12 @@ public interface RoleService {
      */
     Role getById(long id);
 
+    /**
+     * Delete role from DB
+     *
+     * @param id = uniq id role from DB
+     * @return deleted role
+     */
     Role delete(long id);
 
     /**
