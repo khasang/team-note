@@ -1,7 +1,6 @@
 package io.khasang.teamnote.service;
 
 
-import io.khasang.teamnote.entity.Document;
 import io.khasang.teamnote.entity.Role;
 
 import java.util.List;

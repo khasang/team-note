@@ -9,9 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class RoleControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/roles";
@@ -91,7 +89,7 @@ public class RoleControllerIntegrationTest {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<Role> responseEntity = restTemplate.exchange(
-                ROOT+DELETE+"/{id}",
+                ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
                 Role.class,
@@ -100,16 +98,15 @@ public class RoleControllerIntegrationTest {
 
         Role result = responseEntity.getBody();
         assertNotNull(result);
-        assertEquals(result.toString(),testRole.toString());
+        assertEquals(result.toString(), testRole.toString());
 
         ResponseEntity<Role> getEntity = restTemplate.exchange(
-                ROOT+GET+"/{id}",
+                ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
                 Role.class,
                 testRole.getId()
         );
-
         assertNull(getEntity.getBody());
     }
 
@@ -153,7 +150,6 @@ public class RoleControllerIntegrationTest {
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
-
 }
 
 
