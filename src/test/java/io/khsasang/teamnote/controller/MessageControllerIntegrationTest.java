@@ -6,7 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,6 +18,7 @@ public class MessageControllerIntegrationTest {
     private final String GET = "/get";
     private final String ALL = "/all";
     private final String DELETE = "/delete";
+    private final String UPDATE = "/update";
 
     @Test
     public void addDocumentAndGet() {
@@ -35,7 +36,7 @@ public class MessageControllerIntegrationTest {
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Message resultMessage = responseEntity.getBody();
         assertEquals(message.getMessageText(), resultMessage.getMessageText());
-        //deleteMessage(resultMessage.getId());
+        deleteMessage(resultMessage.getId());
     }
 
     @Test
@@ -56,8 +57,36 @@ public class MessageControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         List<Message> resultList = responseEntity.getBody();
         assertNotNull(resultList);
-        //deleteMessage(firstMessage.getId());
-        //deleteMessage(secondMessage.getId());
+        deleteMessage(firstMessage.getId());
+        deleteMessage(secondMessage.getId());
+    }
+
+    @Test
+    public void updateTask(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        Message firstMessage  = createMessage();
+        firstMessage.setMessageText("This is a new messageText");
+        firstMessage.setPriority(10);
+
+
+        HttpEntity<Message> httpEntity = new HttpEntity<>(firstMessage, headers);
+        RestTemplate template = new RestTemplate();
+
+        Message result = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.POST,
+                httpEntity,
+                Message.class).getBody();
+
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertEquals("This is a new messageText", result.getMessageText());
+        assertEquals(10, result.getPriority());
+
+
+        deleteMessage(firstMessage.getId());
     }
 
     private Message createMessage() {
@@ -86,17 +115,16 @@ public class MessageControllerIntegrationTest {
         Message message = new Message();
         message.setFromUserId(10);
         message.setToUserId(10);
-        //message.setCreateData(LocalDateTime.now());
-        System.out.println("Local dataTime " + LocalDateTime.now());
+        message.setCreateTime(Calendar.getInstance().getTime().getTime());
         message.setMessageText("some text");
         message.setPriority(1);
         message.setStatus(2);
         return message;
     }
 
-    private void deleteMessage(long id){
+    private void deleteMessage(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity =  restTemplate.exchange(
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,

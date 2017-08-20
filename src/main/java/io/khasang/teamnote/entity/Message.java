@@ -1,9 +1,6 @@
 package io.khasang.teamnote.entity;
 
-import sun.util.resources.CalendarData;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -14,7 +11,7 @@ public class Message {
 
     private long fromUserId;
     private long toUserId;
-    private LocalDateTime createData;
+    private long createTime;
     private String messageText;
     private int priority;
     private int status;
@@ -43,14 +40,6 @@ public class Message {
         this.toUserId = toUserId;
     }
 
-    public LocalDateTime getCreateData() {
-        return createData;
-    }
-
-    public void setCreateData(LocalDateTime createData) {
-        this.createData = createData;
-    }
-
     public String getMessageText() {
         return messageText;
     }
@@ -73,5 +62,13 @@ public class Message {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
     }
 }
