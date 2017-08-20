@@ -35,11 +35,11 @@ public class Message {
         this.fromUserId = fromUserId;
     }
 
-    public long getToUsersId() {
+    public long getToUserId() {
         return toUserId;
     }
 
-    public void setToUsersId(long toUsersId) {
+    public void setToUserId(long toUserId) {
         this.toUserId = toUserId;
     }
 

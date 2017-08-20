@@ -35,7 +35,7 @@ public class MessageControllerIntegrationTest {
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Message resultMessage = responseEntity.getBody();
         assertEquals(message.getMessageText(), resultMessage.getMessageText());
-        deleteMessage(resultMessage.getId());
+        //deleteMessage(resultMessage.getId());
     }
 
     @Test
@@ -56,8 +56,8 @@ public class MessageControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         List<Message> resultList = responseEntity.getBody();
         assertNotNull(resultList);
-        deleteMessage(firstMessage.getId());
-        deleteMessage(secondMessage.getId());
+        //deleteMessage(firstMessage.getId());
+        //deleteMessage(secondMessage.getId());
     }
 
     private Message createMessage() {
@@ -84,9 +84,10 @@ public class MessageControllerIntegrationTest {
 
     private Message prefillMessage() {
         Message message = new Message();
-        message.setFromUserId(1);
-        message.setToUsersId(10);
+        message.setFromUserId(10);
+        message.setToUserId(10);
         //message.setCreateData(LocalDateTime.now());
+        System.out.println("Local dataTime " + LocalDateTime.now());
         message.setMessageText("some text");
         message.setPriority(1);
         message.setStatus(2);
