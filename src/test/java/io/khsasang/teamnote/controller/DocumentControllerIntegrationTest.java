@@ -1,4 +1,4 @@
-package io.khasang.teamnote.controller;
+package io.khsasang.teamnote.controller;
 
 import io.khasang.teamnote.controller.DocumentController;
 import io.khasang.teamnote.entity.Document;

@@ -17,12 +17,8 @@ import java.net.MalformedURLException;
 @Controller
 public class AppController {
     @Value("Jack")
-    private Message message;
-
     @Autowired
-    public AppController(Message message) {
-        this.message = message;
-    }
+    private Message message;
 
     // http://localhost:8080/
     @RequestMapping("/")
@@ -44,7 +40,7 @@ public class AppController {
 
     @RequestMapping("/superadmin")
     public String getSuperAdminPage(Model model) {
-        model.addAttribute("superadmin", "Very Secure Page for superadmins!");
+        model.addAttribute("superadmin", "Very Secure Page for super admins!");
         return "superadmin";
     }
 
