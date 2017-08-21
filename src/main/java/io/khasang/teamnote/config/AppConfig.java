@@ -35,9 +35,9 @@ public class AppConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driverClass"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.postgresql.username"));
+        dataSource.setUsername(environment.getRequiredProperty("jdbc.postgresql.name"));
         dataSource.setPassword(environment.getRequiredProperty("jdbc.postgresql.password"));
         return dataSource;
     }

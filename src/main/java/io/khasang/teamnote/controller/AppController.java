@@ -16,8 +16,8 @@ import java.net.MalformedURLException;
 
 @Controller
 public class AppController {
-    @Value("Jack Jack Jack")
-    private final Message message;
+    @Value("Jack")
+    private Message message;
 
     @Autowired
     public AppController(Message message) {
@@ -32,13 +32,19 @@ public class AppController {
 
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
-        model.addAttribute("admin", "Very Secure Page for admins!!!");
+        model.addAttribute("admin", "Very Secure Page for admins!");
         return "admin";
+    }
+
+    @RequestMapping("/user")
+    public String getUserPage(Model model) {
+        model.addAttribute("user", "You are welcome!");
+        return "user";
     }
 
     @RequestMapping("/superadmin")
     public String getSuperAdminPage(Model model) {
-        model.addAttribute("superadmin", "Very Secure Page for superadmins!!!");
+        model.addAttribute("superadmin", "Very Secure Page for superadmins!");
         return "superadmin";
     }
 

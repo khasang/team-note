@@ -4,6 +4,7 @@ import io.khasang.teamnote.dao.DocumentDao;
 import io.khasang.teamnote.entity.Document;
 import io.khasang.teamnote.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -36,12 +36,12 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactoryBean(){
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setPackagesToScan("io.khasang.teamnote.entity");
-        sessionFactoryBean.setHibernateProperties(hibernateProperties());
-        return sessionFactoryBean;
+    public LocalSessionFactoryBean sessionFactory(){
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("io.khasang.teamnote.entity");
+        sessionFactory.setHibernateProperties(hibernateProperties());
+        return sessionFactory;
     }
 
     private Properties hibernateProperties() {
@@ -56,9 +56,9 @@ public class HibernateConfig {
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory);
-        return transactionManager;
+    public HibernateTransactionManager transactionManager(SessionFactory s){
+        HibernateTransactionManager tsManager = new HibernateTransactionManager();
+        tsManager.setSessionFactory(s);
+        return tsManager;
     }
 }
