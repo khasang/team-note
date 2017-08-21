@@ -152,7 +152,7 @@ public class OrderControllerIntegrationTest {
         order.setProduct("glass of water");
         order.setOrderNumber(2);
         order.setPrice(77.77);
-        order.setOrderDate(new Date(Calendar.getInstance().getTimeInMillis()));
+        order.setOrderDate(new Date(Calendar.getInstance().getTimeInMillis() + 86400000  * 10));
         return order;
     }
 }
