@@ -21,7 +21,7 @@ public class MessageControllerIntegrationTest {
     private final String UPDATE = "/update";
 
     @Test
-    public void addDocumentAndGet() {
+    public void addMessageAndGet() {
         Message message = createMessage();
 
         RestTemplate restTemplate = new RestTemplate();
@@ -40,7 +40,7 @@ public class MessageControllerIntegrationTest {
     }
 
     @Test
-    public void getAllDocuments() {
+    public void getAllMessages() {
         RestTemplate restTemplate = new RestTemplate();
 
         Message firstMessage = createMessage();
@@ -62,7 +62,7 @@ public class MessageControllerIntegrationTest {
     }
 
     @Test
-    public void updateTask(){
+    public void updateMessage(){
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
