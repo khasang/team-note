@@ -20,7 +20,6 @@ public class TaskControllerIntegrationTest {
     private final String DELETE = "/delete";
     private final String UPDATE = "/update";
 
-
     @Test
     public void addTaskAndGet(){
         Task task = createTask();
@@ -72,10 +71,8 @@ public class TaskControllerIntegrationTest {
         firstTask.setName("updatedName");
         firstTask.setDescription("updatedDescription");
 
-
         HttpEntity<Task> httpEntity = new HttpEntity<>(firstTask, headers);
         RestTemplate template = new RestTemplate();
-
         Task result = template.exchange(
                 ROOT + UPDATE,
                 HttpMethod.POST,
@@ -85,29 +82,12 @@ public class TaskControllerIntegrationTest {
         assertNotNull(result);
         assertEquals("updatedName", result.getName());
         assertNotNull(result.getId());
-
         deleteTask(firstTask.getId());
-    }
-
-    private Task prefillTask(){
-        Task task = new Task();
-        task.setUserIdCreator(1);
-        task.setUserIdExecutor(2);
-        task.setStatusId(1);
-        task.setPriorityId(1);
-        task.setLableId(1);
-        task.setName("taskName");
-        task.setDescription("someting");
-        task.setCreationDate(LocalDateTime.now());
-        task.setIssueDate(LocalDateTime.now().plusDays(7));
-        task.setEstimatedDate(LocalDateTime.now().plusDays(14));
-        task.setUpdatedDate(LocalDateTime.MIN);
-        task.setColor("red");
-        return task;
     }
 
     private void deleteTask(long id) {
         RestTemplate restTemplate = new RestTemplate();
+
         ResponseEntity<String> responseEntity = restTemplate.exchange(
                 ROOT + DELETE +"/{id}",
                 HttpMethod.DELETE,
@@ -115,6 +95,7 @@ public class TaskControllerIntegrationTest {
                 String.class,
                 id
         );
+
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
@@ -140,4 +121,20 @@ public class TaskControllerIntegrationTest {
         return result;
     }
 
+    private Task prefillTask(){
+        Task task = new Task();
+        task.setUserIdCreator(1);
+        task.setUserIdExecutor(2);
+        task.setStatusId(1);
+        task.setPriorityId(1);
+        task.setLableId(1);
+        task.setName("taskName");
+        task.setDescription("someting");
+        task.setCreationDate(LocalDateTime.now());
+        task.setIssueDate(LocalDateTime.now().plusDays(7));
+        task.setEstimatedDate(LocalDateTime.now().plusDays(14));
+        task.setUpdatedDate(LocalDateTime.now());
+        task.setColor("red");
+        return task;
+    }
 }
