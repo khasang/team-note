@@ -59,4 +59,9 @@ public class AppController {
         modelAndView.addObject("check", CheckTextUtil.response(text));
         return modelAndView;
     }
+
+    @RequestMapping("/users")
+    public String getUsersPage(Model model) {
+        return "users";
+    }
 }
