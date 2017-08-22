@@ -4,6 +4,11 @@ import java.util.List;
 
 import io.khasang.teamnote.entity.User;
 
+/**
+ * Defines a service that provides operations on {@link User} entity.
+ * 
+ * @author MickeyMouse
+ */
 public interface UserService {
 
 	/**
@@ -50,8 +55,7 @@ public interface UserService {
 	User update(User user);
 
 	/**
-	 * Returns a {@link User} with a given account name or null if such user not
-	 * found.
+	 * Returns a {@link User} with a given account name or null if such user not found.
 	 * 
 	 * @param accountName
 	 *            account name
@@ -60,8 +64,7 @@ public interface UserService {
 	User getByAccountName(String accountName);
 
 	/**
-	 * Returns a {@link User} with a given email address or null if such user
-	 * not found.
+	 * Returns a {@link User} with a given email address or null if such user not found.
 	 * 
 	 * @param email
 	 *            E-Mail address
@@ -70,9 +73,8 @@ public interface UserService {
 	User getByEmail(String email);
 
 	/**
-	 * Returns a list of all {@link User}s with a given first and last names.
-	 * Many users can have the same first and last name. That is why this method
-	 * can return more than one {@link User}.
+	 * Returns a list of all {@link User}s with a given first and last names. Many users can have the same first and
+	 * last name. That is why this method can return more than one {@link User}.
 	 * 
 	 * @param firstName
 	 *            first name

@@ -9,9 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /**
- * This class represents a user. It includes attributes that identify a person
- * ({@link #firstName}, {@link #lastName}), identify an application user
- * ({@link #accountName}) and enable authentication ({@link #password}).
+ * This class represents a user. It includes attributes that identify a person ({@link #firstName}, {@link #lastName}),
+ * identify an application user ({@link #accountName}) and enable authentication ({@link #password}).
  * 
  * @author MickeyMouse
  */
@@ -22,8 +21,8 @@ import javax.persistence.UniqueConstraint;
 public class User {
 
 	/**
-	 * The name of the user's account in the application. It is used to
-	 * distinguish users in the application, it is used also for login.
+	 * The name of the user's account in the application. It is used to distinguish users in the application, it is used
+	 * also for login.
 	 */
 	@Column(name = "ACCOUNT_NAME")
 	private String accountName;

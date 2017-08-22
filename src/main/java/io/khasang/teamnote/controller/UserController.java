@@ -1,6 +1,3 @@
-/**
- * 
- */
 package io.khasang.teamnote.controller;
 
 import java.util.List;
@@ -17,8 +14,9 @@ import io.khasang.teamnote.entity.User;
 import io.khasang.teamnote.service.UserService;
 
 /**
+ * Connects REST calls (URLs) with the service {@link UserService}.
+ * 
  * @author MickeyMouse
- *
  */
 @Controller
 @RequestMapping(value = "/users")

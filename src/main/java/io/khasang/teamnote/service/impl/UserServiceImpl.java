@@ -1,6 +1,3 @@
-/**
- * 
- */
 package io.khasang.teamnote.service.impl;
 
 import java.util.List;
@@ -13,8 +10,9 @@ import io.khasang.teamnote.entity.User;
 import io.khasang.teamnote.service.UserService;
 
 /**
+ * Implementation of the service {@link UserService} that provides operations on {@link User} entity.
+ * 
  * @author MickeyMouse
- *
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
