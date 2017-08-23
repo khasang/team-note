@@ -59,4 +59,9 @@ public class AppController {
         modelAndView.addObject("check", CheckTextUtil.response(text));
         return modelAndView;
     }
+
+    @RequestMapping("/roles")
+    public String RolePage(){
+        return "role";
+    }
 }
