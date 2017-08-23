@@ -1,9 +1,12 @@
 package io.khasang.teamnote.config;
 
+import io.khasang.teamnote.dao.AuthorizationDao;
 import io.khasang.teamnote.dao.DocumentDao;
 import io.khasang.teamnote.dao.RoleDao;
+import io.khasang.teamnote.dao.impl.AuthorizationDaoImpl;
 import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
 import io.khasang.teamnote.dao.impl.RoleDaoImpl;
+import io.khasang.teamnote.entity.Authorization;
 import io.khasang.teamnote.entity.Document;
 import io.khasang.teamnote.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +62,8 @@ public class AppConfig {
         return new RoleDaoImpl(Role.class);
     }
 
+    @Bean
+    public AuthorizationDao authorizationDao() {
+        return new AuthorizationDaoImpl(Authorization.class);
+    }
 }
