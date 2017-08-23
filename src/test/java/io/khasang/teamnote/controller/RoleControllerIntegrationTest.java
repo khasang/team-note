@@ -22,9 +22,7 @@ public class RoleControllerIntegrationTest {
     @Test
     public void addRoleAndGet() {
         Role role = createRole();
-
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<Role> responseEntity = restTemplate.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
@@ -34,7 +32,6 @@ public class RoleControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Role result = responseEntity.getBody();
-
         assertEquals(role.getRoleName(), result.getRoleName());
         deleteRole(result.getId());
     }
@@ -42,10 +39,8 @@ public class RoleControllerIntegrationTest {
     @Test
     public void getAllRoles() {
         RestTemplate restTemplate = new RestTemplate();
-
         Role firstRole = createRole();
         Role secondRole = createRole();
-
         ResponseEntity<List<Role>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
@@ -53,7 +48,6 @@ public class RoleControllerIntegrationTest {
                 new ParameterizedTypeReference<List<Role>>() {
                 }
         );
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         List<Role> resultList = responseEntity.getBody();
         assertNotNull(resultList);
@@ -66,18 +60,15 @@ public class RoleControllerIntegrationTest {
         Role testRole = createRole();
         testRole.setRoleName("OK");
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<Role> responseEntity = restTemplate.exchange(
                 ROOT + UPDATE,
                 HttpMethod.POST,
                 new HttpEntity<>(testRole),
                 Role.class
         );
-
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Role result = responseEntity.getBody();
         assertEquals(result.getRoleName(), "OK");
-
         deleteRole(testRole.getId());
     }
 
@@ -85,9 +76,7 @@ public class RoleControllerIntegrationTest {
     public void deleteRole() {
         Role testRole = createRole();
         assertNotNull(testRole);
-
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<Role> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
@@ -95,11 +84,9 @@ public class RoleControllerIntegrationTest {
                 Role.class,
                 testRole.getId()
         );
-
         Role result = responseEntity.getBody();
         assertNotNull(result);
         assertEquals(result.toString(), testRole.toString());
-
         ResponseEntity<Role> getEntity = restTemplate.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
@@ -113,18 +100,14 @@ public class RoleControllerIntegrationTest {
     private Role createRole() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
         Role role = prepareRole();
-
         HttpEntity<Role> httpEntity = new HttpEntity<>(role, headers);
         RestTemplate template = new RestTemplate();
-
         Role result = template.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
                 Role.class).getBody();
-
         assertNotNull(result);
         assertEquals("roleName", result.getRoleName());
         assertNotNull(result.getId());
@@ -147,9 +130,6 @@ public class RoleControllerIntegrationTest {
                 String.class,
                 id
         );
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 }
-
-

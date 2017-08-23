@@ -2,7 +2,6 @@ package io.khasang.teamnote.service;
 
 
 import io.khasang.teamnote.entity.Role;
-
 import java.util.List;
 
 public interface RoleService {
@@ -13,7 +12,6 @@ public interface RoleService {
      * @return created role
      */
     Role addRole(Role role);
-
     /**
      * Find role at database
      *
@@ -21,7 +19,6 @@ public interface RoleService {
      * @return role
      */
     Role getById(long id);
-
     /**
      * Delete role from DB
      *
@@ -29,14 +26,12 @@ public interface RoleService {
      * @return deleted role
      */
     Role delete(long id);
-
     /**
      * Receive all roles by specific type
      *
      * @return list of roles
      */
     List<Role> getList();
-
     /**
      * Update specify role
      *
@@ -44,5 +39,4 @@ public interface RoleService {
      * @return updated role
      */
     Role update(Role role);
-
 }
