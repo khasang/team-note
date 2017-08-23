@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan({"io.khasang.teamnote.config", "io.khasang.teamnote.controller", "io.khasang.teamnote.model",
         "io.khasang.teamnote.service", "io.khasang.teamnote.dao"})
 public class WebConfig extends WebMvcConfigurerAdapter {
-
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

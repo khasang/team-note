@@ -11,7 +11,6 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/document")
 public class DocumentController {
-
     private final DocumentService documentService;
 
     @Autowired
@@ -27,25 +26,25 @@ public class DocumentController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Document> getDocuments(){
+    public List<Document> getDocuments() {
         return documentService.getList();
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Document getById(@PathVariable(value = "id") String inputId){
+    public Document getById(@PathVariable(value = "id") String inputId) {
         return documentService.getById(Long.parseLong(inputId));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Document update(@RequestBody Document document){
+    public Document update(@RequestBody Document document) {
         return documentService.update(document);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Document delete(@PathVariable(value = "id") String inputId){
+    public Document delete(@PathVariable(value = "id") String inputId) {
         return documentService.delete(Long.parseLong(inputId));
     }
 }

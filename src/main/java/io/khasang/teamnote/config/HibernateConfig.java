@@ -11,7 +11,6 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
@@ -36,7 +35,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("io.khasang.teamnote.entity");
@@ -56,7 +55,7 @@ public class HibernateConfig {
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory s){
+    public HibernateTransactionManager transactionManager(SessionFactory s) {
         HibernateTransactionManager tsManager = new HibernateTransactionManager();
         tsManager.setSessionFactory(s);
         return tsManager;

@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public class BasicDaoImpl<T> implements BasicDao<T>{
+public class BasicDaoImpl<T> implements BasicDao<T> {
     private final Class<T> entityClass;
 
     @Autowired
