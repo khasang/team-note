@@ -25,7 +25,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public DriverManagerDataSource dataSource(){
+    public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driverClass"));
         dataSource.setUrl(environment.getRequiredProperty("hibernate.url"));
@@ -35,7 +35,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("io.khasang.teamnote.entity");
@@ -43,7 +43,7 @@ public class HibernateConfig {
         return sessionFactory;
     }
 
-    private Properties hibernateProperties(){
+    private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
@@ -55,7 +55,7 @@ public class HibernateConfig {
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager (SessionFactory s) {
+    public HibernateTransactionManager transactionManager(SessionFactory s) {
         HibernateTransactionManager tsManager = new HibernateTransactionManager();
         tsManager.setSessionFactory(s);
         return tsManager;
