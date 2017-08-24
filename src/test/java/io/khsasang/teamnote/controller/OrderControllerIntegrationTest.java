@@ -148,8 +148,6 @@ public class OrderControllerIntegrationTest {
     }
 
     private Order updatePrefillOrder(Order order) {
-        //Order order = new Order();
-        //order.setId(5);
         order.setPerson("Student");
         order.setProduct("glass of water");
         order.setOrderNumber(2);
