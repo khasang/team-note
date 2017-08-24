@@ -1,4 +1,4 @@
-package io.khsasang.teamnote.controller;
+package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Status;
 import org.junit.Test;

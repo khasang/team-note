@@ -1,4 +1,4 @@
-package io.khsasang.teamnote.controller;
+package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Authorization;
 import org.junit.Test;
