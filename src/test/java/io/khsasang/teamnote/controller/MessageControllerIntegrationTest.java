@@ -6,6 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
@@ -115,7 +116,7 @@ public class MessageControllerIntegrationTest {
         Message message = new Message();
         message.setFromUserId(10);
         message.setToUserId(10);
-        message.setCreateTime(Calendar.getInstance().getTime().getTime());
+        message.setCreateTime(LocalDateTime.now());
         message.setMessageText("some text");
         message.setPriority(1);
         message.setStatus(2);
