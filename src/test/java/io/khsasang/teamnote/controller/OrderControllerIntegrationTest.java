@@ -119,13 +119,15 @@ public class OrderControllerIntegrationTest {
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Order resultOrder = responseEntity.getBody();
         assertEquals(order.getPerson(), resultOrder.getPerson());
+        deleteOrder(order.getId());
     }
 
     private Order updateOrder() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Order order = updatePrefillOrder();
+        Order order  = createOrder();
+        order = updatePrefillOrder(order);
 
         HttpEntity<Order> httpEntity = new HttpEntity<>(order, headers);
         RestTemplate template = new RestTemplate();
@@ -145,9 +147,9 @@ public class OrderControllerIntegrationTest {
         return result;
     }
 
-    private Order updatePrefillOrder() {
-        Order order = new Order();
-        order.setId(5);
+    private Order updatePrefillOrder(Order order) {
+        //Order order = new Order();
+        //order.setId(5);
         order.setPerson("Student");
         order.setProduct("glass of water");
         order.setOrderNumber(2);
