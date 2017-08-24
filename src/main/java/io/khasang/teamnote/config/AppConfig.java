@@ -1,7 +1,7 @@
 package io.khasang.teamnote.config;
 
 import io.khasang.teamnote.dao.AuthorizationDao;
-import io.khasang.teamnote.dao.DocumentDao
+import io.khasang.teamnote.dao.DocumentDao;
 import io.khasang.teamnote.dao.MessageDao;
 import io.khasang.teamnote.dao.OrderDao;
 import io.khasang.teamnote.dao.RoleDao;
@@ -16,9 +16,6 @@ import io.khasang.teamnote.entity.Message;
 import io.khasang.teamnote.entity.Order;
 import io.khasang.teamnote.entity.Role;
 
-
-import io.khasang.teamnote.entity.Message;
->>>>>>> task002-AddMessageService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
