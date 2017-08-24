@@ -23,7 +23,7 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
-        return "document";
+        return "order";
     }
 
     @RequestMapping("/admin")
@@ -58,5 +58,10 @@ public class AppController {
         modelAndView.setViewName("checkSpell");
         modelAndView.addObject("check", CheckTextUtil.response(text));
         return modelAndView;
+    }
+
+    @RequestMapping("/roles")
+    public String RolePage(){
+        return "role";
     }
 }

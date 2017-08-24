@@ -1,6 +1,6 @@
 package io.khsasang.teamnote.controller;
 
-import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.entity.Authorization;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -11,83 +11,84 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class DocumentControllerIntegrationTest {
-    private final String ROOT = "http://localhost:8080/document";
+public class AuthorizationServiceIntegrationTest {
+    private final String ROOT = "http://localhost:8080/authorization";
     private final String ADD = "/add";
     private final String GET = "/get";
     private final String ALL = "/all";
     private final String DELETE = "/delete";
 
     @Test
-    public void addDocumentAndGet() {
-        Document document = createDocument();
+    public void addAuthorizationAndGet() {
+        Authorization authorization = createAuthorization();
 
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<Document> responseEntity = restTemplate.exchange(
+        ResponseEntity<Authorization> responseEntity = restTemplate.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                Document.class,
-                document.getId()
+                Authorization.class,
+                authorization.getId()
         );
+
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Document resultDocument = responseEntity.getBody();
-        assertEquals(document.getName(), resultDocument.getName());
-        deleteDocument(resultDocument.getId());
+        Authorization resultAuthorization = responseEntity.getBody();
+        assertEquals(authorization.getSession(), resultAuthorization.getSession());
+        deleteAuthorization(resultAuthorization.getId());
     }
 
     @Test
     public void getAllDocuments() {
         RestTemplate restTemplate = new RestTemplate();
 
-        Document firstDocument = createDocument();
-        Document secondDocument = createDocument();
+        Authorization authorizationFirst = createAuthorization();
+        Authorization authorizationSecond = createAuthorization();
+        Authorization authorizationThird = createAuthorization();
 
-        ResponseEntity<List<Document>> responseEntity = restTemplate.exchange(
+        ResponseEntity<List<Authorization>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Document>>() {
+                new ParameterizedTypeReference<List<Authorization>>() {
                 }
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        List<Document> resultList = responseEntity.getBody();
+        List<Authorization> resultList = responseEntity.getBody();
         assertNotNull(resultList);
-        deleteDocument(firstDocument.getId());
-        deleteDocument(secondDocument.getId());
+        deleteAuthorization(authorizationFirst.getId());
+        deleteAuthorization(authorizationSecond.getId());
+        deleteAuthorization(authorizationThird.getId());
     }
 
-    private Document createDocument() {
+    private Authorization createAuthorization() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Document document = prefillDocument();
+        Authorization authorization = prefillAuthorization();
 
-        HttpEntity<Document> httpEntity = new HttpEntity<>(document, headers);
+        HttpEntity<Authorization> httpEntity = new HttpEntity<>(authorization, headers);
         RestTemplate template = new RestTemplate();
 
-        Document result = template.exchange(
+        Authorization result = template.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
-                Document.class).getBody();
+                Authorization.class).getBody();
 
         assertNotNull(result);
-        assertEquals("documentName", result.getName());
+        assertEquals(333, result.getUserId());
+        assertEquals("Session №333", result.getSession());
         assertNotNull(result.getId());
         return result;
     }
 
-    private Document prefillDocument() {
-        Document document = new Document();
-        document.setName("documentName");
-        document.setDescription("something");
-        return document;
+    private Authorization prefillAuthorization() {
+        return new Authorization(333, "Session №333");
     }
 
-    private void deleteDocument(long id) {
+    private void deleteAuthorization(long id) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
