@@ -24,3 +24,7 @@ hs_err_pid*
 /target/
 *.iml
 /out/
+/.classpath
+/.project
+/.settings
+
