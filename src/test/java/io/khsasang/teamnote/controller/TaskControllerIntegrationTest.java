@@ -21,7 +21,7 @@ public class TaskControllerIntegrationTest {
     private final String UPDATE = "/update";
 
     @Test
-    public void addTaskAndGet(){
+    public void addTaskAndGet() {
         Task task = createTask();
         RestTemplate restTemplate = new RestTemplate();
 
@@ -41,17 +41,18 @@ public class TaskControllerIntegrationTest {
     }
 
     @Test
-    public void getAllTasks(){
+    public void getAllTasks() {
         RestTemplate restTemplate = new RestTemplate();
 
-        Task firstTask  = createTask();
+        Task firstTask = createTask();
         Task secondTask = createTask();
 
         ResponseEntity<List<Task>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Task>>(){}
+                new ParameterizedTypeReference<List<Task>>() {
+                }
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -61,17 +62,16 @@ public class TaskControllerIntegrationTest {
         deleteTask(secondTask.getId());
     }
 
-
     @Test
-    public void updateTask(){
+    public void updateTask() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Task firstTask  = createTask();
+        Task firstTask = createTask();
         firstTask.setName("updatedName");
         firstTask.setDescription("updatedDescription");
-
         HttpEntity<Task> httpEntity = new HttpEntity<>(firstTask, headers);
+
         RestTemplate template = new RestTemplate();
         Task result = template.exchange(
                 ROOT + UPDATE,
@@ -89,7 +89,7 @@ public class TaskControllerIntegrationTest {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(
-                ROOT + DELETE +"/{id}",
+                ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
                 String.class,
@@ -99,7 +99,7 @@ public class TaskControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
-    private Task createTask(){
+    private Task createTask() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
@@ -121,7 +121,7 @@ public class TaskControllerIntegrationTest {
         return result;
     }
 
-    private Task prefillTask(){
+    private Task prefillTask() {
         Task task = new Task();
         task.setUserIdCreator(1);
         task.setUserIdExecutor(2);

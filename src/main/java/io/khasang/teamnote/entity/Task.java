@@ -9,18 +9,18 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="tasks")
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long          id;
-    private long          userIdCreator;
-    private long          userIdExecutor;
-    private long          statusId;
-    private long          priorityId;
-    private long          lableId;
-    private String        name;
-    private String        description;
+    private long   id;
+    private long   userIdCreator;
+    private long   userIdExecutor;
+    private long   statusId;
+    private long   priorityId;
+    private long   lableId;
+    private String name;
+    private String description;
 
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -38,7 +38,7 @@ public class Task {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime updatedDate;
 
-    private String        color;
+    private String color;
 
     public long getId() {
         return id;
