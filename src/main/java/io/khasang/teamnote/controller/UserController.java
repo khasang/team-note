@@ -19,19 +19,19 @@ import io.khasang.teamnote.service.UserService;
  * @author MickeyMouse
  */
 @Controller
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/rest/users")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+	@RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public User addUser(@RequestBody User user) {
 		return userService.addUser(user);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<User> getAllUsers() {
 		return userService.getAll();
@@ -44,7 +44,7 @@ public class UserController {
 		return userService.getById(userId);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public User update(@RequestBody User user) {
 		return userService.update(user);
