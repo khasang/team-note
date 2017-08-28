@@ -1,6 +1,7 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Status;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -11,6 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 public class StatusControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/status";
     private final String ADD = "/add";
