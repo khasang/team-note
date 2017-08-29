@@ -27,7 +27,6 @@ public class ItemsDaoImpl extends BasicDaoImpl<Items> implements ItemsDao{
     @Transactional(readOnly = true)
     @Override
     public List<Items> findAllByUserId(long userId) {
-        User user = new User();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Items> criteriaQuery = builder.createQuery(Items.class);
         Root<Items> itemsRoot = criteriaQuery.from(Items.class);
