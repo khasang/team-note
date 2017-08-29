@@ -1,10 +1,13 @@
 package io.khasang.teamnote.config;
 
 import io.khasang.teamnote.dao.DocumentDao;
+import io.khasang.teamnote.dao.ItemDao;
 import io.khasang.teamnote.dao.OrderDao;
 import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
+import io.khasang.teamnote.dao.impl.ItemDaoImpl;
 import io.khasang.teamnote.dao.impl.OrderDaoImpl;
 import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.entity.Item;
 import io.khasang.teamnote.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +27,7 @@ public class AppConfig {
     private Environment environment;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -57,5 +60,10 @@ public class AppConfig {
     @Bean
     public OrderDao orderDao() {
         return new OrderDaoImpl(Order.class);
+    }
+
+    @Bean
+    public ItemDao itemDao() {
+        return new ItemDaoImpl(Item.class);
     }
 }
