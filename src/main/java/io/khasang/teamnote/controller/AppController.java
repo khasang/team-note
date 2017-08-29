@@ -26,6 +26,16 @@ public class AppController {
         return "item";
     }
 
+    @RequestMapping("/status")
+    public String statusPage() {
+        return "status";
+    }
+
+    @RequestMapping("/order")
+    public String orderPage(){
+        return "order";
+    }
+
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
         model.addAttribute("admin", "Very Secure Page for admins!");
@@ -58,5 +68,15 @@ public class AppController {
         modelAndView.setViewName("checkSpell");
         modelAndView.addObject("check", CheckTextUtil.response(text));
         return modelAndView;
+    }
+
+    @RequestMapping("/roles")
+    public String RolePage(){
+        return "role";
+    }
+
+    @RequestMapping("/users")
+    public String getUsersPage(Model model) {
+        return "users";
     }
 }
