@@ -36,6 +36,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item update(Item item) {
-        return itemDao.update(update(item));
+        return itemDao.update(item);
     }
 }
