@@ -1,8 +1,14 @@
 package io.khasang.teamnote.config;
 
-import io.khasang.teamnote.dao.*;
-import io.khasang.teamnote.dao.impl.*;
-import io.khasang.teamnote.entity.*;
+import io.khasang.teamnote.dao.DocumentDao;
+import io.khasang.teamnote.dao.ItemDao;
+import io.khasang.teamnote.dao.OrderDao;
+import io.khasang.teamnote.dao.impl.DocumentDaoImpl;
+import io.khasang.teamnote.dao.impl.ItemDaoImpl;
+import io.khasang.teamnote.dao.impl.OrderDaoImpl;
+import io.khasang.teamnote.entity.Document;
+import io.khasang.teamnote.entity.Item;
+import io.khasang.teamnote.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +27,7 @@ public class AppConfig {
     private Environment environment;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -30,7 +36,7 @@ public class AppConfig {
     }
 
     @Bean
-    public DriverManagerDataSource dataSource(){
+    public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
@@ -40,44 +46,24 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
 
     @Bean
-    public DocumentDao documentDao(){
+    public DocumentDao documentDao() {
         return new DocumentDaoImpl(Document.class);
     }
 
     @Bean
-    public StatusDao statusDao(){
-        return new StatusDaoImpl(Status.class);
-    }
-
-    @Bean
-    public RoleDao roleDao(){
-        return new RoleDaoImpl(Role.class);
-    }
-
-    @Bean
-    public OrderDao orderDao(){
+    public OrderDao orderDao() {
         return new OrderDaoImpl(Order.class);
     }
 
     @Bean
-    public AuthorizationDao authorizationDao() {
-        return new AuthorizationDaoImpl(Authorization.class);
-    }
-
-    @Bean
-    public MessageDao messageDao(){
-        return new MessageDaoImpl(Message.class);
-    }
-
-    @Bean
-    public TaskDao taskDao(){
-        return new TaskDaoImpl(Task.class);
+    public ItemDao itemDao() {
+        return new ItemDaoImpl(Item.class);
     }
 }
