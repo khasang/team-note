@@ -79,4 +79,14 @@ public class AppController {
     public String getUsersPage(Model model) {
         return "users";
     }
+
+    @RequestMapping("/message")
+    public String messagePage() {
+        return "message";
+    }
+
+    @RequestMapping("/groups")
+    public String groupsPage() {
+        return "groups";
+    }
 }

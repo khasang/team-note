@@ -80,4 +80,9 @@ public class AppConfig {
     public TaskDao taskDao(){
         return new TaskDaoImpl(Task.class);
     }
+
+    @Bean
+    public GroupsDao GroupsDao(){
+        return new GroupsDaoImpl(Groups.class);
+    }
 }
