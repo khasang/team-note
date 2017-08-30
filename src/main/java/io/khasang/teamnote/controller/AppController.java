@@ -84,4 +84,9 @@ public class AppController {
     public String messagePage() {
         return "message";
     }
+
+    @RequestMapping("/groups")
+    public String groupsPage() {
+        return "groups";
+    }
 }
