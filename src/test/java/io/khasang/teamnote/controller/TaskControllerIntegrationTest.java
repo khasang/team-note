@@ -1,6 +1,7 @@
-package io.khsasang.teamnote.controller;
+package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Task;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 public class TaskControllerIntegrationTest {
     private final String ROOT   = "http://localhost:8080/task";
     private final String ADD    = "/add";

@@ -75,9 +75,9 @@ public class AppConfig {
     public MessageDao messageDao(){
         return new MessageDaoImpl(Message.class);
     }
+
     @Bean
     public TaskDao taskDao(){
         return new TaskDaoImpl(Task.class);
     }
-
 }

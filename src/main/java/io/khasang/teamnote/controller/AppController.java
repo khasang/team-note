@@ -79,4 +79,9 @@ public class AppController {
     public String RolePage(){
         return "role";
     }
+
+    @RequestMapping("/users")
+    public String getUsersPage(Model model) {
+        return "users";
+    }
 }

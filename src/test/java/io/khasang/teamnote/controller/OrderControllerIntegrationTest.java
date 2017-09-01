@@ -1,6 +1,7 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Order;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -13,6 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 public class OrderControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/order";
     private final String ADD = "/add";
