@@ -1,19 +1,9 @@
 package io.khasang.teamnote.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * This class represents a user. It includes attributes that identify a person ({@link #firstName}, {@link #lastName}),
- * identify an application user ({@link #accountName}) and enable authentication ({@link #password}).
- * 
- * @author MickeyMouse
- */
 @Entity
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "ACCOUNT_NAME" }, name = "users_unique_account_name"),
@@ -43,6 +33,14 @@ public class User {
 
 	@Column(name = "PASSWORD")
 	private String password;
+
+	@OneToMany(mappedBy = "userCreator", cascade= CascadeType.ALL,
+			orphanRemoval = true, fetch = FetchType.EAGER)
+	private Set<Task> createdTasks  = new HashSet<>();
+
+	@OneToMany(mappedBy = "userExecutor", cascade= CascadeType.ALL,
+			orphanRemoval = true, fetch = FetchType.EAGER)
+	private Set<Task> assignedTasks = new HashSet<>();
 
 	public String getAccountName() {
 		return accountName;
@@ -92,4 +90,37 @@ public class User {
 		this.password = password;
 	}
 
+	public Set<Task> getCreatedTasks() {
+		return createdTasks;
+	}
+
+	public void setCreatedTasks(Set<Task> createdTasks) {
+		this.createdTasks = createdTasks;
+	}
+
+	public void addCreatedTasks(Task createdTask) {
+		createdTask.setUserCreator(this);
+		getCreatedTasks().add(createdTask);
+	}
+
+	public void removeCreatedTasks(Task createdTask) {
+		getCreatedTasks().remove(createdTask);
+	}
+
+	public Set<Task> getAssignedTasks() {
+		return assignedTasks;
+	}
+
+	public void setAssignedTasks(Set<Task> assignedTasks) {
+		this.assignedTasks = assignedTasks;
+	}
+
+	public void addAssignedTasks(Task assignedTask) {
+		assignedTask.setUserExecutor(this);
+		getAssignedTasks().add(assignedTask);
+	}
+
+	public void removeAssignedTasks(Task assignedTask) {
+		getAssignedTasks().remove(assignedTask);
+	}
 }

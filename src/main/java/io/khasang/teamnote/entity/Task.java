@@ -7,33 +7,58 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "TASKS")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long   id;
-    private long   userIdCreator;
-    private long   userIdExecutor;
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "PERANT_ID",
+            foreignKey = @ForeignKey(name = "FK_TASKS_PERANT_ID_TO_TASKS_ID"))
+    private Task perantTask;
+
+    @OneToMany(mappedBy = "perantTask", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Task> subTasks;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID_CREATOR",
+            foreignKey = @ForeignKey(name = "FK_TASKS_USER_ID_CREATOR_TO_USERS_ID"))
+    private User userCreator;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID_EXECUTOR",
+            foreignKey = @ForeignKey(name = "FK_TASKS_USER_ID_EXECUTOR_TO_USERS_ID"))
+    private User userExecutor;
+
+    @Column(name = "STATUS_ID")
     private long   statusId;
+    @Column(name = "PRIORITY_ID")
     private long   priorityId;
+    @Column(name = "LABLE_ID")
     private long   lableId;
     private String name;
     private String description;
 
+    @Column(name = "CREATION_DATE")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime creationDate;
 
+    @Column(name = "ISSUE_DATE")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime issueDate;
 
+    @Column(name = "ESTIMATED_DATE")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime estimatedDate;
 
+    @Column(name = "UPDATED_DATE")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime updatedDate;
@@ -48,20 +73,20 @@ public class Task {
         this.id = id;
     }
 
-    public long getUserIdCreator() {
-        return userIdCreator;
+    public User getUserCreator() {
+        return userCreator;
     }
 
-    public void setUserIdCreator(long userIdCreator) {
-        this.userIdCreator = userIdCreator;
+    public void setUserCreator(User userCreator) {
+        this.userCreator = userCreator;
     }
 
-    public long getUserIdExecutor() {
-        return userIdExecutor;
+    public User getUserExecutor() {
+        return userExecutor;
     }
 
-    public void setUserIdExecutor(long userIdExecutor) {
-        this.userIdExecutor = userIdExecutor;
+    public void setUserExecutor(User userExecutor) {
+        this.userExecutor = userExecutor;
     }
 
     public long getStatusId() {
@@ -142,5 +167,30 @@ public class Task {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Task getPerantTask() {
+        return perantTask;
+    }
+
+    public void setPerantTask(Task perantTask) {
+        this.perantTask = perantTask;
+    }
+
+    public Set<Task> getSubTasks() {
+        return subTasks;
+    }
+
+    public void setSubTasks(Set<Task> subTasks) {
+        this.subTasks = subTasks;
+    }
+
+    public void addSubTasks(Task subTask) {
+        subTask.setPerantTask(this);
+        getSubTasks().add(subTask);
+    }
+
+    public void removeSubTasks(Task subTask) {
+        getSubTasks().remove(subTask);
     }
 }

@@ -113,7 +113,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-<<<<<<<<< Temporary merge branch 1
             <version>${jackson.version}</version>
         </dependency>
         <!--test-->
