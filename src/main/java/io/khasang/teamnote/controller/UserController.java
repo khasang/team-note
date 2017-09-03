@@ -25,29 +25,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@RequestMapping(value = "/{userId}/addRole/{roleId}", method = RequestMethod.POST)
+	@ResponseBody
+	public User addRoletoUser(@PathVariable(value = "userId") String userIdStr,
+			@PathVariable(value = "roleId") String roleIdStr) {
+		long userId = Long.parseLong(userIdStr);
+		long roleId = Long.parseLong(roleIdStr);
+		return userService.addRoletoUser(userId, roleId);
+	}
+
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public User addUser(@RequestBody User user) {
 		return userService.addUser(user);
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public List<User> getAllUsers() {
-		return userService.getAll();
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseBody
-	public User getById(@PathVariable(value = "id") String userIdStr) {
-		long userId = Long.parseLong(userIdStr);
-		return userService.getById(userId);
-	}
-
-	@RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-	@ResponseBody
-	public User update(@RequestBody User user) {
-		return userService.update(user);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -55,6 +45,12 @@ public class UserController {
 	public User delete(@PathVariable(value = "id") String userIdStr) {
 		long userId = Long.parseLong(userIdStr);
 		return userService.delete(userId);
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public List<User> getAllUsers() {
+		return userService.getAll();
 	}
 
 	@RequestMapping(value = "/accountName={accountName}", method = RequestMethod.GET)
@@ -69,10 +65,24 @@ public class UserController {
 		return userService.getByEmail(email);
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public User getById(@PathVariable(value = "id") String userIdStr) {
+		long userId = Long.parseLong(userIdStr);
+		return userService.getById(userId);
+	}
+
 	@RequestMapping(value = "/firstName={firstName}&lastName={lastName}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<User> getByPersonName(@PathVariable(value = "firstName") String firstName,
 			@PathVariable(value = "lastName") String lastName) {
 		return userService.getByPersonName(firstName, lastName);
 	}
+
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public User update(@RequestBody User user) {
+		return userService.update(user);
+	}
+
 }

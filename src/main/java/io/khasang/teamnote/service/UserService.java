@@ -12,6 +12,14 @@ import io.khasang.teamnote.entity.User;
 public interface UserService {
 
 	/**
+	 * Adds role to user.
+	 * 
+	 * @param userId
+	 * @param roleId
+	 */
+	User addRoletoUser(long userId, long roleId);
+
+	/**
 	 * Adds user to database.
 	 *
 	 * @param user
@@ -37,24 +45,6 @@ public interface UserService {
 	List<User> getAll();
 
 	/**
-	 * Finds user in database.
-	 *
-	 * @param id
-	 *            user ID
-	 * @return user
-	 */
-	User getById(long id);
-
-	/**
-	 * Updates specific user in database.
-	 *
-	 * @param user
-	 *            user to update
-	 * @return updated user
-	 */
-	User update(User user);
-
-	/**
 	 * Returns a {@link User} with a given account name or null if such user not found.
 	 * 
 	 * @param accountName
@@ -73,6 +63,15 @@ public interface UserService {
 	User getByEmail(String email);
 
 	/**
+	 * Finds user in database.
+	 *
+	 * @param id
+	 *            user ID
+	 * @return user
+	 */
+	User getById(long id);
+
+	/**
 	 * Returns a list of all {@link User}s with a given first and last names. Many users can have the same first and
 	 * last name. That is why this method can return more than one {@link User}.
 	 * 
@@ -83,4 +82,14 @@ public interface UserService {
 	 * @return users having given first and last name
 	 */
 	List<User> getByPersonName(String firstName, String lastName);
+
+	/**
+	 * Updates specific user in database.
+	 *
+	 * @param user
+	 *            user to update
+	 * @return updated user
+	 */
+	User update(User user);
+
 }
