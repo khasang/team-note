@@ -1,12 +1,7 @@
 package io.khasang.teamnote.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * This class represents a user. It includes attributes that identify a person ({@link #firstName}, {@link #lastName}),
@@ -92,4 +87,14 @@ public class User {
 		this.password = password;
 	}
 
+	@OneToMany(mappedBy = "user")
+	private Set<Order> order;
+
+	public Set<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Set<Order> order) {
+		this.order = order;
+	}
 }

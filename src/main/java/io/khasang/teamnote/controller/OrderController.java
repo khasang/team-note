@@ -39,7 +39,7 @@ public class OrderController {
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Order update(@RequestBody Order order){
-        return orderService.updateOrder(order);
+        return orderService.update(order);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

@@ -39,8 +39,8 @@ public interface OrderService {
     /**
      * Update specify order
      *
-     * @param order = order for updateOrder
+     * @param order = order for update
      * @return updated order
      */
-    Order updateOrder(Order order);
+    Order update(Order order);
 }
