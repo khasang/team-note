@@ -77,7 +77,8 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    @ManyToOne
+    //-----------------------------------------beafore was fine
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -89,7 +90,7 @@ public class Order {
         this.user = user;
     }
 
-    public Order(String person, String product, int orderNumber, double price, Date orderDate, User u){
+    public Order(String person, String product, int orderNumber, double price, Date orderDate, User u) {
         this.person = person;
         this.product = product;
         this.orderNumber = orderNumber;
