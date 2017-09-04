@@ -10,7 +10,7 @@
 </head>
 
 <script type="text/javascript">
-	var service = '/users';
+	var service = '/rest/users';
 
 	var RestAddUser = function(accountName, password, firstName, lastName,
 			email) {
@@ -24,7 +24,7 @@
 
 		$.ajax({
 			type : 'PUT',
-			url : service + "/",
+			url : service,
 			contentType : 'application/json;charset=utf-8',
 			data : JSON.stringify(JSONObject),
 			datatype : 'json',
@@ -41,7 +41,7 @@
 	var RestGetAllUsers = function() {
 		$.ajax({
 			type : 'GET',
-			url : service + '/',
+			url : service,
 			dataType : 'json',
 			async : false,
 			success : function(result) {
