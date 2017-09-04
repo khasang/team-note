@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.khasang.teamnote.dao.RoleDao;
 import io.khasang.teamnote.dao.UserDao;
+import io.khasang.teamnote.entity.Role;
 import io.khasang.teamnote.entity.User;
 import io.khasang.teamnote.service.UserService;
 
@@ -18,7 +20,18 @@ import io.khasang.teamnote.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
+	private RoleDao roleDao;
+
+	@Autowired
 	private UserDao userDao;
+
+	public User addRoletoUser(long userId, long roleId) {
+		User user = userDao.getById(userId);
+		Role role = roleDao.getById(roleId);
+		user.getRoles().add(role);
+		userDao.update(user);
+		return user;
+	}
 
 	@Override
 	public User addUser(User user) {
@@ -37,16 +50,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getById(long id) {
-		return userDao.getById(id);
-	}
-
-	@Override
-	public User update(User user) {
-		return userDao.update(user);
-	}
-
-	@Override
 	public User getByAccountName(String accountName) {
 		return userDao.getByAccountName(accountName);
 	}
@@ -57,8 +60,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getById(long id) {
+		return userDao.getById(id);
+	}
+
+	@Override
 	public List<User> getByPersonName(String firstName, String lastName) {
 		return userDao.getByPersonName(firstName, lastName);
 	}
 
+	@Override
+	public User update(User user) {
+		return userDao.update(user);
+	}
 }
