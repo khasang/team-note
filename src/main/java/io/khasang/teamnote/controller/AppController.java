@@ -23,7 +23,7 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
-        return "document";
+        return "start_page";
     }
 
     @RequestMapping("/status")
