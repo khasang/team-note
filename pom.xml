@@ -127,11 +127,27 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${sl4j-version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${sl4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${sl4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!--******************************-->
+        <!--test-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
         </dependency>
     </dependencies>
 
@@ -155,9 +171,7 @@
                     <warSourceDirectory>${basedir}/web</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-
             </plugin>
         </plugins>
     </build>
-
 </project>

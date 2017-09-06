@@ -125,8 +125,8 @@ public class TaskControllerIntegrationTest {
 
     private Task prefillTask() {
         Task task = new Task();
-        task.setUserIdCreator(1);
-        task.setUserIdExecutor(2);
+        task.setUserCreator(null);
+        task.setUserExecutor(null);
         task.setStatusId(1);
         task.setPriorityId(1);
         task.setLableId(1);

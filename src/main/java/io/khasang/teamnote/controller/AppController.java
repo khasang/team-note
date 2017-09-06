@@ -36,6 +36,11 @@ public class AppController {
         return "order";
     }
 
+    @RequestMapping("/task")
+    public String taskPage() {
+        return "task";
+    }
+
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {
         model.addAttribute("admin", "Very Secure Page for admins!");
