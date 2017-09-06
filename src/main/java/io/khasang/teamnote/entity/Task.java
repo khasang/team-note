@@ -17,11 +17,11 @@ public class Task {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "PERANT_ID",
-            foreignKey = @ForeignKey(name = "FK_TASKS_PERANT_ID_TO_TASKS_ID"))
-    private Task perantTask;
+    @JoinColumn(name = "PARENT_ID",
+            foreignKey = @ForeignKey(name = "FK_TASKS_PARENT_ID_TO_TASKS_ID"))
+    private Task parentTask;
 
-    @OneToMany(mappedBy = "perantTask", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parentTask", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Task> subTasks;
 
     @ManyToOne
@@ -169,12 +169,12 @@ public class Task {
         this.color = color;
     }
 
-    public Task getPerantTask() {
-        return perantTask;
+    public Task getParentTask() {
+        return parentTask;
     }
 
-    public void setPerantTask(Task perantTask) {
-        this.perantTask = perantTask;
+    public void setParentTask(Task parentTask) {
+        this.parentTask = parentTask;
     }
 
     public Set<Task> getSubTasks() {
@@ -186,7 +186,7 @@ public class Task {
     }
 
     public void addSubTasks(Task subTask) {
-        subTask.setPerantTask(this);
+        subTask.setParentTask(this);
         getSubTasks().add(subTask);
     }
 
