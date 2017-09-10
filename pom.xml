@@ -3,18 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>teamnote</groupId>
     <artifactId>teamnote</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>teamnote</name>
+    <name>${project.artifactId}</name>
 
     <properties>
-        <spring.version>4.3.8.RELEASE</spring.version>
-        <postgresql.version>9.4.1212.jre7</postgresql.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
+        <postgresql.version>9.4.1212</postgresql.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
-        <spring.serurity.version>4.2.0.RELEASE</spring.serurity.version>
+        <spring.serurity.version>4.2.2.RELEASE</spring.serurity.version>
         <jackson.version>2.7.8</jackson.version>
         <log4j.version>1.2.17</log4j.version>
         <junit.version>4.12</junit.version>
@@ -69,18 +68,21 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring.serurity.version}</version>
         </dependency>
-        <!--JSP-->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <!--Javax-->
+        <!-- Servlet+JSP+JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         <!--Postgresql-->
         <dependency>
@@ -99,6 +101,12 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <!-- Hibernate Validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.1.Final</version>
+        </dependency>
         <!--Jackson for rest-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -115,17 +123,12 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!--test-->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <!--logs-->
+        <!--Logger-->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
+            <artifactId>slf4j-simple</artifactId>
             <version>${sl4j-version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -133,12 +136,37 @@
             <artifactId>slf4j-api</artifactId>
             <version>${sl4j-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${sl4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!--UTest-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>teamnote</finalName>
+        <finalName>${project.artifactId}</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -155,9 +183,7 @@
                     <warSourceDirectory>${basedir}/web</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -15,30 +15,34 @@ import java.util.List;
 public class ItemsServiceImpl implements ItemsService {
     @Autowired
     private ItemsDao itemsDao;
-
     @Override
-    public Items findById(long id) {
-        return itemsDao.getById(id);
-    }
-
-    @Override
-    public List<Items> findAll() {
-        return itemsDao.getList();
-    }
-
-    @Override
-    public List<Items> findAllByUserId(long id) {
-        return itemsDao.findAllByUserId(id);
-    }
-
-    @Override
-    public Items saveItems(Items items) {
+    public Items addItems(Items items) {
         return itemsDao.create(items);
     }
 
     @Override
-    public Items deleteById(long id) {
-        Items itemsDelete = itemsDao.getById(id);
-        return itemsDao.delete(itemsDelete);
+    public Items getById(long id) {
+        return itemsDao.getById(id);
+    }
+
+    @Override
+    public Items delete(long id) {
+        Items itemsForDelete = itemsDao.getById(id);
+        return itemsDao.delete(itemsForDelete);
+    }
+
+    @Override
+    public List<Items> getList() {
+        return itemsDao.getList();
+    }
+
+    @Override
+    public Items update(Items items) {
+        return itemsDao.update(items);
+    }
+
+    @Override
+    public List<Items> findAllByItemsId(long itemsId) {
+        return itemsDao.findAllByItemsId(itemsId);
     }
 }

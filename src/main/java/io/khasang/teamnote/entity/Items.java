@@ -25,41 +25,8 @@ public class Items {
     private String type;
 
     @Lob @Basic(fetch = FetchType.LAZY)
-    @Column(name="content", nullable=false)
-    private byte[] content;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public Items() {
-    }
-
-    public Items(String name, byte[] content) {
-        this.name = name;
-        this.content = content;
-    }
-
-    public Items(String name, String type, byte[] content) {
-        this.name = name;
-        this.type = type;
-        this.content = content;
-    }
-
-    public Items(String name, String description, String type, byte[] content) {
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.content = content;
-    }
-
-    public Items(String name, String description, String type, byte[] content, User user) {
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.content = content;
-        this.user = user;
-    }
+    @Column(name="content_file", nullable=false)
+    private byte[] contentFile;
 
     public Long getId() {
         return id;
@@ -93,20 +60,21 @@ public class Items {
         this.type = type;
     }
 
-    public byte[] getContent() {
-        return content;
+    public byte[] getContentFile() {
+        return contentFile;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setContentFile(byte[] contentFile) {
+        this.contentFile = contentFile;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
     }
 
     @Override
@@ -132,23 +100,13 @@ public class Items {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Items{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
-                ", content=" + Arrays.toString(content) +
-                ", user=" + user +
+                ", contentFile=" + Arrays.toString(contentFile) +
                 '}';
     }
 }

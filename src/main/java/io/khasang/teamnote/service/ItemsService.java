@@ -9,13 +9,44 @@ import java.util.List;
  */
 public interface ItemsService {
 
-    Items findById(long id);
+    /**
+     * Add items to DB
+     *
+     * @param items - items for creation
+     * @return created items
+     */
+    Items addItems(Items items);
 
-    List<Items> findAll();
+    /**
+     * Find items at database
+     *
+     * @param id = uniq id at db for specific items
+     * @return items
+     */
+    Items getById(long id);
 
-    List<Items> findAllByUserId(long id);
+    /**
+     * Delete items from DB
+     *
+     * @param id = uniq id items from DB
+     * @return deleted items
+     */
+    Items delete(long id);
 
-    Items saveItems(Items items);
+    /**
+     * Receive all items by specific type
+     *
+     * @return list from items
+     */
+    List<Items> getList();
 
-    Items deleteById(long id);
+    /**
+     * Update specify items
+     *
+     * @param items = items for update
+     * @return updated items
+     */
+    Items update(Items items);
+
+    List<Items> findAllByItemsId(long id);
 }

@@ -1,5 +1,7 @@
 package io.khasang.teamnote.controller;
 
+import io.khasang.teamnote.entity.Items;
+import io.khasang.teamnote.model.FileBucket;
 import io.khasang.teamnote.model.Message;
 import net.yandex.speller.services.spellservice.CheckTextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 @Controller
@@ -25,6 +29,12 @@ public class AppController {
     public String helloPage() {
         return "document";
     }
+
+    @RequestMapping("/items")
+    public String itemsPage(){
+        return "items";
+    }
+
 
     @RequestMapping("/status")
     public String statusPage() {
@@ -79,4 +89,10 @@ public class AppController {
     public String getUsersPage(Model model) {
         return "users";
     }
+
+//    @RequestMapping("/items")
+//    public String getItemsPage(Model model){
+//        return "userslist";
+//    }
+
 }
