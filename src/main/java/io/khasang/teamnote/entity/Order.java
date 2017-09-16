@@ -79,7 +79,8 @@ public class Order {
 
     //-----------------------------------------beafore was fine
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public User getUser() {

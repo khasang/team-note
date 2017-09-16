@@ -1,7 +1,6 @@
 package io.khasang.teamnote.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * This class represents a user. It includes attributes that identify a person ({@link #firstName}, {@link #lastName}),
@@ -88,14 +87,14 @@ public class User {
     }
 
     //-----------------------------------------beafore was fine
-    @OneToMany(mappedBy = "user")
-    private Set<Order> order;
-
-    public Set<Order> getOrder() {
-        return order;
-    }
-
-    public void setOrder(Set<Order> order) {
-        this.order = order;
-    }
+//    @OneToMany(mappedBy = "user")
+//    private Set<Order> order;
+//
+//    public Set<Order> getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Set<Order> order) {
+//        this.order = order;
+//    }
 }

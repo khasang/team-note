@@ -38,14 +38,14 @@
         });
     };
 
-    var RestPut = function (person, product, orderNumber, price, orderDate, userId) {
+    var RestPut = function (person, product, orderNumber, price, orderDate, user_id) {
         var JSONObject = {
             'person': person,
             'product': product,
             'orderNumber': orderNumber,
             'price': price,
             'orderDate': orderDate,
-            'userId': userId
+            'user_id': user_id
         };
 
         $.ajax({
@@ -64,7 +64,7 @@
         });
     };
 
-    var RestPost = function (id, person, product, orderNumber, price, orderDate, userId) {
+    var RestPost = function (id, person, product, orderNumber, price, orderDate, user_id) {
         var JSONObject = {
             'id': id,
             'person': person,
@@ -72,7 +72,7 @@
             'orderNumber': orderNumber,
             'price': price,
             'orderDate': orderDate,
-            'userId': userId
+            'user_id': user_id
         };
 
         $.ajax({
@@ -140,10 +140,10 @@
                 Order Number: <input type="text" id="putOrderNumber" value="">
                 Price: <input type="text" id="putPrice" value="">
                 Order Date: <input type="text" id="putOrderDate" value="">
-                User id: <input type="text" id="putUserId" value="">
+                User id: <input type="text" id="putUser" value="">
                 <button type="button"
                         onclick="RestPut($('#putPerson').val(), $('#putProduct').val(), $('#putOrderNumber').val(), $('#putPrice').val(),
-                         $('#putOrderDate').val(), $('#putUserId').val())">
+                         $('#putOrderDate').val(), $('#putUser').val())">
                     Try
                 </button>
             </form>
@@ -160,10 +160,10 @@
                 Order Number: <input type="text" id="postOrderNumber" value="">
                 Price: <input type="text" id="postPrice" value="">
                 Order Date: <input type="text" id="postOrderDate" value="">
-                User id: <input type="text" id="postUserId" value="">
+                User id: <input type="text" id="postUser" value="">
                 <button type="button"
                         onclick="RestPost($('#postId').val(),$('#postPerson').val(), $('#postProduct').val(), $('#postOrderNumber').val(),
-                         $('#postPrice').val(), $('#postOrderDate').val(), $('#postUserId').val())">
+                         $('#postPrice').val(), $('#postOrderDate').val(), $('#postUser').val())">
                     Try
                 </button>
             </form>
