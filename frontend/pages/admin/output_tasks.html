@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Team note</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../css/maket.css">
+    <style>
+        .w3-theme {
+            color: #fff !important;
+            background-color: #4CAF50 !important
+        }
+
+        .w3-btn {
+            background-color: #4CAF50;
+            margin-bottom: 4px
+        }
+
+        .w3-code {
+            border-left: 4px solid #4CAF50
+        }
+
+        .myMenu {
+            margin-bottom: 150px
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               href="http://localhost:63342/teamnote/frontend/pages/maket/page_1.html?_ijt=k9nbl2ipootobpkp6o3c4l891f">
+                Team Note
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-filter"></span> Фильтр</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+           
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="w3-sidebar w3-bar-block w3-collapse w3-animate-left" style="z-index:3;width:270px" id="mySidebar">
+        <div id="menuTut" class="myMenu">
+            <div class="w3-bar w3-bar-block w3-border w3-light-grey">
+                <a class="w3-bar-item w3-button active" href="input_tasks.html"><h5>Входящие задачи</h5></a>
+                <a class="w3-bar-item w3-button" href="output_tasks.html"><h5>Исходящие задачи</h5></a>
+                <a class="w3-bar-item w3-button" href="status_tasks.html"><h5>Статус выполнения</h5></a>
+                <a class="w3-bar-item w3-button"><h5>Группы</h5></a>
+                <a class="w3-bar-item w3-button"><h5>Проекты</h5></a>
+                <a class="w3-bar-item w3-button"><h5>Цели</h5></a>
+                <a class="w3-bar-item w3-button"><h5>Отчет</h5></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-main w3-container" style="margin-left:270px">
+        <h3>Исходящие задачи</h3>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Задача</th>
+                <th>Описание</th>
+                <th>Исполнитель</th>
+                <th>Группа</th>
+                <th>Проект</th>
+                <th>Статус</th>
+                <th>Срок выполнения</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Купить хлеб</td>
+                <td> - </td>
+                <td>Галя</td>
+                <td>Семья</td>
+                <td>-</td>
+                <td>В работе</td>
+                <td>16/09/2017</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Рассказать про связи</td>
+                <td>Общих словах рассказать про связи один-к-одному, один-ко-многим</td>
+                <td>Сергей</td>
+                <td>Khasang</td>
+                <td>Team-Note</td>
+                <td>Создано</td>
+                <td>17/09/2017</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Разобраться с Angular</td>
+                <td> - </td>
+                <td>Я</td>
+                <td>Khasang</td>
+                <td>Team-Note</td>
+                <td>В работе</td>
+                <td>17/09/2017</td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-success pull-right"> Создать</button>
+
+    </div>
+
+</div>
+</body>
+</html>
