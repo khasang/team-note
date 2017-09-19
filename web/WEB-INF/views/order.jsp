@@ -45,7 +45,7 @@
             'orderNumber': orderNumber,
             'price': price,
             'orderDate': orderDate,
-            'user_id': user_id
+            'user': {'id': user_id}
         };
 
         $.ajax({
@@ -72,7 +72,7 @@
             'orderNumber': orderNumber,
             'price': price,
             'orderDate': orderDate,
-            'user_id': user_id
+            'user': {'id': user_id}
         };
 
         $.ajax({
