@@ -28,6 +28,19 @@ public class Order {
     @Column(name = "date")
     private Date orderDate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Order(String person, String product, int orderNumber, double price, Date orderDate, User u) {
+        this.person = person;
+        this.product = product;
+        this.orderNumber = orderNumber;
+        this.price = price;
+        this.orderDate = orderDate;
+        this.user = u;
+    }
+
     public long getId() {
         return id;
     }
@@ -77,26 +90,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    //-----------------------------------------beafore was fine
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-//    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Order(String person, String product, int orderNumber, double price, Date orderDate, User u) {
-        this.person = person;
-        this.product = product;
-        this.orderNumber = orderNumber;
-        this.price = price;
-        this.orderDate = orderDate;
-        this.user = u;
     }
 }
