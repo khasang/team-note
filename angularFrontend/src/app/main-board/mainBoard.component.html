@@ -1,0 +1,32 @@
+<div class="w3-main w3-container">
+  <h3>Входящие задачи</h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>№</th>
+      <th>Задача</th>
+      <th>Описание</th>
+      <th>Инициатор</th>
+      <th>Группа</th>
+      <th>Проект</th>
+      <th>Статус</th>
+      <th>Срок выполнения</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let t of tasks">
+    <tr>
+      <td>1</td>
+      <td>{{t.taskName}}</td>
+      <td>{{t.description}}</td>
+      <td>{{t.initiator}}</td>
+      <td>{{t.group}}</td>
+      <td>{{t.project}}</td>
+      <td>{{t.status}}</td>
+      <td>{{t.dateOfCreation}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
