@@ -1,9 +1,3 @@
 #sideBar{
-  position: absolute;
-  left:50px;
-  top: 70px;
-  width:270px;
-}
-a{
-  color:darkslategrey;
+  width: 270px;
 }

@@ -1,13 +1,9 @@
 <div class="w3-sidebar w3-bar-block w3-collapse w3-animate-left" id="sideBar">
   <div id="menuTut" class="myMenu">
     <div class="w3-bar w3-bar-block w3-border w3-light-grey">
-      <a class="w3-bar-item w3-button active" href="input_tasks.html"><h5>Входящие задачи</h5></a>
-      <a class="w3-bar-item w3-button" href="output_tasks.html"><h5>Исходящие задачи</h5></a>
-      <a class="w3-bar-item w3-button" href="status_tasks.html"><h5>Статус выполнения</h5></a>
-      <a class="w3-bar-item w3-button"><h5>Группы</h5></a>
-      <a class="w3-bar-item w3-button"><h5>Проекты</h5></a>
-      <a class="w3-bar-item w3-button"><h5>Цели</h5></a>
-      <a class="w3-bar-item w3-button"><h5>Отчет</h5></a>
+      <ul *ngFor="let item of sideBarMenuItems">
+        <li class="w3-bar-item w3-button">{{item}}</li>
+      </ul>
     </div>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="row">
+
+  <div class="col-xs-12" style="cursor: pointer;">
+    <a href="#"
+       class="list-group-item clearfix"
+       *ngFor="let task of tasks">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{task.taskName}}</h4>
+        <p class="list-group-item-text">{{task.description}}</p>
+      </div>
+      <div class="pull-right">
+        <h4 class="list-group-item-heading">{{task.initiator}}</h4>
+        <p class="list-group-item-text">{{task.finishDate}}</p>
+      </div>
+    </a>
+    <app-task-item></app-task-item>
+    <div class="col-xs-12">
+      <hr/>
+      <button class="btn btn-success pull-right">new Task</button>
+    </div>
+  </div>
+</div>
+
+
