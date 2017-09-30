@@ -12,8 +12,8 @@
 <app-task-edit
   [taskChange]="taskChange"
   *ngIf="taskLayoutSelected === 'editTask'"
-  (editTask)="onChangeTask($event)"
   (formSelect)="returnToTaskList($event)"
+  (changeTask)="onChangeTask($event)"
   [isNewTask]="false"
 ></app-task-edit>
 <div class="col-xs-12">

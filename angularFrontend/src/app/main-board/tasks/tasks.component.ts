@@ -31,6 +31,7 @@ export class TasksComponent implements OnInit {
   }
 
   onChangeTask(data){
+    console.log(data);
     this.taskArray[data.index] = data.task;
   }
   returnToTaskList(data){
