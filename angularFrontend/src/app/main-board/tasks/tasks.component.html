@@ -1,2 +1,26 @@
-<app-task-list ></app-task-list>
-<app-task-edit></app-task-edit>
+<app-task-list [tasks]='taskArray'
+               *ngIf="taskLayoutSelected === 'taskList'"
+               (editTask)="onSelectTask($event)"
+               (formSelect)="goToTaskEdit($event)"
+></app-task-list>
+<app-task-edit
+  (addNewTask)="onAddNewTask($event)"
+  *ngIf="taskLayoutSelected === 'taskAdd'"
+  (formSelect)="returnToTaskList($event)"
+  [isNewTask]="true"
+></app-task-edit>
+<app-task-edit
+  [taskChange]="taskChange"
+  *ngIf="taskLayoutSelected === 'editTask'"
+  (editTask)="onChangeTask($event)"
+  (formSelect)="returnToTaskList($event)"
+  [isNewTask]="false"
+></app-task-edit>
+<div class="col-xs-12">
+  <hr/>
+  <button
+    class="btn btn-success pull-right"
+    (click)="addNewTask()"
+    *ngIf="taskLayoutSelected === 'taskList'">new Task
+  </button>
+</div>

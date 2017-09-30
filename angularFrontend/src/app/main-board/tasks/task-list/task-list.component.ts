@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Task} from "../task.model";
 
 @Component({
@@ -7,23 +7,20 @@ import {Task} from "../task.model";
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  tasks:Task[] = [];
   constructor() {
-    this.createTestTasks();
+  }
+
+  @Input() tasks:Task[] = [];
+  @Output("editTask") editTask = new EventEmitter<{index:number,task:Task}>();
+  @Output("formSelect") listTaskClose = new EventEmitter<string>();
+
+  onEditTask(index:number,task:Task){
+    this.editTask.emit({index,task});
+    this.listTaskClose.emit('editTask');
   }
 
   ngOnInit() {
   }
 
 
-
-  createTestTasks(){
-    var task = new Task("Забрать машину","Галя");
-        task.description = "Нужно очень быстро!";
-        task.finishDate=(new Date()).toLocaleDateString();
-    this.tasks.push(task);
-    this.tasks.push(new Task("Написать first-page","Сергей"));
-    this.tasks.push(new Task("Купить подарок", "Павел"));
-    this.tasks.push(new Task("Разобраться с Angular","Павел"));
-  }
 }
