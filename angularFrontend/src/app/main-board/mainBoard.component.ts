@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 import {Task} from "./tasks/task.model";
 
 @Component({
@@ -7,13 +7,14 @@ import {Task} from "./tasks/task.model";
   styleUrls: ['./mainBoard.component.css']
 })
 export class MainBoardComponent implements OnInit {
-  @Input()sidebarFeature:string;
+  @Input() sidebarFeature: string;
+
+  @Input() taskArray: Task[];
 
   constructor() {
   }
 
   ngOnInit() {
-    this.sidebarFeature='inputTasks';
   }
 
 }

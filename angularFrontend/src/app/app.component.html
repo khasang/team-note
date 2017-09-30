@@ -4,6 +4,6 @@
     <app-sidebar (featureSelected)="onNavigateSidebar($event)"></app-sidebar>
   </div>
   <div class="col-md-9">
-    <app-main-board [sidebarFeature]="loadedFeature"></app-main-board>
+    <app-main-board [sidebarFeature]="loadedFeature" [taskArray]="taskArray"></app-main-board>
   </div>
 </div>
