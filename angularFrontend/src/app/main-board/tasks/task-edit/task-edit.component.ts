@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Task} from "../task.model";
 
 @Component({
   selector: 'app-task-edit',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit {
+
+
+  task:Task;
+
+
+
 
   constructor() { }
 
