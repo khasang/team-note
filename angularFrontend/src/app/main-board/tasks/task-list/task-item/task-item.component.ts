@@ -8,6 +8,7 @@ import {Task} from "../../task.model";
 })
 export class TaskItemComponent implements OnInit {
   @Input("taskItem")taskItem:Task;
+  @Input()loadedFeature:string;
 
 
 

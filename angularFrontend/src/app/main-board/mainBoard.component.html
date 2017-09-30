@@ -1,4 +1,4 @@
-<app-tasks *ngIf="sidebarFeature ==='inputTasks'" [taskArray]="taskArray"></app-tasks>
-<app-tasks *ngIf="sidebarFeature ==='outputTasks'" [taskArray]="taskArray"></app-tasks>
+<app-tasks *ngIf="sidebarFeature ==='inputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
+<app-tasks *ngIf="sidebarFeature ==='outputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
 
 

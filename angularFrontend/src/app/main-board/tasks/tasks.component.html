@@ -1,4 +1,5 @@
 <app-task-list [tasks]='taskArray'
+               [loadedFeature]="loadedFeature"
                *ngIf="taskLayoutSelected === 'taskList'"
                (editTask)="onSelectTask($event)"
                (formSelect)="goToTaskEdit($event)"

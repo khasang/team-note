@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component,OnInit} from "@angular/core";
 import {Task} from "./main-board/tasks/task.model";
 
 @Component({
@@ -7,7 +7,7 @@ import {Task} from "./main-board/tasks/task.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadedFeature: string = '';
+  loadedFeature: string;
   taskArray:Task[] = [];
 
   onNavigateSidebar(feature: string) {
@@ -17,25 +17,30 @@ export class AppComponent {
 
   }
 
+//for test only
   createTestInputTasks() {
     var taskArray:Task[] = [];
-    var task = new Task("Забрать машину", "Галя");
+    var task = new Task("Забрать машину", "Галя","Я");
     task.description = "Нужно очень быстро!";
     task.finishDate = (new Date()).toLocaleDateString();
     taskArray.push(task);
-    taskArray.push(new Task("Написать first-page", "Сергей"));
-    taskArray.push(new Task("Купить подарок", "Павел"));
-    taskArray.push(new Task("Разобраться с Angular", "Павел"));
+    taskArray.push(new Task("Написать first-page", "Сергей","Я"));
+    taskArray.push(new Task("Купить подарок", "Павел","Я"));
+    taskArray.push(new Task("Разобраться с Angular", "Павел","Я"));
     return taskArray;
   }
 
+//for test only
   createTestOutputTasks() {
     var taskArray:Task[] = [];
-    var task = new Task("Выучить стихотворение", "Даша");
+    var task = new Task("Выучить стихотворение", "Я","Даша");
+
     task.description = "Нужно очень быстро!";
     task.finishDate = (new Date()).toLocaleDateString();
     taskArray.push(task);
-    taskArray.push(new Task("Написать книгу", "Юля"));
+    taskArray.push(new Task("Написать книгу", "Я","Маша"));
     return taskArray;
   }
+
+
 }

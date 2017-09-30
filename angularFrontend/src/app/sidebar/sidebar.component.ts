@@ -36,6 +36,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.featureSelected.emit('inputTasks')
   }
 
 }

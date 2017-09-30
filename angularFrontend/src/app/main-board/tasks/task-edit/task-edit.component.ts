@@ -15,16 +15,16 @@ export class TaskEditComponent implements OnInit {
   @Output("addNewTask") addNewTask = new EventEmitter<Task>();
   @Output('formSelect') taskEditOff = new EventEmitter<string>();
 
-  addTask(name: HTMLInputElement, initiator: HTMLInputElement) {
-    this.taskChange.task = new Task(name.value, initiator.value);
+  addTask(name: HTMLInputElement, initiator: HTMLInputElement,taskExecutor:HTMLInputElement) {
+    this.taskChange.task = new Task(name.value, initiator.value,taskExecutor.value);
     if (name.value && initiator.value) {
       this.addNewTask.emit(this.taskChange.task);
     }
     this.goToTaskList();
   }
 
-  editTask(name: HTMLInputElement, initiator: HTMLInputElement) {
-    this.taskChange.task = new Task(name.value, initiator.value);
+  editTask(name: HTMLInputElement, initiator: HTMLInputElement,taskExecutor:HTMLInputElement) {
+    this.taskChange.task = new Task(name.value, initiator.value,taskExecutor.value);
     if (name.value && initiator.value) {
       this.changeTask.emit(this.taskChange);
     }

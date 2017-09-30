@@ -1,5 +1,4 @@
-<div class="row">
-
+<div class="row" >
   <div
     class="col-xs-12"
     style="cursor: pointer;"
@@ -7,7 +6,7 @@
     (click)="onEditTask(i,task)">
     <a href="#"
        class="list-group-item clearfix">
-      <app-task-item [taskItem] = 'task'> </app-task-item>
+      <app-task-item [taskItem] = 'task' [loadedFeature] = 'loadedFeature'> </app-task-item>
     </a>
   </div>
 </div>

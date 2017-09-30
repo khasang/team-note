@@ -11,6 +11,8 @@ export class TaskListComponent implements OnInit {
   }
 
   @Input() tasks:Task[] = [];
+  @Input() loadedFeature:string;
+
   @Output("editTask") editTask = new EventEmitter<{index:number,task:Task}>();
   @Output("formSelect") listTaskClose = new EventEmitter<string>();
 

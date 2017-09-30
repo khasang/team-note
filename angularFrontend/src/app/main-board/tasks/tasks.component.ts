@@ -9,6 +9,8 @@ import {Task} from "./task.model";
 })
 export class TasksComponent implements OnInit {
   @Input() taskArray: Task[];
+  @Input() loadedFeature:string;
+
   taskLayoutSelected;
   taskChange: { index: number, task: Task };
 
