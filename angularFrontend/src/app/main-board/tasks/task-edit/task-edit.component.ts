@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Task} from "../task.model";
+import {TaskService} from "../task.service";
 
 @Component({
   selector: 'app-task-edit',
@@ -7,9 +8,15 @@ import {Task} from "../task.model";
   styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit {
+
+  constructor(private taskService:TaskService) {
+    if(!this.taskChange){
+      this.taskChange =  {index:1,task:new Task("","")};
+    }
+  }
+
   @Input() isNewTask:boolean;
   @Input() taskChange: { index: number, task: Task };
-
 
   @Output("changeTask") changeTask = new EventEmitter<{ index: number, task: Task }>();
   @Output("addNewTask") addNewTask = new EventEmitter<Task>();
@@ -35,11 +42,7 @@ export class TaskEditComponent implements OnInit {
     this.taskEditOff.emit('taskList');
   }
 
-  constructor() {
-    if(!this.taskChange){
-      this.taskChange =  {index:1,task:new Task("","")};
-    }
-  }
+
 
   ngOnInit() {
 

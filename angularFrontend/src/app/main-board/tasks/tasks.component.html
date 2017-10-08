@@ -2,26 +2,22 @@
                [loadedFeature]="loadedFeature"
                *ngIf="taskLayoutSelected === 'taskList'"
                (editTask)="onSelectTask($event)"
-               (formSelect)="goToTaskEdit($event)"
-></app-task-list>
+               (formSelect)="goToTaskEdit($event)"></app-task-list>
 <app-task-edit
   (addNewTask)="onAddNewTask($event)"
   *ngIf="taskLayoutSelected === 'taskAdd'"
   (formSelect)="returnToTaskList($event)"
-  [isNewTask]="true"
-></app-task-edit>
+  [isNewTask]="true"></app-task-edit>
 <app-task-edit
   [taskChange]="taskChange"
   *ngIf="taskLayoutSelected === 'editTask'"
   (formSelect)="returnToTaskList($event)"
   (changeTask)="onChangeTask($event)"
-  [isNewTask]="false"
-></app-task-edit>
+  [isNewTask]="false"></app-task-edit>
 <div class="col-xs-12">
   <hr/>
   <button
     class="btn btn-success pull-right"
     (click)="addNewTask()"
-    *ngIf="taskLayoutSelected === 'taskList'">new Task
-  </button>
+    *ngIf="taskLayoutSelected === 'taskList'">new Task</button>
 </div>

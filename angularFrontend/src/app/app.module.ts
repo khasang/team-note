@@ -8,7 +8,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TasksComponent } from './main-board/tasks/tasks.component';
 import { TaskListComponent } from './main-board/tasks/task-list/task-list.component';
-import { TaskDetailComponent } from './main-board/tasks/task-detail/task-detail.component';
 import { TaskItemComponent } from './main-board/tasks/task-list/task-item/task-item.component';
 import { TaskEditComponent } from './main-board/tasks/task-edit/task-edit.component';
 import { StatusTasksComponent } from './main-board/status-tasks/status-tasks.component';
@@ -25,7 +24,6 @@ import { ReportsComponent } from './main-board/reports/reports.component';
     SidebarComponent,
     TasksComponent,
     TaskListComponent,
-    TaskDetailComponent,
     TaskItemComponent,
     TaskEditComponent,
     StatusTasksComponent,
