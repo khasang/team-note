@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Task} from "./tasks/task.model";
+import {SidebarService} from "../sidebar/sidebar.service";
 
 @Component({
   selector: 'app-main-board',
@@ -8,10 +9,10 @@ import {Task} from "./tasks/task.model";
 })
 export class MainBoardComponent implements OnInit {
   @Input() sidebarFeature: string;
-
   @Input() taskArray: Task[];
 
-  constructor() {
+  constructor(private sidebarService:SidebarService) {
+    this.sidebarFeature = sidebarService.itemSelected.name;
   }
 
   ngOnInit() {

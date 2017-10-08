@@ -11,6 +11,11 @@ import { TaskListComponent } from './main-board/tasks/task-list/task-list.compon
 import { TaskDetailComponent } from './main-board/tasks/task-detail/task-detail.component';
 import { TaskItemComponent } from './main-board/tasks/task-list/task-item/task-item.component';
 import { TaskEditComponent } from './main-board/tasks/task-edit/task-edit.component';
+import { StatusTasksComponent } from './main-board/status-tasks/status-tasks.component';
+import { GroupsComponent } from './main-board/groups/groups.component';
+import { ProjectsComponent } from './main-board/projects/projects.component';
+import { GoalsComponent } from './main-board/goals/goals.component';
+import { ReportsComponent } from './main-board/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { TaskEditComponent } from './main-board/tasks/task-edit/task-edit.compon
     TaskListComponent,
     TaskDetailComponent,
     TaskItemComponent,
-    TaskEditComponent
+    TaskEditComponent,
+    StatusTasksComponent,
+    GroupsComponent,
+    ProjectsComponent,
+    GoalsComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,FormsModule
