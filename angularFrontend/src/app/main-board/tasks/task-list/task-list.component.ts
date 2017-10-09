@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-task-list',
@@ -8,18 +9,15 @@ import {TaskService} from "../task.service";
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  constructor(private taskService:TaskService) {
+  @Input() tasks:Task[];
+  @Input() executor:string;
+  constructor(private taskService: TaskService,
+              private router: Router) {
+
   }
 
-  @Input() tasks:Task[] = [];
-  @Input() loadedFeature:string;
-
-  @Output("editTask") editTask = new EventEmitter<{index:number,task:Task}>();
-  @Output("formSelect") listTaskClose = new EventEmitter<string>();
-
-  onEditTask(index:number,task:Task){
-    this.editTask.emit({index,task});
-    this.listTaskClose.emit('editTask');
+  onEditTask(index: number, task: Task) {
+    this.router.navigate(["/tasks/" + this.executor +"/edit/"+index]);
   }
 
   ngOnInit() {

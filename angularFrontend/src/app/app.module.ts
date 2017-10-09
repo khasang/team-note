@@ -16,16 +16,18 @@ import { GroupsComponent } from './main-board/groups/groups.component';
 import { ProjectsComponent } from './main-board/projects/projects.component';
 import { GoalsComponent } from './main-board/goals/goals.component';
 import { ReportsComponent } from './main-board/reports/reports.component';
+import {TestTaskBD} from "./testTaskBD";
 
 
 const routes:Routes = [
-  {path:"task_input",component:TasksComponent},
-  {path:"task_output",component:TasksComponent},
+  {path:"tasks/:executor",component:TasksComponent},
   {path:"goals",component:GoalsComponent},
   {path:"groups",component:GroupsComponent},
   {path:"projects",component:ProjectsComponent},
   {path:"reports",component:ReportsComponent},
-  {path:"status_tasks",component:StatusTasksComponent}
+  {path:"status_tasks",component:StatusTasksComponent},
+  {path:"tasks/:executor/:changeOperation/:id",component:TaskEditComponent},
+  {path:"tasks/:executor/:changeOperation",component:TaskEditComponent}
 ];
 
 @NgModule({
@@ -49,7 +51,7 @@ const routes:Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [TestTaskBD],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

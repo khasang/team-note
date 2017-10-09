@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
+import {ActivatedRoute, Params, Route, Router, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-task-edit',
@@ -9,42 +10,50 @@ import {TaskService} from "../task.service";
 })
 export class TaskEditComponent implements OnInit {
 
-  constructor(private taskService:TaskService) {
-    if(!this.taskChange){
-      this.taskChange =  {index:1,task:new Task("","")};
-    }
+  constructor(private taskService:TaskService,
+              private route:ActivatedRoute,
+              private router:Router) {
+
   }
 
-  @Input() isNewTask:boolean;
-  @Input() taskChange: { index: number, task: Task };
-
-  @Output("changeTask") changeTask = new EventEmitter<{ index: number, task: Task }>();
-  @Output("addNewTask") addNewTask = new EventEmitter<Task>();
-  @Output('formSelect') taskEditOff = new EventEmitter<string>();
+  indexChangingTask;
+  changingTask:Task;
+  isNewTask;
 
   addTask(name: HTMLInputElement, initiator: HTMLInputElement,taskExecutor:HTMLInputElement) {
-    this.taskChange.task = new Task(name.value, initiator.value,taskExecutor.value);
+    this.changingTask = new Task(name.value, initiator.value,taskExecutor.value);
     if (name.value && initiator.value) {
-      this.addNewTask.emit(this.taskChange.task);
+
     }
-    this.goToTaskList();
+
   }
 
   editTask(name: HTMLInputElement, initiator: HTMLInputElement,taskExecutor:HTMLInputElement) {
-    this.taskChange.task = new Task(name.value, initiator.value,taskExecutor.value);
+    this.changingTask = new Task(name.value, initiator.value,taskExecutor.value);
     if (name.value && initiator.value) {
-      this.changeTask.emit(this.taskChange);
+      //this.changeTask.emit(this.taskChange);
     }
-    this.goToTaskList();
-  }
 
-  goToTaskList() {
-    this.taskEditOff.emit('taskList');
   }
-
 
 
   ngOnInit() {
+   this.route.params.subscribe(
+     (params:Params)=>{
+       if(params['changeOperation'] ==='new'){
+         this.changingTask = new Task('','','');
+       }
+       if(params['changeOperation'] ==='edit'){
+         if(params['executor'] === 'me'){
+           this.changingTask = this.taskService.inputTasks[params['id']];
+         } else {
+           this.changingTask = this.taskService.outputTasks[params['id']];
+         }
+
+       }
+
+     }
+   )
 
 
   }

@@ -1,6 +1,3 @@
-<div [ngSwitch]="sidebarFeature">
-  <app-tasks *ngSwitchCase="'inputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
-  <app-tasks *ngSwitchCase="'outputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
+
 

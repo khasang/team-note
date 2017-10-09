@@ -3,10 +3,10 @@
     class="col-xs-12"
     style="cursor: pointer;"
     *ngFor="let task of tasks;let i=index;"
-    (click)="onEditTask(i,task)">
-    <a href="#"
+    (click)="onEditTask(i)">
+    <a
        class="list-group-item clearfix">
-      <app-task-item [taskItem] = 'task' [loadedFeature] = 'loadedFeature'> </app-task-item>
+      <app-task-item [taskItem] = 'task'> </app-task-item>
     </a>
   </div>
 </div>

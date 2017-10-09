@@ -2,8 +2,8 @@ import {EventEmitter, Injectable} from "@angular/core";
 
 @Injectable()
 export class SidebarService {
-  inputItem = {name: "inputTasks", localName: "Входящие задачи",url:"task_input"};
-  outputItem = {name: "outputTasks", localName: 'Исходящие задачи',url:"task_output"};
+  inputItem = {name: "inputTasks", localName: "Входящие задачи",url:"tasks/me"};
+  outputItem = {name: "outputTasks", localName: 'Исходящие задачи',url:"tasks/not_me"};
   taskStatusItem = {name: 'taskStatusItem', localName: "Статус выполнения",url:"status_tasks"};
   groups = {name: 'groups', localName: "Группы",url:"groups"};
   projects = {name: 'projects', localName: "Проекты",url:"projects"};

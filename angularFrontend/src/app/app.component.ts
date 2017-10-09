@@ -11,10 +11,10 @@ import {TestTaskBD} from "./testTaskBD";
 })
 export class AppComponent implements OnInit {
   loadedFeature: string = 'inputTasks';
-  testTaskBD = new TestTaskBD();
+
   taskArray: Task[] = this.testTaskBD.taskInputArray;
 
-  constructor(private sidebarService: SidebarService) {
+  constructor(private sidebarService: SidebarService,private testTaskBD:TestTaskBD) {
 
     this.sidebarService.selectItemEmitter.subscribe(
       (feature) => {

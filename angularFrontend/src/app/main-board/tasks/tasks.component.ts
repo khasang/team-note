@@ -1,21 +1,25 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Task} from "./task.model";
 import {TaskService} from "./task.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css'],
-  providers:[TaskService]
+
 })
 export class TasksComponent implements OnInit {
-  constructor(private taskService:TaskService) { }
 
-  @Input() taskArray: Task[];
-  @Input() loadedFeature:string;
+  constructor(private taskService:TaskService,
+              private rote:ActivatedRoute,
+              private router:Router) { }
 
-  taskLayoutSelected;
+  taskArray: Task[];
+
+  executor:string;
+
   taskChange: { index: number, task: Task };
 
   onSelectTask(data) {
@@ -30,20 +34,15 @@ export class TasksComponent implements OnInit {
     this.taskArray[data.index] = data.task;
   }
 
-  returnToTaskList(data) {
-    this.taskLayoutSelected = data;
-  }
-
-  goToTaskEdit(data) {
-    this.taskLayoutSelected = data;
-  }
-
-  addNewTask() {
-    this.taskLayoutSelected = 'taskAdd';
-  }
-
   ngOnInit() {
-    this.taskLayoutSelected = 'taskList'
+    this.executor = this.rote.snapshot.params['executor'];
+    this.rote.params.subscribe(
+      (params:Params)=>{
+        this.executor=params['executor'];
+        if (this.executor ==='me'){this.taskArray = this.taskService.inputTasks;}
+        if (this.executor ==='not_me') {this.taskArray = this.taskService.outputTasks;}
+      }
+    );
   }
 
 }
