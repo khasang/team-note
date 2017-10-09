@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
   constructor(private sidebarService: SidebarService) {
     this.menuItems = this.sidebarService.menuItems;
   }
-  menuItems: { name: string, localName: string }[] = [];
+  menuItems: { name: string, localName: string,url:string }[] = [];
 
   onSelectItem(feature) {
     this.sidebarService.itemSelected = feature;

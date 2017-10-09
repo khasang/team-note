@@ -1,11 +1,6 @@
 <div [ngSwitch]="sidebarFeature">
   <app-tasks *ngSwitchCase="'inputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
   <app-tasks *ngSwitchCase="'outputTasks'" [taskArray]="taskArray" [loadedFeature]="sidebarFeature"></app-tasks>
-  <app-status-tasks *ngSwitchCase="'taskStatusItem'"></app-status-tasks>
-  <app-groups *ngSwitchCase="'groups'"></app-groups>
-  <app-projects *ngSwitchCase="'projects'"></app-projects>
-  <app-goals *ngSwitchCase="'goals'"></app-goals>
-  <app-reports *ngSwitchCase="'reports'"></app-reports>
   <router-outlet></router-outlet>
 </div>
 

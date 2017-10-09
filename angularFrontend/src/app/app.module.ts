@@ -25,7 +25,7 @@ const routes:Routes = [
   {path:"groups",component:GroupsComponent},
   {path:"projects",component:ProjectsComponent},
   {path:"reports",component:ReportsComponent},
-  {path:"status-tasks",component:StatusTasksComponent}
+  {path:"status_tasks",component:StatusTasksComponent}
 ];
 
 @NgModule({

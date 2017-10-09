@@ -2,17 +2,17 @@ import {EventEmitter, Injectable} from "@angular/core";
 
 @Injectable()
 export class SidebarService {
-  inputItem = {name: "inputTasks", localName: "Входящие задачи"};
-  outputItem = {name: "outputTasks", localName: 'Исходящие задачи'};
-  taskStatusItem = {name: 'taskStatusItem', localName: "Статус выполнения"};
-  groups = {name: 'groups', localName: "Группы"};
-  projects = {name: 'projects', localName: "Проекты"};
-  goals = {name: 'goals', localName: "Цели"};
-  reports = {name: 'reports', localName: "Отчет"};
+  inputItem = {name: "inputTasks", localName: "Входящие задачи",url:"task_input"};
+  outputItem = {name: "outputTasks", localName: 'Исходящие задачи',url:"task_output"};
+  taskStatusItem = {name: 'taskStatusItem', localName: "Статус выполнения",url:"status_tasks"};
+  groups = {name: 'groups', localName: "Группы",url:"groups"};
+  projects = {name: 'projects', localName: "Проекты",url:"projects"};
+  goals = {name: 'goals', localName: "Цели",url:"goals"};
+  reports = {name: 'reports', localName: "Отчет",url:"reports"};
 
   selectItemEmitter = new EventEmitter<string>();
-  menuItems: { name: string, localName: string }[] = [];
-  itemSelected: { name: string, localName: string };
+  menuItems: { name: string, localName: string,url:string }[] = [];
+  itemSelected: { name: string, localName: string,url:string };
 
   loadItems() {
     this.menuItems.push(this.inputItem);
