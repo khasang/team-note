@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { MainBoardComponent } from './main-board/mainBoard.component';
@@ -15,6 +16,17 @@ import { GroupsComponent } from './main-board/groups/groups.component';
 import { ProjectsComponent } from './main-board/projects/projects.component';
 import { GoalsComponent } from './main-board/goals/goals.component';
 import { ReportsComponent } from './main-board/reports/reports.component';
+
+
+const routes:Routes = [
+  {path:"task_input",component:TasksComponent},
+  {path:"task_output",component:TasksComponent},
+  {path:"goals",component:GoalsComponent},
+  {path:"groups",component:GroupsComponent},
+  {path:"projects",component:ProjectsComponent},
+  {path:"reports",component:ReportsComponent},
+  {path:"status-tasks",component:StatusTasksComponent}
+];
 
 @NgModule({
   declarations: [
@@ -33,7 +45,9 @@ import { ReportsComponent } from './main-board/reports/reports.component';
     ReportsComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
