@@ -86,7 +86,7 @@ public class User {
         this.password = password;
     }
 
-    //-----------------------------------------beafore was fine
+    //-----------------------------------------
 //    @OneToMany(mappedBy = "user")
 //    private Set<Order> order;
 //

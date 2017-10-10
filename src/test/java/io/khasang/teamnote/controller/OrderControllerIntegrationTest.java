@@ -1,6 +1,7 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Order;
+import io.khasang.teamnote.entity.User;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -8,6 +9,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -91,6 +93,19 @@ public class OrderControllerIntegrationTest {
         order.setOrderNumber(2);
         order.setPrice(22.22);
         order.setOrderDate(new Date(Calendar.getInstance().getTimeInMillis()));
+//==============
+        User user = new User();
+        user.setLastName("XXX");
+        user.setFirstName("XXX");
+        user.setEmail("XXX");
+        user.setAccountName("XXX");
+        user.setPassword("");
+
+        List<User> userList = new ArrayList<>();
+        userList.add(user);
+
+        order.setUser();
+//==============
         return order;
     }
 
@@ -128,7 +143,7 @@ public class OrderControllerIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Order order  = createOrder();
+        Order order = createOrder();
         order = updatePrefillOrder(order);
 
         HttpEntity<Order> httpEntity = new HttpEntity<>(order, headers);
