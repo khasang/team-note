@@ -1,3 +1,12 @@
-<p>
-  servers works!
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a href="#"
+         class="list-group-item"
+         *ngFor="let server of servers">
+        {{server.name}}
+      </a>
+    </div>
+    <button class="btn btn-primary">Update Server</button>
+  </div>
+</div>
