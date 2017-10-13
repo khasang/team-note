@@ -3,7 +3,7 @@
     <div class="list-group">
       <a class="list-group-item"
          *ngFor="let user of users"
-         [routerLink]="'/users/'+[user.id]+'/'+[user.name]">
+         [routerLink]="['/users',user.id,user.name]">
         {{user.name}}
       </a>
     </div>

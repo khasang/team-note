@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLinkActive, RouterState, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRoute, Params, RouterLinkActive, RouterState, RouterStateSnapshot} from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -16,6 +16,15 @@ export class UserComponent implements OnInit {
       id:this.route.snapshot.params['id'],
       name:this.route.snapshot.params['name']
     };
+
+    this.route.params.subscribe(
+      (params:Params)=>{
+        this.user = {
+          id:params['id'],
+          name:params['name']
+        };
+      }
+    );
   }
 
 
