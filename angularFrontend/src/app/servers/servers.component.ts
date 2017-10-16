@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-servers',
@@ -6,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-servers:{name:string}[] = [
-  {name:'first'},
-  {name:'second'},
-  {name:'third'}
+servers:{id:number;name:string}[] = [
+  {id:1,name:'first'},
+  {id:2,name:'second'},
+  {id:3,name:'third'}
 ];
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

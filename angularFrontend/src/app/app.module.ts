@@ -13,8 +13,9 @@ import { UserComponent } from './users/user/user.component';
 import {ServerService} from "./servers/server.service";
 
 const appRouts:Routes = [
-
   {path:"servers",component:ServersComponent},
+  {path:"servers/:id/:name",component:ServerComponent},
+  {path:"servers/:id/?=edit",component:ServerComponent},
   {path:"users",component:UsersComponent},
   {path:"users/:id/:name",component:UserComponent},
   {path:"",component:HomeComponent}
