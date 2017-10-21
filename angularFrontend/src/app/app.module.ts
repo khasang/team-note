@@ -1,7 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
@@ -12,17 +11,7 @@ import {ServerComponent} from "./servers/server/server.component";
 import {UserComponent} from "./users/user/user.component";
 import {ServerService} from "./servers/server.service";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-
-const appRouts: Routes = [
-  {path: "servers", component: ServersComponent, children: [
-    {path: ":id", component: ServerComponent},
-    {path: ":id/edit", component: EditServerComponent}]},
-  {path: "users", component: UsersComponent, children: [
-    {path: ":id/:name", component: UserComponent}]  },
-  {path: "", component: HomeComponent},
-  {path:"not-found", component:PageNotFoundComponent},
-  {path:"**",redirectTo:"/not-found"}
-];
+import {AppRoutingModule} from "./app-routing/app-routing.module";
 
 
 @NgModule({
@@ -37,9 +26,9 @@ const appRouts: Routes = [
     PageNotFoundComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRouts)
+    FormsModule
   ],
   providers: [ServerService],
   bootstrap: [AppComponent]
