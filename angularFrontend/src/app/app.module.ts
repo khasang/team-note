@@ -12,6 +12,8 @@ import {UserComponent} from "./users/user/user.component";
 import {ServerService} from "./servers/server.service";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {AuthService} from "./auth-guard/auth.service";
+import {AuthGuardService} from "./auth-guard/auth-guard.service";
 
 
 @NgModule({
@@ -30,7 +32,10 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     BrowserModule,
     FormsModule
   ],
-  providers: [ServerService],
+  providers: [
+    ServerService,
+    AuthService,
+    AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

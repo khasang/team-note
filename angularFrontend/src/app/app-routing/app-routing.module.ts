@@ -7,12 +7,13 @@ import {UsersComponent} from "../users/users.component";
 import {UserComponent} from "../users/user/user.component";
 import {HomeComponent} from "../home/home.component";
 import {PageNotFoundComponent} from "../page-not-found/page-not-found.component";
+import {AuthGuardService} from "../auth-guard/auth-guard.service";
 
 const appRouts: Routes = [
   {
     path: "servers", component: ServersComponent, children: [
     {path: ":id", component: ServerComponent},
-    {path: ":id/edit", component: EditServerComponent}]
+    {path: ":id/edit", canActivate:[AuthGuardService],component: EditServerComponent}]
   },
   {
     path: "users", component: UsersComponent, children: [
@@ -27,7 +28,7 @@ const appRouts: Routes = [
   imports: [
     RouterModule.forRoot(appRouts)
   ],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }
