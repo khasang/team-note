@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {ServerService} from "./server.service";
 
 @Component({
   selector: 'app-servers',
@@ -7,16 +7,13 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-servers:{id:number;name:string}[] = [
-  {id:1,name:'first'},
-  {id:2,name:'second'},
-  {id:3,name:'third'}
-];
-  constructor() {
+  servers: { id: number; name: string, status: string }[] = [];
 
+  constructor(private serverService: ServerService) {
   }
 
   ngOnInit() {
+    this.servers = this.serverService.servers;
   }
 
 }

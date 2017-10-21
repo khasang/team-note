@@ -3,9 +3,16 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class ServerService {
 
-  servers: { id: number, name: string, status: string }[];
+  servers: { id: number; name: string, status: string }[] = [
+    {id: 1, name: 'first', status: "old"},
+    {id: 2, name: 'second', status: "old"},
+    {id: 3, name: 'third', status: "old"}
+  ];
 
-  constructor() {
+  constructor() {  }
+
+  getServers() {
+    return this.servers;
   }
 
   getServer(id: number) {
@@ -18,6 +25,14 @@ export class ServerService {
   }
 
   updateServer(server: { id: number, name: string, status: string }) {
-    this.servers[server.id] = server;
+    const updateServer = this.servers.find(
+      (s) => {
+        return s.id === server.id;
+      }
+    );
+    if(updateServer){
+      updateServer.name = server.name;
+      updateServer.status = server.status;
+    }
   }
 }
