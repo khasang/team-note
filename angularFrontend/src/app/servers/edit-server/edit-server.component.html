@@ -1,17 +1,18 @@
-<div class="container container-fluid">
+<div class="container container-fluid" *ngIf="allowEdit">
 <div class="row">
   <label for="name">имя</label>
   <input id=name type="text" size="10" #name
-         [value]="serverName"
+         [(ngModel)]="serverName"
          (click)="clear('name',name)">
   <label for="status">статус</label>
   <input id="status" type="text" size="10" #status
-         [value]="serverStatus"
+         [(ngModel)]="serverStatus"
          (click)="clear('status',status)" >
 </div>
 <div class="row">
   <button class="btn btn-success" (click)="updateServer()">update</button>
   <button class="btn btn-warning" (click)="cancel()">cancel</button>
 </div>
-  <h4 *ngIf="!allowedEdit">You not allowed edit</h4>
+
 </div>
+<h4 *ngIf="!allowEdit">You not allowed edit</h4>

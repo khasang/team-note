@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ServerService} from "../server.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
@@ -15,7 +15,7 @@ export class EditServerComponent implements OnInit {
 
   serverName = '';
   serverStatus = '';
-
+  private allowEdit: boolean = false;
 
 
   constructor(private serverService: ServerService,
@@ -25,8 +25,8 @@ export class EditServerComponent implements OnInit {
 
   ngOnInit() {
     this.rout.queryParams.subscribe(
-      (queryParams:Params) =>{
-        console.log(queryParams['allowEdit']);
+      (queryParams: Params) => {
+        this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
       }
     );
     this.serverId = this.rout.snapshot.params['id'];
@@ -39,9 +39,9 @@ export class EditServerComponent implements OnInit {
   updateServer() {
 
     this.serverService.updateServer({
-      id:this.server.id,
-      name:this.serverName,
-      status:this.serverStatus
+      id: this.server.id,
+      name: this.serverName,
+      status: this.serverStatus
     });
     this.router.navigate(['/servers']);
   }
