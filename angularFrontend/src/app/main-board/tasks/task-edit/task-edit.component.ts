@@ -19,36 +19,35 @@ export class TaskEditComponent implements OnInit,OnDestroy {
 
   changingTask: Task;
   isNewTask;
-  private subscribeParames:Subscription;;
+  private subscribeParames:Subscription;
 
-  addTask(name: HTMLInputElement, initiator: HTMLInputElement, taskExecutor: HTMLInputElement) {
-    if (name.value && initiator.value) {
-      this.taskService.addTask(this.changingTask);
-    }
-    this.goToTaskList();
-  }
+  taskName = "";
+  taskInitiator = "";
+  taskExecutor = "";
 
-  editTask(name: HTMLInputElement, initiator: HTMLInputElement, executor: HTMLInputElement) {
-    this.changingTask.taskName = name.value;
-    this.changingTask.initiator = initiator.value;
-    this.changingTask.executor = executor.value;
+  editTask() {
+    this.changingTask.taskName = this.taskName;
+    this.changingTask.initiator = this.taskInitiator;
+    this.changingTask.executor = this.taskExecutor;
 
     this.taskService.editTask(this.changingTask);
-    this.goToTaskList();
+    this.gotoList();
+  }
+
+  addTask(){
+    this.changingTask.taskName = this.taskName;
+    this.changingTask.initiator = this.taskInitiator;
+    this.changingTask.executor = this.taskExecutor;
+    this.taskService.addTask(this.changingTask);
+    this.gotoList();
   }
 
   createNewTask() {
     return new Task(this.taskService.getNewId(), "", "", "");
   }
 
-  goToTaskList(){
-    this.router.navigate(["../../list"],{relativeTo:this.route})
-  }
-  ngOnInit() {
-    if (this.route.snapshot.params['id']) {
 
-      this.createNewTask();
-    }
+  ngOnInit() {
     this.subscribeParames = this.route.params.subscribe(
       (params: Params) => {
         this.changingTask = this.taskService.getTask(+params['id']);
@@ -57,7 +56,20 @@ export class TaskEditComponent implements OnInit,OnDestroy {
           this.changingTask = this.createNewTask();
         }
       }
-    )
+    );
+    this.taskName = this.changingTask.taskName;
+    this.taskInitiator = this.changingTask.initiator;
+    this.taskExecutor = this.changingTask.executor;
+  }
+
+  gotoList(){
+    var url ="";
+    if(this.isNewTask) {
+      url='../list'
+    }else{
+      url='../../list'
+    }
+    this.router.navigate([url],{relativeTo:this.route});
   }
 
   ngOnDestroy(){

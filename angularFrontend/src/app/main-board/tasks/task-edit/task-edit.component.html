@@ -1,36 +1,37 @@
-<div class="row">
-  <div class="col-xs-12">
-    <form>
-      <div class="row">
-        <div class="col-sm-3 form-group">
-          <label for="taskName">taskName</label>
-          <input id="taskName" type="text" class="form-control" value="{{changingTask.taskName}}" #taskName>
+<div class="table table-bordered" style="padding: 10px">
+  <div class="row">
+    <div class="col-xs-12 ">
+
+        <div class="list-group">
+          <div class="list-group-item">
+            <label for="taskName">taskName</label>
+            <input id="taskName" type="text" class="form-control" [(ngModel)]=taskName>
+          </div>
+          <div class="list-group-item">
+            <label for="taskInitiator">taskInitiator</label>
+            <input id="taskInitiator" type="text" class="form-control" [(ngModel)]=taskInitiator>
+          </div>
+          <div class="list-group-item">
+            <label for="taskExecutor">taskExecutor</label>
+            <input id="taskExecutor" type="text" class="form-control" [(ngModel)]=taskExecutor>
+          </div>
         </div>
-        <div class="col-sm-3 form-group">
-          <label for="taskInitiator">taskInitiator</label>
-          <input id="taskInitiator" type="text" class="form-control" value="{{changingTask.initiator}}" #taskInitiator>
+        <div class="row">
+          <div class="col-xs-12 col-xs-offset-5">
+            <button
+              class="btn btn-success"
+              (click)="addTask()"
+              *ngIf="isNewTask">Add
+            </button>
+            <button
+              class="btn btn-success"
+              (click)="editTask()"
+              *ngIf="!isNewTask">Edit
+            </button>
+            <button class="btn btn-warning" type="reset" (click)="gotoList()" >Return</button>
+          </div>
         </div>
-        <div class="col-sm-3 form-group">
-          <label for="taskExecutor">taskExecutor</label>
-          <input id="taskExecutor" type="text" class="form-control" value="{{changingTask.executor}}" #taskExecutor>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button
-            class="btn btn-success"
-            (click)="addTask(taskName,taskInitiator,taskExecutor)"
-            *ngIf="isNewTask">Add
-          </button>
-          <button
-            class="btn btn-success"
-            (click)="editTask(taskName,taskInitiator,taskExecutor)"
-            *ngIf="!isNewTask">Edit
-          </button>
-          <button class="btn btn-warning" type="reset" (click)="goToTaskList()">Return</button>
-        </div>
-      </div>
-    </form>
+
+    </div>
   </div>
 </div>
-

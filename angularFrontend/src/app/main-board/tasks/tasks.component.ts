@@ -1,7 +1,6 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {TaskService} from "./task.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
+import {ActivatedRoute, Params} from "@angular/router";
 
 
 @Component({
@@ -13,12 +12,10 @@ export class TasksComponent implements OnInit {
 
 
   constructor(private taskService: TaskService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   executor: string;
-  subscriptions:Subscription;
 
   ngOnInit() {
     this.executor = this.route.snapshot.params['executor'];
@@ -34,7 +31,6 @@ export class TasksComponent implements OnInit {
       }
     );
   }
-
 
 
 }
