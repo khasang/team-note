@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-task-list',
@@ -9,18 +10,29 @@ import {Router} from "@angular/router";
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  @Input() tasks:Task[];
-  @Input() executor:string;
-  constructor(private taskService: TaskService,
-              private router: Router) {
+  subscription:Subscription;
+  tasks: Task[];
 
+  constructor(private taskService: TaskService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
-  onEditTask(index: number, task: Task) {
-    this.router.navigate(["/tasks/" + this.executor +"/edit/"+index]);
+  onEditTask(index: number) {
+    this.router.navigate(["../edit", index], {relativeTo: this.activatedRoute});
   }
 
   ngOnInit() {
+    this.tasks = this.taskService.getTasks();
+    this.subscription = this.taskService.listChangeEmitter.subscribe(
+      () => {
+        this.tasks = this.taskService.getTasks();
+      }
+    );
+  }
+
+  addTask() {
+    this.router.navigate(["../new"], {relativeTo: this.activatedRoute});
   }
 
 

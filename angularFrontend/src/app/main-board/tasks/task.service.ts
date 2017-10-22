@@ -6,10 +6,47 @@ import {TestTaskBD} from "../../testTaskBD";
 export class TaskService {
   constructor(private testTaskBD:TestTaskBD) { }
 
- inputTasks:Task[] = this.testTaskBD.taskInputArray;
- outputTasks:Task[] = this.testTaskBD.taskOutputArray;
+  tasks:Task[] = this.testTaskBD.taskInputArray;
+  listChangeEmitter = new EventEmitter();
 
-  taskEmitter = new EventEmitter<string>();
+ setTasks(taskFeature:string){
+   if(taskFeature==='me'){
+     this.tasks = this.testTaskBD.taskInputArray;
+   }
+   if(taskFeature==='not_me'){
+     this.tasks = this.testTaskBD.taskOutputArray;
+   }
+   this.listChangeEmitter.emit();
+ }
+
+ getTasks(){
+   return this.tasks.slice();
+ }
+
+ getTask(id:number){
+   const task:Task = this.tasks.find(
+     (t) =>{
+       return t.id === id
+     }
+   )
+   return task;
+ }
+
+ addTask(task:Task){
+   this.tasks.push(task);
+ }
+
+ editTask(task:Task){
+   var index = this.tasks.indexOf(this.getTask(task.id));
+   if(index){
+     this.tasks[index]=task;
+   }
+ }
+
+ //тут все измениться
+ getNewId(){
+   return this.tasks.length+1;
+ }
 
 
 }

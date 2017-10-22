@@ -13,24 +13,24 @@ export class TestTaskBD {
 
   private createTestInputTasks() {
     var taskArray: Task[] = [];
-    var task = new Task("Забрать машину", "Галя", "Я");
+    var task = new Task(1,"Забрать машину", "Галя", "Я");
     task.description = "Нужно очень быстро!";
     task.finishDate = (new Date()).toLocaleDateString();
     taskArray.push(task);
-    taskArray.push(new Task("Написать first-page", "Сергей", "Я"));
-    taskArray.push(new Task("Купить подарок", "Павел", "Я"));
-    taskArray.push(new Task("Разобраться с Angular", "Павел", "Я"));
+    taskArray.push(new Task(2,"Написать first-page", "Сергей", "Я"));
+    taskArray.push(new Task(3,"Купить подарок", "Павел", "Я"));
+    taskArray.push(new Task(4,"Разобраться с Angular", "Павел", "Я"));
     return taskArray;
   }
 
   private createTestOutputTasks() {
     var taskArray: Task[] = [];
-    var task = new Task("Выучить стихотворение", "Я", "Даша");
+    var task = new Task(1,"Выучить стихотворение", "Я", "Даша");
 
     task.description = "Нужно очень быстро!";
     task.finishDate = (new Date()).toLocaleDateString();
     taskArray.push(task);
-    taskArray.push(new Task("Написать книгу", "Я", "Маша"));
+    taskArray.push(new Task(2,"Написать книгу", "Я", "Маша"));
     return taskArray;
   }
 }

@@ -1,7 +1,3 @@
-<app-task-list [tasks]='taskArray' [executor]="executor"></app-task-list>
 <div class="col-xs-12">
-  <hr/>
-  <button
-    class="btn btn-success pull-right"
-    [routerLink] = "'/tasks/'+executor+'/new'">new Task</button>
+  <router-outlet></router-outlet>
 </div>

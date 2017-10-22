@@ -1,48 +1,40 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {Task} from "./task.model";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {TaskService} from "./task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css'],
-
 })
 export class TasksComponent implements OnInit {
 
-  constructor(private taskService:TaskService,
-              private rote:ActivatedRoute,
-              private router:Router) { }
 
-  taskArray: Task[];
-
-  executor:string;
-
-  taskChange: { index: number, task: Task };
-
-  onSelectTask(data) {
-    this.taskChange = data;
+  constructor(private taskService: TaskService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
-  onAddNewTask(data) {
-    this.taskArray.push(data);
-  }
-
-  onChangeTask(data) {
-    this.taskArray[data.index] = data.task;
-  }
+  executor: string;
+  subscriptions:Subscription;
 
   ngOnInit() {
-    this.executor = this.rote.snapshot.params['executor'];
-    this.rote.params.subscribe(
-      (params:Params)=>{
-        this.executor=params['executor'];
-        if (this.executor ==='me'){this.taskArray = this.taskService.inputTasks;}
-        if (this.executor ==='not_me') {this.taskArray = this.taskService.outputTasks;}
+    this.executor = this.route.snapshot.params['executor'];
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.executor = params['executor'];
+        if (this.executor === 'me') {
+          this.taskService.setTasks('me');
+        }
+        if (this.executor === 'not_me') {
+          this.taskService.setTasks('not_me');
+        }
       }
     );
   }
+
+
 
 }
