@@ -1,11 +1,27 @@
-
 <div class="container">
   <div class="row">
-  <div class="col-md-3">
-
-  </div>
-  <div class="col-md-9">
-    ТУТ
-  </div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form>
+        <div id="user-data">
+          <div class="form-group">
+            <label for="user_name">UserName</label>
+            <input id="user_name" type="text" class="form-control">
+          </div>
+          <button class="btn btn-default" type="button">Suggest a userName</button>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input id="email" type="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="secret">secret</label>
+            <select id="secret" class="form-control">
+              <option value="pet">Your first pet?</option>
+              <option value="teacher">Your first teacher</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
