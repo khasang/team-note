@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -8,12 +8,23 @@ import {NgForm} from "@angular/forms";
   providers: []
 })
 export class AppComponent implements OnInit {
+  @ViewChild('f') myForm:NgForm;
+  defaultQuestion = 'pet';
+  answer='';
+  genders=['male','female'];
+
   suggestUserName(){
-    const suggestedName = 'Superuser';
+    this.myForm.setValue({
+      username:"Pavel",
+      email:"privet@nnn.ru",
+      secret:"",
+      answer:"",
+      gender:"male"
+    });
   }
 
-  onSubmit(form:NgForm){
-    console.log(form.value);
+  onSubmit(){
+    console.log(this.myForm);
   }
   ngOnInit() { }
 }
