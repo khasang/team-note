@@ -10,7 +10,7 @@
               type="text"
               class="form-control"
               name="taskName"
-              [ngModel]="changingTask.taskName">
+              ngModel>
           </div>
           <div class="list-group-item">
             <label for="taskInitiator">Инициатор</label>
@@ -19,7 +19,7 @@
               type="text"
               class="form-control"
               name="taskInitiator"
-              [ngModel]="changingTask.initiator">
+              ngModel>
           </div>
           <div class="list-group-item">
             <label for="taskExecutor">Исполнитель</label>
@@ -28,24 +28,19 @@
               type="text"
               class="form-control"
               name="taskExecutor"
-              [ngModel]="changingTask.executor">
+              ngModel>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-xs-offset-5">
             <button
               class="btn btn-success"
-              (click)="addTask()"
-              *ngIf="isNewTask">Add
-            </button>
-            <button
-              class="btn btn-success"
               type="submit"
-              *ngIf="!isNewTask">Edit
+              >{{ isNewTask?'Add':'Edit' }}
             </button>
             <button
               class="btn btn-warning"
-
+              type="reset"
               (click)="gotoList()">Return
             </button>
           </div>

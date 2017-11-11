@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -10,7 +10,7 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  subscription:Subscription;
+  subscription: Subscription;
   tasks: Task[];
 
   constructor(private taskService: TaskService,
@@ -18,8 +18,8 @@ export class TaskListComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
   }
 
-  onEditTask(index: number) {
-    this.router.navigate(["../edit", index], {relativeTo: this.activatedRoute});
+  onEditTask(taskId: number) {
+    this.router.navigate(["../edit", taskId], {relativeTo: this.activatedRoute});
   }
 
   ngOnInit() {
@@ -34,6 +34,5 @@ export class TaskListComponent implements OnInit {
   addTask() {
     this.router.navigate(["../new"], {relativeTo: this.activatedRoute});
   }
-
 
 }

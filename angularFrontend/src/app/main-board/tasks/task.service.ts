@@ -10,7 +10,7 @@ export class TaskService {
 
   tasks: Task[] = this.testTaskBD.taskInputArray;
   listChangeEmitter = new EventEmitter();
-  startedEditing = new Subject<number>();
+  loadTask = new Subject<string>();
 
   setTasks(taskFeature: string) {
     if (taskFeature === 'me') {
@@ -39,8 +39,11 @@ export class TaskService {
     this.tasks.push(task);
   }
 
-  editTask(task: Task) {
+  editTask(isNew:boolean,task: Task) {
     var index = this.tasks.indexOf(this.getTask(task.id));
+    if(isNew){
+      this.tasks.push(task);
+    }
     if (index && index >= 0) {
       this.tasks[index] = task;
     }

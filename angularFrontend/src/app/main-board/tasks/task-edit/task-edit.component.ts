@@ -12,6 +12,7 @@ import {NgForm} from "@angular/forms";
 })
 export class TaskEditComponent implements OnInit, OnDestroy {
 
+
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -20,15 +21,15 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   @ViewChild('f') taskForm: NgForm;
   changingTask: Task;
   isNewTask;
-  private subscribeParams: Subscription;
+  private routeParamsSubscription: Subscription;
+
 
   editTask() {
-    this.taskService.editTask(this.taskForm.value);
-    this.gotoList();
-  }
+    this.changingTask.taskName=this.taskForm.value.taskName;
+    this.changingTask.executor=this.taskForm.value.taskExecutor;
+    this.changingTask.initiator=this.taskForm.value.taskInitiator;
 
-  addTask() {
-    this.taskService.addTask(this.changingTask);
+    this.taskService.editTask(this.isNewTask,this.changingTask);
     this.gotoList();
   }
 
@@ -37,19 +38,25 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscribeParams = this.route.params
+    this.routeParamsSubscription = this.route.params
       .subscribe(
-      (params: Params) => {
-        this.changingTask = this.taskService.getTask(+params['id']);
-        if (!this.changingTask) {
-          this.isNewTask = true;
-          this.changingTask = this.createNewTask();
-        }
-      }
-    );
-    this.subscribeParams.add(
-      this.taskService.startedEditing.subscribe()
-    )
+        (params: Params) => {
+          this.changingTask = this.taskService.getTask(+params['id']);
+          if (!this.changingTask) {
+            this.isNewTask = true;
+            this.changingTask = this.createNewTask();
+          }
+          setTimeout(
+            () => {
+              this.taskForm.setValue({
+                taskName: this.changingTask.taskName,
+                taskExecutor: this.changingTask.executor,
+                taskInitiator: this.changingTask.initiator
+              })
+            }, 1
+          );
+        },
+      );
   }
 
   gotoList() {
@@ -63,6 +70,6 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribeParams.unsubscribe();
+    this.routeParamsSubscription.unsubscribe();
   }
 }
