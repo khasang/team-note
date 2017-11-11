@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-tasks',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+  }
+
+  id: number;
 
   ngOnInit() {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id=params['id'];
+      }
+    )
   }
 
 }

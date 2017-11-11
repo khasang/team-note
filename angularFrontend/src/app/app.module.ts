@@ -7,8 +7,8 @@ import {TasksComponent} from "./tasks/tasks.component";
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  {path: "tasks", component: TasksComponent},
-  {path: "users", component: UsersComponent}
+  {path: "tasks{id}", component: TasksComponent},
+  {path: "users{id}", component: UsersComponent}
 ];
 
 @NgModule({
