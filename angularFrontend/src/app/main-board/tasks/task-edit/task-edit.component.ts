@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {NgForm} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-task-edit',
@@ -18,18 +18,30 @@ export class TaskEditComponent implements OnInit, OnDestroy {
               private router: Router) {
   }
 
-  @ViewChild('f') taskForm: NgForm;
+  taskForm: FormGroup;
   changingTask: Task;
   isNewTask;
   private routeParamsSubscription: Subscription;
 
 
-  editTask() {
-    this.changingTask.taskName=this.taskForm.value.taskName;
-    this.changingTask.executor=this.taskForm.value.taskExecutor;
-    this.changingTask.initiator=this.taskForm.value.taskInitiator;
+  private initForm() {
+    let taskName = this.changingTask.taskName;
+    let taskInitiator = this.changingTask.initiator;
+    let taskExecutor = this.changingTask.executor;
 
-    this.taskService.editTask(this.isNewTask,this.changingTask);
+    this.taskForm = new FormGroup({
+      'taskName': new FormControl(taskName,Validators.required),
+      'taskInitiator': new FormControl(taskInitiator,Validators.required),
+      'taskExecutor': new FormControl(taskExecutor,Validators.required)
+    });
+  }
+
+  editTask() {
+    this.changingTask.taskName = this.taskForm.value.taskName;
+    this.changingTask.executor = this.taskForm.value.taskExecutor;
+    this.changingTask.initiator = this.taskForm.value.taskInitiator;
+
+    this.taskService.editTask(this.isNewTask, this.changingTask);
     this.gotoList();
   }
 
@@ -46,21 +58,13 @@ export class TaskEditComponent implements OnInit, OnDestroy {
             this.isNewTask = true;
             this.changingTask = this.createNewTask();
           }
-          setTimeout(
-            () => {
-              this.taskForm.setValue({
-                taskName: this.changingTask.taskName,
-                taskExecutor: this.changingTask.executor,
-                taskInitiator: this.changingTask.initiator
-              })
-            }, 1
-          );
+          this.initForm();
         },
       );
   }
 
   gotoList() {
-    var url = "";
+    let url = "";
     if (this.isNewTask) {
       url = '../list'
     } else {

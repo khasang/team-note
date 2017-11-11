@@ -1,7 +1,9 @@
 <div class="table table-bordered" style="padding: 10px">
   <div class="row">
     <div class="col-xs-12">
-      <form (ngSubmit)="editTask(f)" #f="ngForm">
+      <form [formGroup]="taskForm"
+            (ngSubmit)="editTask()"
+            >
         <div class="list-group">
           <div class="list-group-item">
             <label for="taskName">Задание</label>
@@ -9,8 +11,8 @@
               id="taskName"
               type="text"
               class="form-control"
-              name="taskName"
-              ngModel>
+              formControlName="taskName"
+              >
           </div>
           <div class="list-group-item">
             <label for="taskInitiator">Инициатор</label>
@@ -18,8 +20,8 @@
               id="taskInitiator"
               type="text"
               class="form-control"
-              name="taskInitiator"
-              ngModel>
+              formControlName="taskInitiator"
+              >
           </div>
           <div class="list-group-item">
             <label for="taskExecutor">Исполнитель</label>
@@ -27,13 +29,14 @@
               id="taskExecutor"
               type="text"
               class="form-control"
-              name="taskExecutor"
-              ngModel>
+              formControlName="taskExecutor"
+              >
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-xs-offset-5">
             <button
+              [disabled]="!taskForm.valid"
               class="btn btn-success"
               type="submit"
               >{{ isNewTask?'Add':'Edit' }}

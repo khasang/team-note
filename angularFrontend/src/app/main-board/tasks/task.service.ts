@@ -10,7 +10,6 @@ export class TaskService {
 
   tasks: Task[] = this.testTaskBD.taskInputArray;
   listChangeEmitter = new EventEmitter();
-  loadTask = new Subject<string>();
 
   setTasks(taskFeature: string) {
     if (taskFeature === 'me') {
@@ -35,11 +34,7 @@ export class TaskService {
     return task;
   }
 
-  addTask(task: Task) {
-    this.tasks.push(task);
-  }
-
-  editTask(isNew:boolean,task: Task) {
+   editTask(isNew:boolean,task: Task) {
     var index = this.tasks.indexOf(this.getTask(task.id));
     if(isNew){
       this.tasks.push(task);
@@ -53,6 +48,5 @@ export class TaskService {
   getNewId() {
     return this.tasks.length + 1;
   }
-
 
 }
