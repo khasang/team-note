@@ -1,43 +1,33 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-task-edit',
   templateUrl: './task-edit.component.html',
   styleUrls: ['./task-edit.component.css']
 })
-export class TaskEditComponent implements OnInit,OnDestroy {
-
+export class TaskEditComponent implements OnInit, OnDestroy {
 
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
               private router: Router) {
   }
 
+  @ViewChild('f') taskForm: NgForm;
   changingTask: Task;
   isNewTask;
-  private subscribeParames:Subscription;
-
-  taskName = "";
-  taskInitiator = "";
-  taskExecutor = "";
+  private subscribeParams: Subscription;
 
   editTask() {
-    this.changingTask.taskName = this.taskName;
-    this.changingTask.initiator = this.taskInitiator;
-    this.changingTask.executor = this.taskExecutor;
-
-    this.taskService.editTask(this.changingTask);
+    this.taskService.editTask(this.taskForm.value);
     this.gotoList();
   }
 
-  addTask(){
-    this.changingTask.taskName = this.taskName;
-    this.changingTask.initiator = this.taskInitiator;
-    this.changingTask.executor = this.taskExecutor;
+  addTask() {
     this.taskService.addTask(this.changingTask);
     this.gotoList();
   }
@@ -46,9 +36,9 @@ export class TaskEditComponent implements OnInit,OnDestroy {
     return new Task(this.taskService.getNewId(), "", "", "");
   }
 
-
   ngOnInit() {
-    this.subscribeParames = this.route.params.subscribe(
+    this.subscribeParams = this.route.params
+      .subscribe(
       (params: Params) => {
         this.changingTask = this.taskService.getTask(+params['id']);
         if (!this.changingTask) {
@@ -57,22 +47,22 @@ export class TaskEditComponent implements OnInit,OnDestroy {
         }
       }
     );
-    this.taskName = this.changingTask.taskName;
-    this.taskInitiator = this.changingTask.initiator;
-    this.taskExecutor = this.changingTask.executor;
+    this.subscribeParams.add(
+      this.taskService.startedEditing.subscribe()
+    )
   }
 
-  gotoList(){
-    var url ="";
-    if(this.isNewTask) {
-      url='../list'
-    }else{
-      url='../../list'
+  gotoList() {
+    var url = "";
+    if (this.isNewTask) {
+      url = '../list'
+    } else {
+      url = '../../list'
     }
-    this.router.navigate([url],{relativeTo:this.route});
+    this.router.navigate([url], {relativeTo: this.route});
   }
 
-  ngOnDestroy(){
-    this.subscribeParames.unsubscribe();
+  ngOnDestroy() {
+    this.subscribeParams.unsubscribe();
   }
 }
