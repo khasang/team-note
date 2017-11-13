@@ -10,7 +10,5 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-ffff
-
   ngOnInit() { }
 }
