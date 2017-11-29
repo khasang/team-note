@@ -1,7 +1,6 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {Task} from "./task.model";
 import {TestTaskBD} from "../../testTaskBD";
-import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class TaskService {
@@ -34,9 +33,9 @@ export class TaskService {
     return task;
   }
 
-   editTask(isNew:boolean,task: Task) {
+  editTask(isNew: boolean, task: Task) {
     var index = this.tasks.indexOf(this.getTask(task.id));
-    if(isNew){
+    if (isNew) {
       this.tasks.push(task);
     }
     if (index && index >= 0) {
@@ -47,6 +46,11 @@ export class TaskService {
   //тут все измениться
   getNewId() {
     return this.tasks.length + 1;
+  }
+
+  setTasksFromDB(tasks: Task[]) {
+    this.tasks = tasks;
+    this.listChangeEmitter.emit();
   }
 
 }

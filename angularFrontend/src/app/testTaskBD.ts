@@ -1,4 +1,5 @@
 import {Task} from "./main-board/tasks/task.model";
+import {DataServiceService} from "./data-services/data-service/data-service.service";
 
 export class TestTaskBD {
   //this class for test only
@@ -9,6 +10,7 @@ export class TestTaskBD {
   constructor() {
     this.taskInputArray = this.createTestInputTasks();
     this.taskOutputArray = this.createTestOutputTasks();
+
   }
 
   private createTestInputTasks() {
@@ -20,6 +22,8 @@ export class TestTaskBD {
     taskArray.push(new Task(2,"Написать first-page", "Сергей", "Я"));
     taskArray.push(new Task(3,"Купить подарок", "Павел", "Я"));
     taskArray.push(new Task(4,"Разобраться с Angular", "Павел", "Я"));
+
+
     return taskArray;
   }
 

@@ -1,6 +1,7 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 import {AppComponent} from "./app.component";
 import {MainBoardComponent} from "./main-board/mainBoard.component";
@@ -17,6 +18,8 @@ import {GoalsComponent} from "./main-board/goals/goals.component";
 import {ReportsComponent} from "./main-board/reports/reports.component";
 import {TestTaskBD} from "./testTaskBD";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {DataServiceService} from "./data-services/data-service/data-service.service";
+import {TaskService} from "./main-board/tasks/task.service";
 
 
 @NgModule({
@@ -39,9 +42,10 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpModule,
     AppRoutingModule
   ],
-  providers: [TestTaskBD],
+  providers: [TestTaskBD,DataServiceService,TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

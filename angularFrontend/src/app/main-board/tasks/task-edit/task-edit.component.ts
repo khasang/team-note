@@ -4,6 +4,8 @@ import {TaskService} from "../task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {DataServiceService} from "../../../data-services/data-service/data-service.service";
+import {Http,Response} from "@angular/http";
 
 @Component({
   selector: 'app-task-edit',
@@ -15,7 +17,8 @@ export class TaskEditComponent implements OnInit, OnDestroy {
 
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private dataService:DataServiceService) {
   }
 
   taskForm: FormGroup;
@@ -42,6 +45,12 @@ export class TaskEditComponent implements OnInit, OnDestroy {
     this.changingTask.initiator = this.taskForm.value.taskInitiator;
 
     this.taskService.editTask(this.isNewTask, this.changingTask);
+    this.dataService.saveTaskToDB()
+      .subscribe(
+        (response:Response) =>{
+          console.log(response);
+        }
+      );
     this.gotoList();
   }
 
