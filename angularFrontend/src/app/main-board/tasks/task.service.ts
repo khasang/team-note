@@ -2,37 +2,35 @@ import {EventEmitter, Injectable} from "@angular/core";
 import {Task} from "./task.model";
 import {TestTaskBD} from "../../testTaskBD";
 import {DataServiceService} from "../../data-services/data-service/data-service.service";
+import {Response} from "@angular/http"
+import {Subject} from "rxjs/Subject";
+import {Subscription} from "rxjs/Subscription";
 
 @Injectable()
 export class TaskService {
-  constructor(
-    private testTaskBD: TestTaskBD,
-    private taskDataService: DataServiceService
-  ) {
-    this.taskDataService.dataLoadSubject.subscribe(
+  taskLoaderSubscription:Subscription;
+
+  constructor(private testTaskBD: TestTaskBD,
+              private taskDataService: DataServiceService) {
+    this.taskLoaderSubscription = this.taskDataService.dataLoadSubject.subscribe(
       (tasks: Task[]) => {
         this.tasks = tasks;
-        this.listChangeEmitter.emit();
-        console.log(tasks);
+        console.log("in taskSevice"+tasks);
       }
     )
   }
 
-  tasks: Task[] = this.testTaskBD.taskInputArray;
+  tasks: Task[] = [];
   listChangeEmitter = new EventEmitter();
 
   setTasks(taskFeature: string) {
     if (taskFeature === 'me') {
-      this.tasks = this.testTaskBD.taskInputArray;
+      //this.tasks = this.testTaskBD.taskInputArray;
     }
     if (taskFeature === 'not_me') {
       this.tasks = this.testTaskBD.taskOutputArray;
     }
     this.listChangeEmitter.emit();
-  }
-
-  getTasks() {
-    return this.tasks.slice();
   }
 
   getTask(id: number) {
@@ -53,7 +51,11 @@ export class TaskService {
       this.tasks[index] = task;
     }
 
-    this.taskDataService.saveTaskToDB(this.tasks.slice());
+    this.taskDataService.saveTaskToDB(this.tasks.slice()).subscribe(
+      (response: Response) => {
+        console.log(response);
+      }
+    );
   }
 
   //тут все измениться
@@ -61,10 +63,8 @@ export class TaskService {
     return this.tasks.length + 1;
   }
 
-  setTasksFromDB() {
+  loadTasksFromDB() {
     this.taskDataService.getTaskFromDB();
-
-
   }
 
 }

@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
 import {Http,Response} from "@angular/http";
-import {TaskService} from "../../main-board/tasks/task.service";
 import {Task} from "../../main-board/tasks/task.model";
 import {Subject} from "rxjs/Subject";
 
@@ -13,8 +12,7 @@ export class DataServiceService {
   }
 
   saveTaskToDB(tasks:Task[]) {
-    console.log(tasks);
-    return this.http.put("https://team-note-firebase.firebaseio.com/tasks", tasks);
+    return this.http.put("https://team-note-firebase.firebaseio.com/tasks.json", tasks);
   }
 
   getTaskFromDB() {

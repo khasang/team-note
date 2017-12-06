@@ -13,15 +13,11 @@ export class MainBoardComponent implements OnInit {
   @Input() sidebarFeature: string;
   @Input() taskArray: Task[];
 
-  constructor(private sidebarService:SidebarService, private taskService:TaskService) {
+  constructor(private sidebarService:SidebarService) {
     this.sidebarFeature = sidebarService.itemSelected.name;
   }
 
   ngOnInit() {
   }
 
-//Delete after testing
-  testLoadTaskFromDB(){
-    this.taskService.setTasksFromDB();
-  }
 }

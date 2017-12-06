@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Task} from "../task.model";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,7 +9,8 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit,OnDestroy {
+
   subscription: Subscription;
   tasks: Task[];
 
@@ -18,21 +19,27 @@ export class TaskListComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
   }
 
+  addTask() {
+    this.router.navigate(["../new"], {relativeTo: this.activatedRoute});
+  }
+
   onEditTask(taskId: number) {
     this.router.navigate(["../edit", taskId], {relativeTo: this.activatedRoute});
   }
 
   ngOnInit() {
-    this.tasks = this.taskService.getTasks();
+    this.taskService.loadTasksFromDB();
+    this.tasks = this.taskService.tasks.slice();
+    console.log("in list"+this.tasks);
     this.subscription = this.taskService.listChangeEmitter.subscribe(
       () => {
-        this.tasks = this.taskService.getTasks();
+        this.taskService.loadTasksFromDB();
+        this.tasks = this.taskService.tasks.slice();
       }
     );
   }
 
-  addTask() {
-    this.router.navigate(["../new"], {relativeTo: this.activatedRoute});
+  ngOnDestroy(): void {
+    this.taskService.taskLoaderSubscription.unsubscribe();
   }
-
 }
