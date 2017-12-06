@@ -5,7 +5,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataServiceService} from "../../../data-services/data-service/data-service.service";
-import {Http,Response} from "@angular/http";
+import {Http, Response} from "@angular/http";
 
 @Component({
   selector: 'app-task-edit',
@@ -17,8 +17,7 @@ export class TaskEditComponent implements OnInit, OnDestroy {
 
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
-              private router: Router,
-              private dataService:DataServiceService) {
+              private router: Router) {
   }
 
   taskForm: FormGroup;
@@ -33,9 +32,9 @@ export class TaskEditComponent implements OnInit, OnDestroy {
     let taskExecutor = this.changingTask.executor;
 
     this.taskForm = new FormGroup({
-      'taskName': new FormControl(taskName,Validators.required),
-      'taskInitiator': new FormControl(taskInitiator,Validators.required),
-      'taskExecutor': new FormControl(taskExecutor,Validators.required)
+      'taskName': new FormControl(taskName, Validators.required),
+      'taskInitiator': new FormControl(taskInitiator, Validators.required),
+      'taskExecutor': new FormControl(taskExecutor, Validators.required)
     });
   }
 
@@ -45,12 +44,7 @@ export class TaskEditComponent implements OnInit, OnDestroy {
     this.changingTask.initiator = this.taskForm.value.taskInitiator;
 
     this.taskService.editTask(this.isNewTask, this.changingTask);
-    this.dataService.saveTaskToDB()
-      .subscribe(
-        (response:Response) =>{
-          console.log(response);
-        }
-      );
+
     this.gotoList();
   }
 

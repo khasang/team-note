@@ -13,7 +13,7 @@ export class MainBoardComponent implements OnInit {
   @Input() sidebarFeature: string;
   @Input() taskArray: Task[];
 
-  constructor(private sidebarService:SidebarService, private dataService:DataServiceService) {
+  constructor(private sidebarService:SidebarService, private taskService:TaskService) {
     this.sidebarFeature = sidebarService.itemSelected.name;
   }
 
@@ -22,6 +22,6 @@ export class MainBoardComponent implements OnInit {
 
 //Delete after testing
   testLoadTaskFromDB(){
-    this.dataService.getTaskFromDB();
+    this.taskService.setTasksFromDB();
   }
 }
