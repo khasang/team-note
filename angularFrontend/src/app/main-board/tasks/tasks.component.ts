@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit {
       (params: Params) => {
         this.executor = params['executor'];
         if (this.executor === 'me') {
-          this.taskService.setTasks('me');
+          this.taskService.loadTasksFromDB();
         }
         if (this.executor === 'not_me') {
           this.taskService.setTasks('not_me');

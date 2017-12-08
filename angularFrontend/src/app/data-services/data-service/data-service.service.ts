@@ -6,8 +6,6 @@ import {Subject} from "rxjs/Subject";
 @Injectable()
 export class DataServiceService {
 
-  dataLoadSubject = new Subject();
-
   constructor(private http: Http) {
   }
 
@@ -16,12 +14,7 @@ export class DataServiceService {
   }
 
   getTaskFromDB() {
-    this.http.get("https://team-note-firebase.firebaseio.com/tasks.json")
-      .subscribe(
-        (response: Response) => {
-          this.dataLoadSubject.next(response.json())
-        }
-      );
+     return this.http.get("https://team-note-firebase.firebaseio.com/tasks.json");
   }
 
 }

@@ -3,7 +3,6 @@ import {Task} from "./task.model";
 import {TestTaskBD} from "../../testTaskBD";
 import {DataServiceService} from "../../data-services/data-service/data-service.service";
 import {Response} from "@angular/http"
-import {Subject} from "rxjs/Subject";
 import {Subscription} from "rxjs/Subscription";
 
 @Injectable()
@@ -12,12 +11,7 @@ export class TaskService {
 
   constructor(private testTaskBD: TestTaskBD,
               private taskDataService: DataServiceService) {
-    this.taskLoaderSubscription = this.taskDataService.dataLoadSubject.subscribe(
-      (tasks: Task[]) => {
-        this.tasks = tasks;
-        console.log("in taskSevice"+tasks);
-      }
-    )
+
   }
 
   tasks: Task[] = [];
@@ -36,7 +30,7 @@ export class TaskService {
   getTask(id: number) {
     const task: Task = this.tasks.find(
       (t) => {
-        return t.id === id
+        return t.id === id;
       }
     );
     return task;
@@ -58,13 +52,18 @@ export class TaskService {
     );
   }
 
+  loadTasksFromDB() {
+    this.taskDataService.getTaskFromDB()
+      .subscribe(
+      (response: Response) => {
+        this.tasks  =response.json();
+        this.listChangeEmitter.emit();
+      }
+    );
+  }
+
   //тут все измениться
   getNewId() {
     return this.tasks.length + 1;
   }
-
-  loadTasksFromDB() {
-    this.taskDataService.getTaskFromDB();
-  }
-
 }

@@ -30,16 +30,14 @@ export class TaskListComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.taskService.loadTasksFromDB();
     this.tasks = this.taskService.tasks.slice();
-    console.log("in list"+this.tasks);
     this.subscription = this.taskService.listChangeEmitter.subscribe(
       () => {
-        this.taskService.loadTasksFromDB();
         this.tasks = this.taskService.tasks.slice();
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.taskService.taskLoaderSubscription.unsubscribe();
+    //this.taskService.taskLoaderSubscription.unsubscribe();
   }
 }
