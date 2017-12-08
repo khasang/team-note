@@ -19,7 +19,7 @@ export class TaskService {
 
   setTasks(taskFeature: string) {
     if (taskFeature === 'me') {
-      //this.tasks = this.testTaskBD.taskInputArray;
+      //тут все измениться
     }
     if (taskFeature === 'not_me') {
       this.tasks = this.testTaskBD.taskOutputArray;
