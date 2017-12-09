@@ -8,6 +8,7 @@ import {StatusTasksComponent} from "../main-board/status-tasks/status-tasks.comp
 import {TaskEditComponent} from "../main-board/tasks/task-edit/task-edit.component";
 import {RouterModule, Routes} from "@angular/router";
 import {TaskListComponent} from "../main-board/tasks/task-list/task-list.component";
+import {TestRoleComponentComponent} from "../test-role-component/test-role-component.component";
 
 const routes:Routes = [
   {path:"",redirectTo:"/tasks/me/list",pathMatch:"full"},
@@ -21,6 +22,7 @@ const routes:Routes = [
   {path:"groups",component:GroupsComponent},
   {path:"projects",component:ProjectsComponent},
   {path:"reports",component:ReportsComponent},
+  {path:"roles",component:TestRoleComponentComponent},
   {path:"**",redirectTo:"/tasks/me/list"}
 ];
 

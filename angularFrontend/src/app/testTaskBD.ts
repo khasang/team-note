@@ -1,5 +1,4 @@
-import {Task} from "./main-board/tasks/task.model";
-import {DataServiceService} from "./data-services/data-service/data-service.service";
+import {Task} from "./app-entities/task.entity";
 
 export class TestTaskBD {
   //this class for test only

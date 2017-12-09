@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Task} from "./main-board/tasks/task.model";
+import {Task} from "./app-entities/task.entity";
 import {SidebarService} from "./sidebar/sidebar.service";
 import {TestTaskBD} from "./testTaskBD";
 

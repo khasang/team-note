@@ -19,7 +19,10 @@ import {ReportsComponent} from "./main-board/reports/reports.component";
 import {TestTaskBD} from "./testTaskBD";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {DataServiceService} from "./data-services/data-service/data-service.service";
+import {DataTestRoleService} from "./data-services/data-service/data-test-role-service";
 import {TaskService} from "./main-board/tasks/task.service";
+import { TestRoleComponentComponent } from './test-role-component/test-role-component.component';
+import {TestRoleService} from "./test-role-component/test-role-service";
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import {TaskService} from "./main-board/tasks/task.service";
     GroupsComponent,
     ProjectsComponent,
     GoalsComponent,
-    ReportsComponent
+    ReportsComponent,
+    TestRoleComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,13 @@ import {TaskService} from "./main-board/tasks/task.service";
     HttpModule,
     AppRoutingModule
   ],
-  providers: [TestTaskBD,DataServiceService,TaskService],
+  providers: [
+    TestTaskBD,
+    DataServiceService,
+    TaskService,
+    TestRoleService,
+    DataTestRoleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

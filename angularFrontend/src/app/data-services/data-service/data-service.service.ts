@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
-import {Http,Response} from "@angular/http";
-import {Task} from "../../main-board/tasks/task.model";
-import {Subject} from "rxjs/Subject";
+import {Http} from "@angular/http";
+import {Task} from "../../app-entities/task.entity";
 
 @Injectable()
 export class DataServiceService {

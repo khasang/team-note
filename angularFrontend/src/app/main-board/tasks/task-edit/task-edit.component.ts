@@ -1,11 +1,9 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Task} from "../task.model";
+import {Task} from "../../../app-entities/task.entity";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {DataServiceService} from "../../../data-services/data-service/data-service.service";
-import {Http, Response} from "@angular/http";
 
 @Component({
   selector: 'app-task-edit',

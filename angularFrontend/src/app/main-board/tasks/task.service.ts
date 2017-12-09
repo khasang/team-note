@@ -1,9 +1,8 @@
 import {EventEmitter, Injectable} from "@angular/core";
-import {Task} from "./task.model";
+import {Task} from "../../app-entities/task.entity";
 import {TestTaskBD} from "../../testTaskBD";
 import {DataServiceService} from "../../data-services/data-service/data-service.service";
 import {Response} from "@angular/http"
-import {Subscription} from "rxjs/Subscription";
 
 @Injectable()
 export class TaskService {
