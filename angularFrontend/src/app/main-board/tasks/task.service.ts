@@ -7,7 +7,6 @@ import {Subscription} from "rxjs/Subscription";
 
 @Injectable()
 export class TaskService {
-  taskLoaderSubscription:Subscription;
 
   constructor(private testTaskBD: TestTaskBD,
               private taskDataService: DataServiceService) {
@@ -45,11 +44,7 @@ export class TaskService {
       this.tasks[index] = task;
     }
 
-    this.taskDataService.saveTaskToDB(this.tasks.slice()).subscribe(
-      (response: Response) => {
-        console.log(response);
-      }
-    );
+    return this.taskDataService.saveTaskToDB(this.tasks.slice());
   }
 
   loadTasksFromDB() {

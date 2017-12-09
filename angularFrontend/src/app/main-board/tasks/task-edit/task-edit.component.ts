@@ -43,9 +43,12 @@ export class TaskEditComponent implements OnInit, OnDestroy {
     this.changingTask.executor = this.taskForm.value.taskExecutor;
     this.changingTask.initiator = this.taskForm.value.taskInitiator;
 
-    this.taskService.editTask(this.isNewTask, this.changingTask);
-
-    this.gotoList();
+    this.taskService.editTask(this.isNewTask, this.changingTask)
+      .subscribe(
+        () => {
+          this.gotoList();
+        }
+      );
   }
 
   createNewTask() {
