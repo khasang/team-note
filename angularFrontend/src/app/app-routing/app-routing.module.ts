@@ -9,6 +9,8 @@ import {TaskEditComponent} from "../main-board/tasks/task-edit/task-edit.compone
 import {RouterModule, Routes} from "@angular/router";
 import {TaskListComponent} from "../main-board/tasks/task-list/task-list.component";
 import {TestRoleComponentComponent} from "../test-role-component/test-role-component.component";
+import {SignupComponent} from "../auth/signup/signup.component";
+import {SigninComponent} from "../auth/signin/signin.component";
 
 const routes:Routes = [
   {path:"",redirectTo:"/tasks/me/list",pathMatch:"full"},
@@ -23,6 +25,8 @@ const routes:Routes = [
   {path:"projects",component:ProjectsComponent},
   {path:"reports",component:ReportsComponent},
   {path:"roles",component:TestRoleComponentComponent},
+  {path:"signup",component:SignupComponent},
+  {path:"signin",component:SigninComponent},
   {path:"**",redirectTo:"/tasks/me/list"}
 ];
 

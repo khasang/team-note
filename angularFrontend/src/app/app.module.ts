@@ -23,6 +23,9 @@ import {DataTestRoleService} from "./data-services/data-service/data-test-role-s
 import {TaskService} from "./main-board/tasks/task.service";
 import { TestRoleComponentComponent } from './test-role-component/test-role-component.component';
 import {TestRoleService} from "./test-role-component/test-role-service";
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import {AuthService} from "./auth/auth.service";
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import {TestRoleService} from "./test-role-component/test-role-service";
     ProjectsComponent,
     GoalsComponent,
     ReportsComponent,
-    TestRoleComponentComponent
+    TestRoleComponentComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,8 @@ import {TestRoleService} from "./test-role-component/test-role-service";
     DataServiceService,
     TaskService,
     TestRoleService,
-    DataTestRoleService
+    DataTestRoleService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Task} from "./app-entities/task.entity";
 import {SidebarService} from "./sidebar/sidebar.service";
 import {TestTaskBD} from "./testTaskBD";
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-root',
@@ -29,5 +30,10 @@ export class AppComponent implements OnInit {
     );
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    firebase.initializeApp({
+      apiKey:"AIzaSyCa4k6Blrw70Xr7PpTHJuM7e7jZVnDYdyE",
+      authDomain:"https://team-note-firebase.firebaseio.com/"
+    });
+  }
 }
