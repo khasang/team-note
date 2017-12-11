@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {TaskService} from "./task.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Component({
@@ -12,7 +13,8 @@ export class TasksComponent implements OnInit {
 
 
   constructor(private taskService: TaskService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authService:AuthService) {
   }
 
   executor: string;

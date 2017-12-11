@@ -26,6 +26,7 @@ import {TestRoleService} from "./test-role-component/test-role-service";
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {AuthService} from "./auth/auth.service";
+import {AuthGuard} from "./auth/auth-guard.service";
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {AuthService} from "./auth/auth.service";
     TaskService,
     TestRoleService,
     DataTestRoleService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

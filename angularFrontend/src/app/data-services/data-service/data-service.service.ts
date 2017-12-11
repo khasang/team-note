@@ -12,14 +12,13 @@ export class DataServiceService {
 
   saveTaskToDB(tasks:Task[]) {
     const token  = this.authService.getToken();
-    console.log("token = "+token);
     return this.http.put("https://team-note-firebase.firebaseio.com/tasks.json?auth="+token, tasks);
   }
 
   getTaskFromDB() {
      const token  = this.authService.getToken();
-     console.log("token = "+token);
      return this.http.get("https://team-note-firebase.firebaseio.com/tasks.json?auth="+token);
   }
+
 
 }
