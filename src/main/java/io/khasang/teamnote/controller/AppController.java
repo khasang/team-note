@@ -21,10 +21,21 @@ public class AppController {
     private Message message;
 
     // http://localhost:8080/
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String helloPage() {
         return "start_page";
+    }*/
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView welcome(ModelAndView modelAndView) {
+        modelAndView.setViewName("index.html");
+        return modelAndView;
     }
+
+    /*@RequestMapping("/")
+    public String welcome() {
+        return "index";
+    }*/
 
     @RequestMapping("/status")
     public String statusPage() {
