@@ -26,16 +26,16 @@ public class AppController {
         return "start_page";
     }*/
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcome(ModelAndView modelAndView) {
         modelAndView.setViewName("index.html");
         return modelAndView;
-    }
+    }*/
 
-    /*@RequestMapping("/")
+    @RequestMapping("/")
     public String welcome() {
         return "index";
-    }*/
+    }
 
     @RequestMapping("/status")
     public String statusPage() {
