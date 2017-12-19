@@ -31,8 +31,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
                 new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("utf-8");
 
-        CORSFilter corsFilter = new CORSFilter();
-        return new Filter[]{characterEncodingFilter,corsFilter};
+        return new Filter[]{characterEncodingFilter};
     }
 
 
