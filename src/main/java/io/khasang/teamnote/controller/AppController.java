@@ -1,7 +1,6 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.model.Message;
-import net.yandex.speller.services.spellservice.CheckTextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -62,13 +61,6 @@ public class AppController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/check/{text}"}, method = RequestMethod.GET)
-    public ModelAndView checkWordSpelling(@PathVariable("text") String text) throws MalformedURLException {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("checkSpell");
-        modelAndView.addObject("check", CheckTextUtil.response(text));
-        return modelAndView;
-    }
 
     @RequestMapping("/roles")
     public String RolePage(){
