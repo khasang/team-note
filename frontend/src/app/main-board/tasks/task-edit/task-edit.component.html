@@ -1,0 +1,55 @@
+<div class="table table-bordered" style="padding: 10px">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="taskForm"
+            (ngSubmit)="editTask()"
+            >
+        <div class="list-group">
+          <div class="list-group-item">
+            <label for="taskName">Задание</label>
+            <input
+              id="taskName"
+              type="text"
+              class="form-control"
+              formControlName="taskName"
+              >
+          </div>
+          <div class="list-group-item">
+            <label for="taskInitiator">Инициатор</label>
+            <input
+              id="taskInitiator"
+              type="text"
+              class="form-control"
+              formControlName="taskInitiator"
+              >
+          </div>
+          <div class="list-group-item">
+            <label for="taskExecutor">Исполнитель</label>
+            <input
+              id="taskExecutor"
+              type="text"
+              class="form-control"
+              formControlName="taskExecutor"
+              >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-xs-offset-5">
+            <button
+              [disabled]="!taskForm.valid"
+              class="btn btn-success"
+              type="submit"
+              >{{ isNewTask?'Add':'Edit' }}
+            </button>
+            <button
+              class="btn btn-warning"
+              type="reset"
+              (click)="gotoList()">Return
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

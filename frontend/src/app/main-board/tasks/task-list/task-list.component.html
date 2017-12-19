@@ -1,0 +1,19 @@
+<div class="row">
+  <div
+    class="col-xs-12"
+    style="cursor: pointer;"
+    *ngFor="let task of tasks;"
+    (click)="onEditTask(task.id)">
+    <a
+      class="list-group-item clearfix">
+      <app-task-item [taskItem]='task'></app-task-item>
+    </a>
+  </div>
+</div>
+<hr/>
+<button
+  class="btn btn-success pull-right"
+  (click)="addTask()">new Task
+</button>
+
+

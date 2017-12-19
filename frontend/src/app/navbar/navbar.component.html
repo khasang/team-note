@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        Team Note
+      </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="authService.isAuthenticated()"><a href="#"><span class="glyphicon glyphicon-filter"></span> Фильтр</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a href="#"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink='/signup'><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink='/signin'><span class="glyphicon glyphicon-user"></span> LogIn</a></li>
+        <li style="cursor:pointer"
+            (click)="logout()"
+            *ngIf="authService.isAuthenticated()"><a><span class="glyphicon glyphicon-user"></span> LogOut</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

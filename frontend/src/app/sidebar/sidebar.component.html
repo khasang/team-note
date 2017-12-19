@@ -1,0 +1,15 @@
+<div class="container-fluid" *ngIf="authService.isAuthenticated()">
+  <div id="menuTut" class="myMenu">
+    <div class="w3-bar w3-bar-block w3-border w3-light-grey">
+      <ul *ngFor="let item of menuItems">
+        <li class="w3-bar-item w3-button"
+            (click)="onSelectItem(item)"
+            role="presentation"
+            [routerLink]=item.url
+            routerLinkActive = active>
+          {{item.localName}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

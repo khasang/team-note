@@ -3,6 +3,7 @@ package io.khasang.teamnote.config.application;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -18,7 +19,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setPrefix("/WEB-INF/static/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setContentType("text/html; charset=UTF-8");
         return viewResolver;
@@ -29,5 +30,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/views/img/");
         registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
+        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
     }
+
 }
