@@ -1,6 +1,5 @@
 package io.khasang.teamnote.controller;
 
-import io.khasang.teamnote.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,9 +14,6 @@ import java.net.MalformedURLException;
 
 @Controller
 public class AppController {
-    @Value("Jack")
-    @Autowired
-    private Message message;
 
     // http://localhost:8080/
     /*@RequestMapping("/")

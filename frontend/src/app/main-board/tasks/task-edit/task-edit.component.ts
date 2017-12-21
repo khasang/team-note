@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Task} from "../../../app-entities/task.entity";
+import {Task} from "../../../sharing/entities/task.entity";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
@@ -25,21 +25,21 @@ export class TaskEditComponent implements OnInit, OnDestroy {
 
 
   private initForm() {
-    let taskName = this.changingTask.taskName;
-    let taskInitiator = this.changingTask.initiator;
+    let taskName = this.changingTask.name;
+    let taskInitiator = this.changingTask.creator;
     let taskExecutor = this.changingTask.executor;
 
     this.taskForm = new FormGroup({
       'taskName': new FormControl(taskName, Validators.required),
-      'taskInitiator': new FormControl(taskInitiator, Validators.required),
+      'taskCreator': new FormControl(taskInitiator, Validators.required),
       'taskExecutor': new FormControl(taskExecutor, Validators.required)
     });
   }
 
   editTask() {
-    this.changingTask.taskName = this.taskForm.value.taskName;
+    this.changingTask.name = this.taskForm.value.taskName;
     this.changingTask.executor = this.taskForm.value.taskExecutor;
-    this.changingTask.initiator = this.taskForm.value.taskInitiator;
+    this.changingTask.creator = this.taskForm.value.taskInitiator;
 
     this.taskService.editTask(this.isNewTask, this.changingTask)
       .subscribe(
@@ -50,7 +50,7 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   }
 
   createNewTask() {
-    return new Task(this.taskService.getNewId(), "", "", "");
+    return new Task(null, "", "", "");
   }
 
   ngOnInit() {
@@ -68,6 +68,7 @@ export class TaskEditComponent implements OnInit, OnDestroy {
   }
 
   gotoList() {
+
     let url = "";
     if (this.isNewTask) {
       url = '../list'

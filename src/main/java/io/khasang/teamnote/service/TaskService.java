@@ -35,6 +35,21 @@ public interface TaskService {
     List<Task> getList();
 
     /**
+     * Receive all entities by spicific type
+     *
+     * @param executorId = uniq id from users
+     * @return list of tasks  by executor
+     */
+    List<Task> getByExecutor(long executorId);
+
+    /**
+     * Receive all entities by spicific type
+     * @param creatorId = uniq id from users
+     * @return list of tasks by creator
+     */
+    List<Task> getByCreator(long creatorId);
+
+    /**
      * Update specify task
      * @param task = task for update
      * @return updated task

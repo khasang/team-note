@@ -14,12 +14,14 @@ import {SigninComponent} from "../auth/signin/signin.component";
 import {AuthGuard} from "../auth/auth-guard.service";
 
 const routes:Routes = [
-  {path:"",redirectTo:"/tasks/me/list",pathMatch:"full"},
-  {path:"tasks/:executor",component:TasksComponent, children:[
-    {path:"list",component:TaskListComponent},
-    {path:"new",component:TaskEditComponent,canActivate:[AuthGuard]},
-    {path:"edit/:id",component:TaskEditComponent,canActivate:[AuthGuard]},
+  {path:"",redirectTo:"task/all",pathMatch:"full"},
+  {path:"task/",component:TasksComponent, children:[
+    {path:"all",component:TaskListComponent},
+    {path:"new",component:TaskEditComponent},
+    {path:"edit/:id",component:TaskEditComponent},
   ]},
+
+
   {path:"status_tasks",component:StatusTasksComponent},
   {path:"goals",component:GoalsComponent},
   {path:"groups",component:GroupsComponent},
@@ -29,7 +31,7 @@ const routes:Routes = [
   {path:"signup",component:SignupComponent},
   {path:"signin",component:SigninComponent},
   {path:"logout",component:SigninComponent},
-  {path:"**",redirectTo:"/tasks/me/list"}
+  {path:"**",redirectTo:"task/all"}
 ];
 
 @NgModule({

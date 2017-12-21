@@ -36,6 +36,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getByExecutor(long executorId) {
+        return taskDao.getTasksByExecutor(executorId);
+    }
+
+    @Override
+    public List<Task> getByCreator(long creatorId) {
+        return taskDao.getTasksByCreator(creatorId);
+    }
+
+    @Override
     public Task update(Task task) {
         return taskDao.update(task);
     }

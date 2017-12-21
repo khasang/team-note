@@ -23,12 +23,7 @@ export class TasksComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.executor = params['executor'];
-        if (this.executor === 'me') {
-          this.taskService.loadTasksFromDB();
-        }
-        if (this.executor === 'not_me') {
-          this.taskService.setTasks('not_me');
-        }
+        this.taskService.loadTasksFromDB();
       }
     );
   }

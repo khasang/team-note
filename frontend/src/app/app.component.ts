@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {Task} from "./app-entities/task.entity";
+import {Task} from "./sharing/entities/task.entity";
 import {SidebarService} from "./sidebar/sidebar.service";
-import {TestTaskBD} from "./testTaskBD";
 import * as firebase from "firebase";
 
 @Component({
@@ -13,19 +12,14 @@ import * as firebase from "firebase";
 export class AppComponent implements OnInit {
   loadedFeature: string = 'inputTasks';
 
-  taskArray: Task[] = this.testTaskBD.taskInputArray;
+  taskArray: Task[] = [];
 
-  constructor(private sidebarService: SidebarService,private testTaskBD:TestTaskBD) {
+  constructor(private sidebarService: SidebarService) {
 
     this.sidebarService.selectItemEmitter.subscribe(
       (feature) => {
         this.loadedFeature = feature;
-        if (this.loadedFeature === 'inputTasks') {
-          this.taskArray = this.testTaskBD.taskInputArray;
-        }
-        if (this.loadedFeature === 'outputTasks') {
-          this.taskArray = this.testTaskBD.taskOutputArray;
-        }
+
       }
     );
   }

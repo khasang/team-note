@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Task} from "../../../app-entities/task.entity";
+import {Task} from "../../../sharing/entities/task.entity";
 import {TaskService} from "../task.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";

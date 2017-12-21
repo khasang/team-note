@@ -16,9 +16,8 @@ import {GroupsComponent} from "./main-board/groups/groups.component";
 import {ProjectsComponent} from "./main-board/projects/projects.component";
 import {GoalsComponent} from "./main-board/goals/goals.component";
 import {ReportsComponent} from "./main-board/reports/reports.component";
-import {TestTaskBD} from "./testTaskBD";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
-import {DataServiceService} from "./data-services/data-service/data-task-service.service";
+import {DataTaskService} from "./data-services/data-service/data-task-service.service";
 import {DataTestRoleService} from "./data-services/data-service/data-test-role-service";
 import {TaskService} from "./main-board/tasks/task.service";
 import { TestRoleComponentComponent } from './test-role-component/test-role-component.component';
@@ -56,8 +55,7 @@ import {AuthGuard} from "./auth/auth-guard.service";
     AppRoutingModule
   ],
   providers: [
-    TestTaskBD,
-    DataServiceService,
+    DataTaskService,
     TaskService,
     TestRoleService,
     DataTestRoleService,

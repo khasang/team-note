@@ -17,16 +17,6 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-
-    @RequestMapping(
-            value = "/add",
-            method = RequestMethod.PUT,
-            produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public Task addTask(@RequestBody Task task){
-        return taskService.addTask(task);
-    }
-
     @RequestMapping(
             value = "/all",
             method = RequestMethod.GET)
@@ -36,11 +26,37 @@ public class TaskController {
     }
 
     @RequestMapping(
-            value = "/get/{id}",
+            value = "/new",
+            method = RequestMethod.PUT,
+            produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public Task addTask(@RequestBody Task task){
+        return taskService.addTask(task);
+    }
+
+
+    @RequestMapping(
+            value = "/get/task/{id}",
             method = RequestMethod.GET)
     @ResponseBody
     public Task getById(@PathVariable(value = "id") String inputId){
         return taskService.getById(Long.parseLong(inputId));
+    }
+
+    @RequestMapping(
+            value="/get/executor/{id}"
+    )
+    @ResponseBody
+    public List<Task> getTasksByExecutor(@PathVariable(value="id") String executorId){
+        return taskService.getByExecutor(Long.parseLong(executorId));
+    }
+
+    @RequestMapping(
+            value="/get/creator/{id}"
+    )
+    @ResponseBody
+    public List<Task> getTaskByCreator(@PathVariable(value="id") String creatorId){
+        return taskService.getByCreator(Long.parseLong(creatorId));
     }
 
     @RequestMapping(

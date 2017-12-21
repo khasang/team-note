@@ -47,11 +47,6 @@ public class AppConfig {
     }
 
     @Bean
-    public DocumentDao documentDao(){
-        return new DocumentDaoImpl(Document.class);
-    }
-
-    @Bean
     public StatusDao statusDao(){
         return new StatusDaoImpl(Status.class);
     }
@@ -62,18 +57,8 @@ public class AppConfig {
     }
 
     @Bean
-    public OrderDao orderDao(){
-        return new OrderDaoImpl(Order.class);
-    }
-
-    @Bean
     public AuthorizationDao authorizationDao() {
         return new AuthorizationDaoImpl(Authorization.class);
-    }
-
-    @Bean
-    public MessageDao messageDao(){
-        return new MessageDaoImpl(Message.class);
     }
 
     @Bean

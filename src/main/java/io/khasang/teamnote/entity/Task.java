@@ -14,31 +14,20 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long   id;
-    private long   userIdCreator;
-    private long   userIdExecutor;
-    private long   statusId;
-    private long   priorityId;
-    private long   lableId;
+    @Column(name="creator")
+    private String   creator;
+    @Column(name="executor")
+    private String   executor;
+    @Column(name="status")
+    private String   status;
+    @Column(name="priority")
+    private long   priority;
+    @Column(name="label")
+    private String   label;
+    @Column(name="name")
     private String name;
+    @Column(name="description")
     private String description;
-
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime creationDate;
-
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime issueDate;
-
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime estimatedDate;
-
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime updatedDate;
-
-    private String color;
 
     public long getId() {
         return id;
@@ -48,44 +37,44 @@ public class Task {
         this.id = id;
     }
 
-    public long getUserIdCreator() {
-        return userIdCreator;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setUserIdCreator(long userIdCreator) {
-        this.userIdCreator = userIdCreator;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    public long getUserIdExecutor() {
-        return userIdExecutor;
+    public String getExecutor() {
+        return executor;
     }
 
-    public void setUserIdExecutor(long userIdExecutor) {
-        this.userIdExecutor = userIdExecutor;
+    public void setExecutor(String executor) {
+        this.executor = executor;
     }
 
-    public long getStatusId() {
-        return statusId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusId(long statusId) {
-        this.statusId = statusId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public long getPriorityId() {
-        return priorityId;
+    public long getPriority() {
+        return priority;
     }
 
-    public void setPriorityId(long priorityId) {
-        this.priorityId = priorityId;
+    public void setPriority(long priority) {
+        this.priority = priority;
     }
 
-    public long getLableId() {
-        return lableId;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLableId(long lableId) {
-        this.lableId = lableId;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getName() {
@@ -102,45 +91,5 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public LocalDateTime getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(LocalDateTime issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public LocalDateTime getEstimatedDate() {
-        return estimatedDate;
-    }
-
-    public void setEstimatedDate(LocalDateTime estimatedDate) {
-        this.estimatedDate = estimatedDate;
-    }
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 }

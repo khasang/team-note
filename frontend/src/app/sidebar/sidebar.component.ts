@@ -9,8 +9,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private sidebarService: SidebarService,
-              public authService: AuthService) {
+  constructor(private sidebarService: SidebarService) {
     this.menuItems = this.sidebarService.menuItems;
   }
 

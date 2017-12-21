@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Task} from "../app-entities/task.entity";
+import {Task} from "../sharing/entities/task.entity";
 import {SidebarService} from "../sidebar/sidebar.service";
 import {AuthService} from "../auth/auth.service";
 

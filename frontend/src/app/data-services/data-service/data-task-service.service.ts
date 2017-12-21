@@ -1,19 +1,19 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Task} from "../../app-entities/task.entity";
+import {Task} from "../../sharing/entities/task.entity";
 import {AuthService} from "../../auth/auth.service";
 import {User} from "../../sharing/entities/user.entity";
 
 @Injectable()
 export class DataTaskService {
-  taskUrl = "http://localhost:8080/tasks/";
+  taskUrl = "http://localhost:8080/task/";
 
   constructor(private http: Http,
               private authService: AuthService) {
   }
 
   getAll(){
-    return this.http.get(this.taskUrl)
+    return this.http.get(this.taskUrl+"/all");
   }
 
   putTask(task) {
@@ -25,7 +25,7 @@ export class DataTaskService {
   getTaskById(id:number){
     //const token  = this.authService.getToken();
     //return this.http.get("https://team-note-firebase.firebaseio.com/tasks.json?auth="+token);
-    return this.http.get(this.taskUrl+"taskId/",id);
+    return this.http.get(this.taskUrl+"task/",id);
   }
 
   getTaskByExecutor(user:User){

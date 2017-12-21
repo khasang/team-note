@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Task} from "../../../../app-entities/task.entity";
+import {Task} from "../../../../sharing/entities/task.entity";
 
 @Component({
   selector: 'app-task-item',
