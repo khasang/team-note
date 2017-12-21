@@ -13,8 +13,7 @@ export class TasksComponent implements OnInit {
 
 
   constructor(private taskService: TaskService,
-              private route: ActivatedRoute,
-              private authService:AuthService) {
+              private route: ActivatedRoute) {
   }
 
   executor: string;

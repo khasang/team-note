@@ -1,14 +1,14 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {Task} from "../../app-entities/task.entity";
 import {TestTaskBD} from "../../testTaskBD";
-import {DataServiceService} from "../../data-services/data-service/data-service.service";
+import {DataTaskService} from "../../data-services/data-service/data-task-service.service";
 import {Response} from "@angular/http"
 
 @Injectable()
 export class TaskService {
 
   constructor(private testTaskBD: TestTaskBD,
-              private taskDataService: DataServiceService) {
+              private dataTaskService: DataTaskService) {
 
   }
 
@@ -18,6 +18,7 @@ export class TaskService {
   setTasks(taskFeature: string) {
     if (taskFeature === 'me') {
       //тут все измениться
+      this.tasks = this.testTaskBD.taskInputArray;
     }
     if (taskFeature === 'not_me') {
       this.tasks = this.testTaskBD.taskOutputArray;
@@ -43,17 +44,19 @@ export class TaskService {
       this.tasks[index] = task;
     }
 
-    return this.taskDataService.saveTaskToDB(this.tasks.slice());
+    return this.dataTaskService.putTask(task);
   }
 
   loadTasksFromDB() {
-    this.taskDataService.getTaskFromDB()
+    /*this.dataTaskService.getTaskFromDB()
       .subscribe(
       (response: Response) => {
         this.tasks  =response.json();
         this.listChangeEmitter.emit();
       }
-    );
+    );*/
+
+
   }
 
   //тут все измениться
