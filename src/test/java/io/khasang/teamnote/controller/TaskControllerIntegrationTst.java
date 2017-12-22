@@ -47,8 +47,8 @@ public class TaskControllerIntegrationTst {
     @Test
     public void getAllTasks(){
         RestTemplate restTemplate = new RestTemplate();
-        Task first = addTask(prepareTask());
-        Task second = addTask(prepareTask());
+        Task first = addTask();
+        Task second = addTask();
         ResponseEntity<List<Task>> responseEntity =  restTemplate.exchange(
                 ROOT+ALL,
                 HttpMethod.GET,
@@ -61,7 +61,15 @@ public class TaskControllerIntegrationTst {
         assertNotNull(resultList);
     }
 
-    private Task addTask(Task task){
+    @Test
+    public void deleteTask(){
+        Task t = addTask();
+        assertNotNull(t.getId());
+        deleteTask(t);
+    }
+
+    private Task addTask(){
+        Task task = prepareTask();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -86,5 +94,17 @@ public class TaskControllerIntegrationTst {
         task.setStatus("important");
         task.setPriority(1);
         return task;
+    }
+
+    private void deleteTask(long id){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> result = restTemplate.exchange(
+                ROOT+DELETE+"{/id}",
+                HttpMethod.DELETE,
+                null,
+                String.class,
+                id
+        );
+        assertEquals(HttpStatus.OK, result.getStatusCode());
     }
 }

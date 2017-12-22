@@ -15,7 +15,7 @@ import {AuthGuard} from "../auth/auth-guard.service";
 
 const routes:Routes = [
   {path:"",redirectTo:"task/all",pathMatch:"full"},
-  {path:"task/",component:TasksComponent, children:[
+  {path:"task",component:TasksComponent, children:[
     {path:"all",component:TaskListComponent},
     {path:"new",component:TaskEditComponent},
     {path:"edit/:id",component:TaskEditComponent},
@@ -31,7 +31,7 @@ const routes:Routes = [
   {path:"signup",component:SignupComponent},
   {path:"signin",component:SigninComponent},
   {path:"logout",component:SigninComponent},
-  {path:"**",redirectTo:"task/all"}
+  {path:"**",redirectTo:""}
 ];
 
 @NgModule({

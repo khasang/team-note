@@ -25,21 +25,21 @@ export class TaskEditComponent implements OnInit, OnDestroy {
 
 
   private initForm() {
-    let taskName = this.changingTask.name;
-    let taskInitiator = this.changingTask.creator;
-    let taskExecutor = this.changingTask.executor;
+    let name = this.changingTask.name;
+    let creator = this.changingTask.creator;
+    let executor = this.changingTask.executor;
 
     this.taskForm = new FormGroup({
-      'taskName': new FormControl(taskName, Validators.required),
-      'taskCreator': new FormControl(taskInitiator, Validators.required),
-      'taskExecutor': new FormControl(taskExecutor, Validators.required)
+      'name': new FormControl(name, Validators.required),
+      'creator': new FormControl(creator, Validators.required),
+      'executor': new FormControl(executor, Validators.required)
     });
   }
 
   editTask() {
-    this.changingTask.name = this.taskForm.value.taskName;
-    this.changingTask.executor = this.taskForm.value.taskExecutor;
-    this.changingTask.creator = this.taskForm.value.taskInitiator;
+    this.changingTask.name = this.taskForm.value.name;
+    this.changingTask.executor = this.taskForm.value.executor;
+    this.changingTask.creator = this.taskForm.value.creator;
 
     this.taskService.editTask(this.isNewTask, this.changingTask)
       .subscribe(

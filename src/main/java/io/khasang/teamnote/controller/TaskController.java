@@ -44,23 +44,7 @@ public class TaskController {
     }
 
     @RequestMapping(
-            value="/get/executor/{id}"
-    )
-    @ResponseBody
-    public List<Task> getTasksByExecutor(@PathVariable(value="id") String executorId){
-        return taskService.getByExecutor(Long.parseLong(executorId));
-    }
-
-    @RequestMapping(
-            value="/get/creator/{id}"
-    )
-    @ResponseBody
-    public List<Task> getTaskByCreator(@PathVariable(value="id") String creatorId){
-        return taskService.getByCreator(Long.parseLong(creatorId));
-    }
-
-    @RequestMapping(
-            value = "/update",
+            value = "/update/{id}",
             method = RequestMethod.POST,
             produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -74,6 +58,22 @@ public class TaskController {
     @ResponseBody
     public Task delete(@PathVariable(value = "id") String inputId){
         return taskService.delete(Long.parseLong(inputId));
+    }
+
+    @RequestMapping(
+            value="/get/byExecutor/{id}"
+    )
+    @ResponseBody
+    public List<Task> getTasksByExecutor(@PathVariable(value="id") String executorId){
+        return taskService.getByExecutor(Long.parseLong(executorId));
+    }
+
+    @RequestMapping(
+            value="/get/byCreator/{id}"
+    )
+    @ResponseBody
+    public List<Task> getTaskByCreator(@PathVariable(value="id") String creatorId){
+        return taskService.getByCreator(Long.parseLong(creatorId));
     }
 
 }
