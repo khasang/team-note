@@ -133,6 +133,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${sl4j-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>15.0</version>
+        </dependency>
     </dependencies>
 
     <build>

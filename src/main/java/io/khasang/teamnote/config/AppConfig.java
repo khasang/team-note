@@ -10,8 +10,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+
+import javax.persistence.Id;
+import java.util.Properties;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
@@ -20,8 +24,9 @@ public class AppConfig {
     @Autowired
     private Environment environment;
 
+
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -30,7 +35,7 @@ public class AppConfig {
     }
 
     @Bean
-    public DriverManagerDataSource dataSource(){
+    public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
@@ -40,19 +45,19 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
 
     @Bean
-    public StatusDao statusDao(){
+    public StatusDao statusDao() {
         return new StatusDaoImpl(Status.class);
     }
 
     @Bean
-    public RoleDao roleDao(){
+    public RoleDao roleDao() {
         return new RoleDaoImpl(Role.class);
     }
 
@@ -62,7 +67,7 @@ public class AppConfig {
     }
 
     @Bean
-    public TaskDao taskDao(){
+    public TaskDao taskDao() {
         return new TaskDaoImpl(Task.class);
     }
 }

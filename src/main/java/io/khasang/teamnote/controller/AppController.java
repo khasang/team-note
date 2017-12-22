@@ -37,10 +37,6 @@ public class AppController {
         return "status";
     }
 
-    @RequestMapping("/order")
-    public String orderPage(){
-        return "order";
-    }
 
     @RequestMapping("/admin")
     public String getAdminPage(Model model) {

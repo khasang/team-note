@@ -44,7 +44,7 @@ public class TaskController {
     }
 
     @RequestMapping(
-            value = "/update/{id}",
+            value = "/update",
             method = RequestMethod.POST,
             produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -65,7 +65,7 @@ public class TaskController {
     )
     @ResponseBody
     public List<Task> getTasksByExecutor(@PathVariable(value="id") String executorId){
-        return taskService.getByExecutor(Long.parseLong(executorId));
+        return taskService.getByExecutor(executorId);
     }
 
     @RequestMapping(

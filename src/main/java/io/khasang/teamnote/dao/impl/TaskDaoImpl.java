@@ -3,6 +3,7 @@ package io.khasang.teamnote.dao.impl;
 import io.khasang.teamnote.dao.TaskDao;
 import io.khasang.teamnote.entity.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,8 +12,12 @@ public class TaskDaoImpl extends BasicDaoImpl<Task> implements TaskDao {
         super(entityClass);
     }
 
+
+
     @Override
-    public List<Task> getTasksByExecutor(long executorId) {
+    public List<Task> getTasksByExecutor(String executorId) {
+        List<Task> taskList = new ArrayList<>();
+
         return null;
     }
 

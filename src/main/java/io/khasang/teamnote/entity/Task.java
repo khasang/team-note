@@ -92,4 +92,18 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", creator='" + creator + '\'' +
+                ", executor='" + executor + '\'' +
+                ", status='" + status + '\'' +
+                ", priority=" + priority +
+                ", label='" + label + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

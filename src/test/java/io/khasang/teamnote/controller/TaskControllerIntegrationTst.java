@@ -1,17 +1,20 @@
 package io.khasang.teamnote.controller;
 
 
-import io.khasang.teamnote.entity.Role;
+import com.sun.org.glassfish.gmbal.NameValue;
 import io.khasang.teamnote.entity.Task;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class TaskControllerIntegrationTst {
     private final String ROOT = "http://localhost:8080/task";
@@ -25,32 +28,34 @@ public class TaskControllerIntegrationTst {
     private final String DELETE = "/delete";
 
     @Test
-    public void addTaskAndGet(){
+    public void addTaskAndGet() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Task task = prepareTask();
-        HttpEntity<Task> httpEntity = new HttpEntity(task,headers);
+        HttpEntity<Task> httpEntity = new HttpEntity(task, headers);
 
         RestTemplate restTemplate = new RestTemplate();
 
         Task result = restTemplate.exchange(
-                ROOT+ADD,
+                ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
                 Task.class
         ).getBody();
         assertNotNull(result);
         assertNotNull(result.getId());
-        assertEquals(result.getName(),task.getName());
+        assertEquals(result.getName(), task.getName());
+
+        deleteTask(result.getId());
     }
 
     @Test
-    public void getAllTasks(){
+    public void getAllTasks() {
         RestTemplate restTemplate = new RestTemplate();
-        Task first = addTask();
-        Task second = addTask();
-        ResponseEntity<List<Task>> responseEntity =  restTemplate.exchange(
-                ROOT+ALL,
+        Task first = addGeneratedNewTask();
+        Task second = addGeneratedNewTask();
+        ResponseEntity<List<Task>> responseEntity = restTemplate.exchange(
+                ROOT + ALL,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Task>>() {
@@ -59,32 +64,67 @@ public class TaskControllerIntegrationTst {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         List<Task> resultList = responseEntity.getBody();
         assertNotNull(resultList);
+        deleteTask(first.getId());
+        deleteTask(second.getId());
     }
 
     @Test
-    public void deleteTask(){
-        Task t = addTask();
+    public void deleteTask() {
+        Task t = addGeneratedNewTask();
         assertNotNull(t.getId());
-        deleteTask(t);
+        deleteTask(t.getId());
+        assertNull(getTaskResponseById(t.getId()));
     }
 
-    private Task addTask(){
-        Task task = prepareTask();
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+    @Test
+    public void updateTask() {
+        Task task = addGeneratedNewTask();
+        String newName = "qyerqwioeuyqiwoeuryoiqwiueiiwwqirio";
+        task.setName(newName);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<Task> httpEntity = new HttpEntity<Task>(task,httpHeaders);
-        Task result = restTemplate.exchange(
-                ROOT+ADD,
-                HttpMethod.PUT,
-                httpEntity,
+        HttpEntity<Task> taskEntity = new HttpEntity<>(task, headers);
+
+        RestTemplate rt = new RestTemplate();
+        rt.exchange(
+                ROOT + UPDATE,
+                HttpMethod.POST,
+                taskEntity,
                 Task.class
-        ).getBody();
-        return result;
+        );
+        System.out.println(task.getId());
+        Task updatedTask = getTaskResponseById(task.getId());
+        System.out.println(updatedTask);
+        assertNotNull(updatedTask.getName());
+        assertEquals(updatedTask.getName(), newName);
+        deleteTask(task.getId());
     }
 
-    private Task prepareTask(){
+    @Test
+    public void getByExecutor() {
+        List<Task> executorTasks = new ArrayList<Task>();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity httpEntity = new HttpEntity(executorTasks, headers);
+
+        String nameExecutor = "testNameExecutor";
+
+        RestTemplate rt = new RestTemplate();
+        ResponseEntity<List<Task>> res = rt.exchange(
+                ROOT + GET_BY_EXECUTOR + "/nameExecutor",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Task>>() {
+                },
+                nameExecutor
+        );
+
+        assertEquals(res.getBody().size(),2);
+
+    }
+
+    private Task prepareTask() {
         Task task = new Task();
         task.setName("TestTask");
         task.setCreator("Me");
@@ -96,15 +136,50 @@ public class TaskControllerIntegrationTst {
         return task;
     }
 
-    private void deleteTask(long id){
+    private Task addGeneratedNewTask() {
+        Task task = prepareTask();
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<Task> httpEntity = new HttpEntity<Task>(task, httpHeaders);
+        Task result = restTemplate.exchange(
+                ROOT + ADD,
+                HttpMethod.PUT,
+                httpEntity,
+                Task.class
+        ).getBody();
+        return result;
+    }
+
+    private Task getTaskResponseById(long id) {
+        RestTemplate rt = new RestTemplate();
+        Task task;
+        try {
+            task = rt.exchange(
+                    ROOT + GET_BY_ID + "/{id}",
+                    HttpMethod.GET,
+                    null,
+                    Task.class,
+                    id
+            ).getBody();
+            System.out.println(task);
+        } catch (HttpClientErrorException e) {
+            return null;
+        }
+        return task;
+    }
+
+    private String deleteTask(long id) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> result = restTemplate.exchange(
-                ROOT+DELETE+"{/id}",
+                ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
                 String.class,
                 id
         );
         assertEquals(HttpStatus.OK, result.getStatusCode());
+        return result.getBody();
     }
 }
