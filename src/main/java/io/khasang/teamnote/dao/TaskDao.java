@@ -10,7 +10,7 @@ public interface TaskDao extends BasicDao<Task> {
      @param executorId
      @return List<Task>
     */
-    public List<Task> getTasksByExecutor(String executorId);
+    public List<Task> getTasksByExecutorId(long executorId);
 
     /**
      Returns a (@link List<Task>) with a given tasks by creator

@@ -40,7 +40,7 @@ public interface TaskService {
      * @param executorId = uniq id from users
      * @return list of tasks  by executor
      */
-    List<Task> getByExecutor(String executorId);
+    List<Task> getByExecutorId(long executorId);
 
     /**
      * Receive all entities by spicific type

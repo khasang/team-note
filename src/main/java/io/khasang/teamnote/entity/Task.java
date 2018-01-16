@@ -1,32 +1,28 @@
 package io.khasang.teamnote.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long   id;
-    @Column(name="creator")
-    private String   creator;
-    @Column(name="executor")
-    private String   executor;
-    @Column(name="status")
-    private String   status;
-    @Column(name="priority")
-    private long   priority;
-    @Column(name="label")
-    private String   label;
-    @Column(name="name")
+    private long id;
+
+    @Column(name = "creator")
+    private String creator;
+
+    @Column(name = "executor")
+    private String executor;
+    @Column(name = "status")
+    private String status;
+    @Column(name = "priority")
+    private long priority;
+    @Column(name = "label")
+    private String label;
+    @Column(name = "name")
     private String name;
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
     public long getId() {

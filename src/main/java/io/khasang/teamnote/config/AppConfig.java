@@ -1,8 +1,17 @@
 package io.khasang.teamnote.config;
 
-import io.khasang.teamnote.dao.*;
-import io.khasang.teamnote.dao.impl.*;
-import io.khasang.teamnote.entity.*;
+import io.khasang.teamnote.dao.AuthorizationDao;
+import io.khasang.teamnote.dao.RoleDao;
+import io.khasang.teamnote.dao.StatusDao;
+import io.khasang.teamnote.dao.TaskDao;
+import io.khasang.teamnote.dao.impl.AuthorizationDaoImpl;
+import io.khasang.teamnote.dao.impl.RoleDaoImpl;
+import io.khasang.teamnote.dao.impl.StatusDaoImpl;
+import io.khasang.teamnote.dao.impl.TaskDaoImpl;
+import io.khasang.teamnote.entity.Authorization;
+import io.khasang.teamnote.entity.Role;
+import io.khasang.teamnote.entity.Status;
+import io.khasang.teamnote.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,12 +19,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-
-import javax.persistence.Id;
-import java.util.Properties;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})

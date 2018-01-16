@@ -13,11 +13,8 @@ public class TaskDaoImpl extends BasicDaoImpl<Task> implements TaskDao {
     }
 
 
-
     @Override
-    public List<Task> getTasksByExecutor(String executorId) {
-        List<Task> taskList = new ArrayList<>();
-
+    public List<Task> getTasksByExecutorId(long executorId) {
         return null;
     }
 

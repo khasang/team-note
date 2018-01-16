@@ -1,7 +1,6 @@
 package io.khasang.teamnote.controller;
 
 
-import com.sun.org.glassfish.gmbal.NameValue;
 import io.khasang.teamnote.entity.Task;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -12,9 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class TaskControllerIntegrationTst {
     private final String ROOT = "http://localhost:8080/task";
@@ -120,7 +117,7 @@ public class TaskControllerIntegrationTst {
                 nameExecutor
         );
 
-        assertEquals(res.getBody().size(),2);
+        assertEquals(res.getBody().size(), 2);
 
     }
 

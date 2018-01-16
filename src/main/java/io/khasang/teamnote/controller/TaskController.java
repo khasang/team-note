@@ -64,8 +64,8 @@ public class TaskController {
             value="/get/byExecutor/{id}"
     )
     @ResponseBody
-    public List<Task> getTasksByExecutor(@PathVariable(value="id") String executorId){
-        return taskService.getByExecutor(executorId);
+    public List<Task> getTasksByExecutor(@PathVariable(value="id") long executorId){
+        return taskService.getByExecutorId(executorId);
     }
 
     @RequestMapping(
