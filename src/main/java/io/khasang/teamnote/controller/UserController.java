@@ -19,7 +19,7 @@ import io.khasang.teamnote.service.UserService;
  * @author MickeyMouse
  */
 @Controller
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserController {
 
 	@Autowired
