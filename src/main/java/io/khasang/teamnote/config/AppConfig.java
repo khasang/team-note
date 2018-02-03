@@ -1,17 +1,8 @@
 package io.khasang.teamnote.config;
 
-import io.khasang.teamnote.dao.AuthorizationDao;
-import io.khasang.teamnote.dao.RoleDao;
-import io.khasang.teamnote.dao.StatusDao;
-import io.khasang.teamnote.dao.TaskDao;
-import io.khasang.teamnote.dao.impl.AuthorizationDaoImpl;
-import io.khasang.teamnote.dao.impl.RoleDaoImpl;
-import io.khasang.teamnote.dao.impl.StatusDaoImpl;
-import io.khasang.teamnote.dao.impl.TaskDaoImpl;
-import io.khasang.teamnote.entity.Authorization;
-import io.khasang.teamnote.entity.Role;
-import io.khasang.teamnote.entity.Status;
-import io.khasang.teamnote.entity.Task;
+import io.khasang.teamnote.dao.*;
+import io.khasang.teamnote.dao.impl.*;
+import io.khasang.teamnote.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -74,5 +65,10 @@ public class AppConfig {
     @Bean
     public TaskDao taskDao() {
         return new TaskDaoImpl(Task.class);
+    }
+
+    @Bean
+    public ContactDao contactDao() {
+        return new ContactDaoImpl(Contact.class);
     }
 }

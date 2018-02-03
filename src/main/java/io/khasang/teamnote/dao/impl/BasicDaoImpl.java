@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Transactional
@@ -46,6 +46,10 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public List<T> getList() { //select * from documents
+        System.out.println("yes!yes!");
+        if(sessionFactory==null){
+            System.out.println("null!null!");
+        }
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
