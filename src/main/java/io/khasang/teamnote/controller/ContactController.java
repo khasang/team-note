@@ -1,7 +1,7 @@
 package io.khasang.teamnote.controller;
 
 import io.khasang.teamnote.entity.Contact;
-import io.khasang.teamnote.entity.Role;
+
 import io.khasang.teamnote.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,4 +22,8 @@ public class ContactController {
     public List<Contact> getContacts() {
         return contactService.getContacts();
     }
+
+    @RequestMapping(value = "/allWithDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Contact> getContactWithDetail(){return contactService.getContactsWithDetail();}
 }

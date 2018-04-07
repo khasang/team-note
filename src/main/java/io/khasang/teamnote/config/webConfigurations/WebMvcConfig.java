@@ -1,20 +1,20 @@
-package io.khasang.teamnote.config.application;
+package io.khasang.teamnote.config.webConfigurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.teamnote.config", "io.khasang.teamnote.controller",
-        "io.khasang.teamnote.service", "io.khasang.teamnote.dao"})
-public class WebConfig extends WebMvcConfigurerAdapter {
+@ComponentScan({"io.khasang.teamnote.config.webConfigurations", "io.khasang.teamnote.controller",
+        "io.khasang.teamnote.service"})
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

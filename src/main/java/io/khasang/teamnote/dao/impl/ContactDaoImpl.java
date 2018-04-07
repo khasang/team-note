@@ -2,11 +2,51 @@ package io.khasang.teamnote.dao.impl;
 
 import io.khasang.teamnote.dao.ContactDao;
 import io.khasang.teamnote.entity.Contact;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
-public class ContactDaoImpl extends BasicDaoImpl<Contact> implements ContactDao {
-    public ContactDaoImpl(Class<Contact> entityClass) {
-        super(entityClass);
+@Transactional
+@Service("contactDao")
+public class ContactDaoImpl implements ContactDao {
+    private static final Log LOG = LogFactory.getLog(ContactDaoImpl.class);
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @Transactional(readOnly = true)
+    public List<Contact> findAll() {
+        return sessionFactory.getCurrentSession().createQuery("from Contact c").list();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Contact> findAllWithDetail() {
+        return sessionFactory.getCurrentSession().
+            getNamedQuery("Contact.findAllWithDetail").list();
+    }
+
+    @Transactional(readOnly = true)
+    public Contact findById(Long id) {
+        return (Contact) sessionFactory.getCurrentSession().
+            getNamedQuery("Contact.findById").
+            setParameter("id", id).uniqueResult();
+    }
+
+    public Contact save(Contact contact) {
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+        LOG.info("Contact saved with id: " + contact.getId());
+        return contact;
+    }
+
+    public void delete(Contact contact) {
+        sessionFactory.getCurrentSession().delete(contact);
+        LOG.info("Contact deleted with id: " + contact.getId());
     }
 
 

@@ -1,43 +1,35 @@
-package io.khasang.teamnote.config;
+package io.khasang.teamnote.config.application;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.Resource;
 import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
 @PropertySource(value = "classpath:hibernate.properties")
 public class HibernateConfig {
-    private final Environment environment;
 
     @Autowired
-    public HibernateConfig(Environment environment) {
-        this.environment = environment;
-    }
+    public Environment environment;
 
-    @Bean
-    public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driverClass"));
-        dataSource.setUrl(environment.getRequiredProperty("hibernate.url"));
-        dataSource.setUsername(environment.getRequiredProperty("hibernate.username"));
-        dataSource.setPassword(environment.getRequiredProperty("hibernate.password"));
-        return dataSource;
-    }
+    @Resource
+    public BasicDataSource dataSource;
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan("io.khasang.teamnote.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
@@ -50,6 +42,9 @@ public class HibernateConfig {
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
         properties.put("show_sql", environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.max_fetch_depth", environment.getRequiredProperty("hibernate.max_fetch_depth"));
+        properties.put("hibernate.jdbc.fetch_size", environment.getRequiredProperty("hibernate.jdbc.fetch_size"));
+        properties.put("hibernate.jdbc.batch_size", environment.getRequiredProperty("hibernate.jdbc.batch_size"));
         return properties;
     }
 

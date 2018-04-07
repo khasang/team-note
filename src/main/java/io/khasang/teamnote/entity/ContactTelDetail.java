@@ -1,20 +1,12 @@
-package com.apress.prospring4.ch7;
+package io.khasang.teamnote.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "contact_tel_detail")
-public class ContactTelDetail implements Serializable {
+public class ContactTelDetail {
     private Long id;
     private int version;
     private String telType;
@@ -31,7 +23,7 @@ public class ContactTelDetail implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     public Long getId() {
         return this.id; 
     }
@@ -41,7 +33,7 @@ public class ContactTelDetail implements Serializable {
     }
 
     @Version
-    @Column(name = "VERSION")
+    @Column(name = "version")
     public int getVersion() {
         return this.version;
     }
@@ -50,7 +42,7 @@ public class ContactTelDetail implements Serializable {
         this.version = version;
     }
 
-    @Column(name = "TEL_TYPE")
+    @Column(name = "tel_type")
     public String getTelType() {
         return this.telType;
     } 
@@ -59,7 +51,7 @@ public class ContactTelDetail implements Serializable {
         this.telType = telType;
     }
 
-    @Column(name = "TEL_NUMBER")
+    @Column(name = "tel_number")
     public String getTelNumber() {
         return this.telNumber;
     }
@@ -69,7 +61,7 @@ public class ContactTelDetail implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CONTACT_ID")
+    @JoinColumn(name = "contact_id")
     public Contact getContact() {
         return this.contact;
     }
