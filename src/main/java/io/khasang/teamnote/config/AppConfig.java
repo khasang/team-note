@@ -3,6 +3,8 @@ package io.khasang.teamnote.config;
 import io.khasang.teamnote.dao.*;
 import io.khasang.teamnote.dao.impl.*;
 import io.khasang.teamnote.entity.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 @PropertySource(value = {"classpath:util.properties"})
 @PropertySource(value = {"classpath:auth.properties"})
 public class AppConfig {
+    private final Logger logger = LoggerFactory.getLogger(AppConfig.class);
     @Autowired
     private Environment environment;
 
@@ -57,27 +60,7 @@ public class AppConfig {
     }
 
     @Bean
-    public RoleDao roleDao(){
-        return new RoleDaoImpl(Role.class);
-    }
-
-    @Bean
-    public OrderDao orderDao(){
-        return new OrderDaoImpl(Order.class);
-    }
-
-    @Bean
-    public AuthorizationDao authorizationDao() {
-        return new AuthorizationDaoImpl(Authorization.class);
-    }
-
-    @Bean
-    public MessageDao messageDao(){
-        return new MessageDaoImpl(Message.class);
-    }
-
-    @Bean
-    public TaskDao taskDao(){
-        return new TaskDaoImpl(Task.class);
+    public ItemsDao itemsDao(){
+        return new ItemsDaoImpl(Items.class);
     }
 }

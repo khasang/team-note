@@ -1,6 +1,8 @@
 package io.khasang.teamnote.config;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource(value = "classpath:hibernate.properties")
 public class HibernateConfig {
+    private final Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
     private final Environment environment;
 
     @Autowired
