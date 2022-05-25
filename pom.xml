@@ -13,7 +13,7 @@
         <spring.version>4.3.10.RELEASE</spring.version>
         <postgresql.version>9.4.1212</postgresql.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
-        <spring.serurity.version>4.2.2.RELEASE</spring.serurity.version>
+        <spring.serurity.version>5.5.7</spring.serurity.version>
         <jackson.version>2.7.8</jackson.version>
         <log4j.version>1.2.17</log4j.version>
         <junit.version>4.12</junit.version>
