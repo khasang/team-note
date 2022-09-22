@@ -11,7 +11,7 @@
 
     <properties>
         <spring.version>4.3.10.RELEASE</spring.version>
-        <postgresql.version>9.4.1212</postgresql.version>
+        <postgresql.version>42.3.7</postgresql.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
         <spring.serurity.version>4.2.2.RELEASE</spring.serurity.version>
         <jackson.version>2.7.8</jackson.version>
